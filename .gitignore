@@ -1,0 +1,11 @@
+*.org
+*.html
+*.fasl
+*.exe
+*.elc
+*.eln
+*.eln.old
+*.o
+.clangd
+.projectile
+
