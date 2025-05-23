@@ -4,6 +4,8 @@ Personal utilities for Common Lisp.
 
 todo
 
-cl-utils : delete-nth, replace-nth
-        
+lists : delete-nth, replace-nth
+    
+macros : while
+
 (end of README)
