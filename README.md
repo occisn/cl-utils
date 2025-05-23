@@ -6,6 +6,6 @@ todo
 
 lists : delete-nth, replace-nth
     
-macros : while
+macros : while, aprogn
 
 (end of README)
