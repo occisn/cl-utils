@@ -12,6 +12,9 @@ File **bit-vectors.lisp**
    - functions `fixnum->bit-vector` and `bit-vector->fixnum`  
    - function `bit-vector-logcount`
 
+File **booleans.lisp**  
+   - macro `boolean-value`
+   
 File **debug.lisp**  
    - function `debug-output`
 
