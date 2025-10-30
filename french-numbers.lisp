@@ -98,7 +98,7 @@ N shall be <= 999 999 999 999
       (sub n t))))
 
 
-(defun test-en-toutes-lettres ()
+(defun TEST-en-toutes-lettres ()
   (assert (string= (en-toutes-lettres 3) "trois"))
   (assert (string= (en-toutes-lettres 20) "vingt"))
   (assert (string= (en-toutes-lettres 31) "trente et un"))
