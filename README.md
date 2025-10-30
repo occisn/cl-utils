@@ -4,8 +4,12 @@ Personal utilities for Common Lisp.
 
 When relevant, functions and macros are illustrated or checked with `SHOW-xxx` or `TEST-xxx` functions.
 
+File **arrays-and-vectors.lisp**  
+   - functions `vec-view-all-content` and `vec-preview`  
+   - function `unliteral--fixnum-vector`
+   
 File **bit-vectors.lisp**  
-   - function `fixnum->bit-vector` and `bit-vector->fixnum`  
+   - functions `fixnum->bit-vector` and `bit-vector->fixnum`  
    - function `bit-vector-logcount`
 
 File **debug.lisp**  
