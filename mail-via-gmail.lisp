@@ -1,6 +1,8 @@
+(eval-when (:compile-toplevel)
+  (ql:quickload :cl-smtp))
+
 (defpackage cl-utils--mail-via-gmail
   (:use :cl :cl-smtp))
-;; (ql:quickload :cl-smtp)
 
 (in-package :cl-utils--mail-via-gmail)
 

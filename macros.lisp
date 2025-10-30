@@ -1,5 +1,10 @@
 (in-package :cl-utils)
 
+(defpackage cl-utils--macros
+  (:use :cl))
+
+(in-package :cl-utils--macros)
+
 (defmacro while (condition &body body)
   "While macro based on CONDITION and BODY.
 (v1, available in occisn/cl-utils GitHub repository)"
