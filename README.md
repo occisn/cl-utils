@@ -2,6 +2,8 @@
 
 Personal utilities for Common Lisp.
 
+When relevant, functions and macros are illustrated or checked with `SHOW-xxx` or `TEST-xxx` functions.
+
 File **debug.lisp**  
    - function `debug-output`
    
@@ -13,9 +15,13 @@ File **french-numbers**
    - function `en-toutes-lettres`
    
 File **macros.lisp**  
-   - macro `while`  
-   - macro `aprogn`
-
+   - macro `with-gensyms`  
+   - macros `while`and `while1`  
+   - macros `repeat-until`and `do-while`  
+   - macros `aprogn` and `ablock`  
+   - macros `setf-min`, `setf-max`, `setf-min--df`, `setf-max--df`  
+   - macros `collecting` and `collecting--reversed-order`
+   
 File **mail-vis-gmail.lisp**  
    - function `send-mail-via-gmail`
    
