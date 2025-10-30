@@ -4,6 +4,11 @@
 
 (defpackage cl-utils--web
   (:use :cl :drakma))
+(eval-when (:compile-toplevel)
+  (ql:quickload :drakma))
+
+(defpackage cl-utils--web
+  (:use :cl :drakma))
 
 (in-package :cl-utils--web)
 
@@ -14,6 +19,7 @@ Requires drakma.
   (multiple-value-bind (content status-code headers final-uri)
       (drakma:http-request url)
     (declare (ignore content status-code headers))
+    ;; (format t "Final URI: ~a~%" final-uri)
     (not (string= url (format nil "~a" final-uri)))))
 
 ;;; end
