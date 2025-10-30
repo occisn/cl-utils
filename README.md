@@ -17,7 +17,7 @@ File **lists.lisp**
    - functions `arg-min` and `arg-max`  
    - function `nb-of-occurrences-of-sublist-in-list`  
    - functions `make-circular-DO-NOT-PRINT--AND-NOT-LITERAL` and `circular-list-length`  
-      - function `unliteral--fixnum-list`
+   - function `unliteral--fixnum-list`
    
 File **french-numbers**  
    - function `en-toutes-lettres`
@@ -39,7 +39,8 @@ File **strings.lisp**
    - function `string-repeat-string`  
    - function `string-add-space-at-left`  
    - function `duplicate-strings-in-list`  
-   - function `palindrome-string-p`
+   - function `palindrome-string-p`  
+   - function `unliteral--string`
 
 File **symbols.lisp**  
    - function `function-to-string` and `function-to-string-no-package`

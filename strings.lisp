@@ -79,4 +79,11 @@ The argument is supposed to be a string with at least one character.
     until (> i (ash (length str) -1))))
 ;; https://gist.github.com/Denommus/8530515
 
+(declaim (ftype (function ((simple-array character)) (simple-array character)) unliteral--string))
+(defun unliteral--string (str)
+  "Return an unliteral version of string STR.
+(v1, available in occisn/cl-utils GitHub repository)"
+    (declare (type (simple-array character) str))
+    (make-array (length str) :element-type 'character :initial-contents str))
+
 ;;; end
