@@ -6,6 +6,9 @@ File **lists.lisp**
    - function `delete-nth`  
    - function `replace-nth`
    
+File **french-numbers**  
+   - function `en-toutes-lettres`
+   
 File **macros.lisp**  
    - macro `while`  
    - macro `aprogn`
