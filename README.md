@@ -15,6 +15,14 @@ File **bit-vectors.lisp**
 File **booleans.lisp**  
    - macro `boolean-value`
    
+File **dates-and-times.lisp**  
+   - function `universal-time-to-YYYYMMDD-HHMMSS`  
+   - function `get-current-YYYYMMDD-HHMMSS`  
+   - functions `convert-int-YYYYMMDD-and-HHMMSS-to-universal-time` and `convert-int-YYYYMMDD-to-universal-time`  
+   - function `universal-time-to-YYYY-MM-DD`  
+   - functions `pretty-print-universal-time-as-full-date-time`, `pretty-print-universal-time-as-long-date` and `pretty-print-universal-time-as-short-date`  
+   - function `pretty-print-time-difference`
+
 File **debug.lisp**  
    - function `debug-output`
 
