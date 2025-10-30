@@ -1,5 +1,3 @@
-(in-package :cl-utils)
-
 (defpackage cl-utils--macros
   (:use :cl))
 
