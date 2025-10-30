@@ -25,6 +25,14 @@ File **macros.lisp**
 File **mail-vis-gmail.lisp**  
    - function `send-mail-via-gmail`
    
+File **strings.lisp**  
+   - function `string-split`  
+   - function `substring-after-last`  
+   - function `string-repeat-string`  
+   - function `string-add-space-at-left`  
+   - function `duplicate-strings-in-list`  
+   - function `palindrome-string-p`
+
 File **web.lisp**  
    - function `web-redirect-p`
 
