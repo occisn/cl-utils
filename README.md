@@ -52,6 +52,10 @@ File **macros.lisp**
 File **mail-vis-gmail.lisp**  
    - function `send-mail-via-gmail`
    
+File **numbers-rationals**  
+   - macro `convert-to-proper-fraction-m`  
+   - function `length-of-recurring-cycle`
+   
 File **strings.lisp**  
    - function `string-split`  
    - function `substring-after-last`  
