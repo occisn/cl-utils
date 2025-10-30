@@ -6,6 +6,10 @@ When relevant, functions and macros are illustrated or checked with `SHOW-xxx` o
 
 File **debug.lisp**  
    - function `debug-output`
+
+File **files.lisp**  
+   - function `random-file-name`  
+   - function `reduce-for-each-line-of-file`
    
 File **lists.lisp**  
    - function `delete-nth` and `replace-nth`
