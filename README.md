@@ -56,6 +56,9 @@ File **strings.lisp**
 File **symbols.lisp**  
    - function `function-to-string` and `function-to-string-no-package`
    
+File **triangles.lisp**  
+   - function `triangle-to-2d-array`
+   
 File **web.lisp**  
    - function `web-redirect-p`
 
