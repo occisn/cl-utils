@@ -12,7 +12,12 @@ File **files.lisp**
    - function `reduce-for-each-line-of-file`
    
 File **lists.lisp**  
-   - function `delete-nth` and `replace-nth`
+   - function `delete-nth` and `replace-nth`  
+   - function `list-preview`  
+   - functions `arg-min` and `arg-max`  
+   - function `nb-of-occurrences-of-sublist-in-list`  
+   - functions `make-circular-DO-NOT-PRINT--AND-NOT-LITERAL` and `circular-list-length`  
+      - function `unliteral--fixnum-list`
    
 File **french-numbers**  
    - function `en-toutes-lettres`
