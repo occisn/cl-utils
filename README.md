@@ -2,6 +2,9 @@
 
 Personal utilities for Common Lisp.
 
+File **debug.lisp**  
+   - function `debug-output`
+   
 File **lists.lisp**  
    - function `delete-nth`  
    - function `replace-nth`
