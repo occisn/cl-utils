@@ -1,9 +1,3 @@
-
-(eval-when (:compile-toplevel)
-  (ql:quickload :drakma))
-
-(defpackage cl-utils--web
-  (:use :cl :drakma))
 (eval-when (:compile-toplevel)
   (ql:quickload :drakma))
 
