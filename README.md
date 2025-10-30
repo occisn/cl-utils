@@ -8,8 +8,7 @@ File **debug.lisp**
    - function `debug-output`
    
 File **lists.lisp**  
-   - function `delete-nth`  
-   - function `replace-nth`
+   - function `delete-nth` and `replace-nth`
    
 File **french-numbers**  
    - function `en-toutes-lettres`
@@ -33,6 +32,9 @@ File **strings.lisp**
    - function `duplicate-strings-in-list`  
    - function `palindrome-string-p`
 
+File **symbols.lisp**  
+   - function `function-to-string` and `function-to-string-no-package`
+   
 File **web.lisp**  
    - function `web-redirect-p`
 
