@@ -1,7 +1,4 @@
-(defpackage cl-utils--files
-  (:use :cl ))
-
-(in-package :cl-utils--files)
+(in-package :cl-utils)
 
 (defun random-file-name (dir base suffix)
   "Generate a random file name within DIR directory, with base BASE and suffix SUFFIX, inserting current datetime and random number. Directory is +tmp-directory+.

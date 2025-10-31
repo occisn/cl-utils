@@ -1,7 +1,4 @@
-(defpackage cl-utils--symbols
-  (:use :cl))
-
-(in-package :cl-utils--symbols)
+(in-package :cl-utils)
 
 (defun function-to-string (fn)
   "Return a string corresponding to function FN.
@@ -20,7 +17,9 @@ For instance #'SIN --> 'SIN'
 For instance: 'abc::def' #\: --> 'def'
 (v1, available in occisn/cl-utils GitHub repository)"
              (declare (type character chr)
-                      (type (simple-array character) str))
+                      ;; (type (simple-array character) str)
+                      
+                      )
              (if
               (= 0 (length str))
               str
@@ -35,6 +34,8 @@ For instance: 'abc::def' #\: --> 'def'
                     str
                     (subseq str (+ idx 1) )))))) ; end of labels definitions
     
-    (substring-after-last (function-to-string fn) #\:)))
+    (substring-after-last
+     (format nil "~a" (nth-value 2 (function-lambda-expression fn)))
+     #\:)))
 
 ;;; end

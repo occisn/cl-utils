@@ -2,7 +2,10 @@
 
 Personal utilities for Common Lisp.
 
-When relevant, functions and macros are illustrated or checked with `SHOW-xxx` or `TEST-xxx` functions.
+When relevant, functions and macros are illustrated or checked with `SHOW-xxx`.  
+A test suite is proposed.  
+When implementation alternatives are possible, their speed is compared in test files (do not forget to set: speed = 3).
+
 
 File **arrays-and-vectors.lisp**  
    - functions `vec-view-all-content` and `vec-preview`  
@@ -14,6 +17,10 @@ File **bit-vectors.lisp**
 
 File **booleans.lisp**  
    - macro `boolean-value`
+
+File **compare-durations.lisp**  
+   - function `start-up-1`  
+   - macro `compare-durations` 
    
 File **dates-and-times.lisp**  
    - function `universal-time-to-YYYYMMDD-HHMMSS`  
@@ -37,10 +44,7 @@ File **lists.lisp**
    - function `nb-of-occurrences-of-sublist-in-list`  
    - functions `make-circular-DO-NOT-PRINT--AND-NOT-LITERAL` and `circular-list-length`  
    - function `unliteral--fixnum-list`
-   
-File **french-numbers**  
-   - function `en-toutes-lettres`
-   
+      
 File **macros.lisp**  
    - macro `with-gensyms`  
    - macros `while`and `while1`  
@@ -52,6 +56,9 @@ File **macros.lisp**
 File **mail-vis-gmail.lisp**  
    - function `send-mail-via-gmail`
    
+File **numbers-french**  
+   - function `en-toutes-lettres`
+
 File **numbers-rationals**  
    - macro `convert-to-proper-fraction-m`  
    - function `length-of-recurring-cycle`

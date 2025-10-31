@@ -1,8 +1,4 @@
-(defpackage cl-utils--dates-and-times
-  (:use :cl ))
-
-(in-package :cl-utils--dates-and-times)
-
+(in-package :cl-utils)
 
 ;;; Universal time = number of seconds since January 1, 1900
 ;;;    (get-universal-time) ; --> 3832210384

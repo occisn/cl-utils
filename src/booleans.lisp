@@ -1,7 +1,4 @@
-(defpackage cl-utils--booleans
-  (:use :cl))
-
-(in-package :cl-utils--booleans)
+(in-package :cl-utils)
 
 (defmacro boolean-value (x)
   "Return t if and only if X is true.

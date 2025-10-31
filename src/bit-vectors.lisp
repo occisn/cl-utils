@@ -1,7 +1,4 @@
-(defpackage cl-utils--bit-vectors
-  (:use :cl ))
-
-(in-package :cl-utils--bit-vectors)
+(in-package :cl-utils)
 
 (defun fixnum->bit-vector (n)
   "Return left-endian bit-vector representing fixnum N.

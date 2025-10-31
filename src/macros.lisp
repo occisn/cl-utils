@@ -1,7 +1,4 @@
-(defpackage cl-utils--macros
-  (:use :cl))
-
-(in-package :cl-utils--macros)
+(in-package :cl-utils)
 
 (defmacro with-gensyms (syms &body body)
   "Usual 'with-gensyms' macro.
@@ -61,11 +58,13 @@
 	(unless ,until-test (go ,beg-tag))) ))
 
 (defun SHOW-repeat-until ()
-  (let ((a 0))
-    (repeat-until
-      (incf a)
-      :until (> (* a a) 10))
-    a))
+  (locally
+      (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
+      (let ((a 0))
+        (repeat-until
+         (incf a)
+         :until (> (* a a) 10))
+        a)))
 ;; returns 4
 
 (defmacro do-while (&body body)
@@ -85,11 +84,13 @@
 	(when ,while-test (go ,beg-tag)))))
 
 (defun SHOW-do-while ()
-  (let ((a 0))
-    (do-while
-      (incf a)
-      :while (<= (* a a) 10))
-    a))
+  (locally
+      (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
+      (let ((a 0))
+        (do-while
+            (incf a)
+          :while (<= (* a a) 10))
+        a)))
 ;; returns 4
 
 (defmacro aprogn (&rest args)

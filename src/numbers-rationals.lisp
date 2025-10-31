@@ -1,7 +1,4 @@
-(defpackage cl-utils--numbers-rationals
-  (:use :cl ))
-
-(in-package :cl-utils--numbers-rationals)
+(in-package :cl-utils)
 
 (defmacro convert-to-proper-fraction-m (a b)
   "Modify A and B to transform A/B into a proper fraction.

@@ -1,7 +1,4 @@
-(defpackage cl-utils--strings
-  (:use :cl ))
-
-(in-package :cl-utils--strings)
+(in-package :cl-utils)
 
 (defun string-split (str delimiter)
   "Split STR according to DELIMITER and return a list.

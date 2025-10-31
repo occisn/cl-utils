@@ -1,10 +1,4 @@
-(eval-when (:compile-toplevel)
-  (ql:quickload :cl-smtp))
-
-(defpackage cl-utils--mail-via-gmail
-  (:use :cl :cl-smtp))
-
-(in-package :cl-utils--mail-via-gmail)
+(in-package :cl-utils)
 
 (defun send-mail-via-gmail (&key (from nil) (to nil) (subject "") (body "") (password nil) (cc nil) (bcc nil))
   "Send an email via Gmail's SMTP server.

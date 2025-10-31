@@ -1,7 +1,4 @@
-(defpackage cl-utils--triangles
-  (:use :cl ))
-
-(in-package :cl-utils--triangles)
+(in-package :cl-utils)
 
 (declaim (ftype (function (list) simple-array) triangle-to-2d-array))
 (defun triangle-to-2d-array (triangle)

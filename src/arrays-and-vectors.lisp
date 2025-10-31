@@ -1,7 +1,4 @@
-(defpackage cl-utils--arrays-and-vectors
-  (:use :cl ))
-
-(in-package :cl-utils--arrays-and-vectors)
+(in-package :cl-utils)
 
 (defun vec-view-all-content (v)
   "Print all content of vector V.

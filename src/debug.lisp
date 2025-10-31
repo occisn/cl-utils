@@ -1,23 +1,9 @@
-(defpackage cl-utils--debug
-  (:use :cl ))
-
-(in-package :cl-utils--debug)
-
-;; required below
-(defmacro with-gensyms (syms &body body)
-  "Usual 'with-gensyms' macro.
-(v1 available in occisn/cl-utils GitHub repository)"
-  `(let ,(mapcar #'(lambda (s)
-                     (declare (type symbol s))
-                     `(,s (gensym ,(string s))))
-          syms)
-     ,@body))
+(in-package :cl-utils)
 
 (defmacro debug-output (form)
   "Execute FORM and prints both FORM and the result of its evaluation.
-Requires 'with-gensyms' macro.
 (v1, available in occisn/cl-utils GitHub repository)"
-  (with-gensyms (res)
+  (let ((res (gensym)))
     `(let ((,res (progn ,form)))
        (format t "~:w --> ~s~%" ',form ,res)
        ,res)))
@@ -37,7 +23,5 @@ Requires 'with-gensyms' macro.
 ;; (INCF CL-UTILS--DEBUG::RES CL-UTILS--DEBUG::I) --> 10
 ;; (INCF CL-UTILS--DEBUG::RES CL-UTILS--DEBUG::I) --> 15
 ;; 15
-
-
 
 ;;; end
