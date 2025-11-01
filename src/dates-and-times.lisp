@@ -42,21 +42,21 @@ For instance: 20220403-145223
 For instance: 20220403-145223
 (v1 available in occisn/cl-utils GitHub repository)"
 
-  (labels ((universal-time-to-YYYYMMDD-HHMMSS (universal-time)
-             "Return universal time under YYYYMMDD-HHMMSS format.
+  (flet ((universal-time-to-YYYYMMDD-HHMMSS (universal-time)
+           "Return universal time under YYYYMMDD-HHMMSS format.
 For instance: 20220403-145223
 (v1 available in occisn/cl-utils GitHub repository)"
-             (multiple-value-bind
-                   (second minute hour day month year _day-of-week _dst-p _tz)
-                 (decode-universal-time universal-time)
-               (declare (ignorable _day-of-week _dst-p _tz))
-               (format nil "~2,'0d~2,'0d~2,'0d-~2,'0d~2,'0d~2,'0d"
-	               year
-                       month
-                       day
-                       hour
-	               minute
-	               second)))) ; end of labels definition
+           (multiple-value-bind
+                 (second minute hour day month year _day-of-week _dst-p _tz)
+               (decode-universal-time universal-time)
+             (declare (ignorable _day-of-week _dst-p _tz))
+             (format nil "~2,'0d~2,'0d~2,'0d-~2,'0d~2,'0d~2,'0d"
+	             year
+                     month
+                     day
+                     hour
+	             minute
+	             second)))) ; end of labels definition
     
     (universal-time-to-YYYYMMDD-HHMMSS (get-universal-time))))
 

@@ -4,24 +4,22 @@
   "Modify A and B to transform A/B into a proper fraction.
 (v1, available in occisn/cl-utils GitHub repository)"
 
-  (labels () ; end of labels definitions
-    
-    (let ((gcd (gensym)))
+  (let ((gcd (gensym)))
 
-      `(labels ((gcd--2fixnum (a b)
-                  "Calculate GCD of arguments, which are supposed to be two fixnums.
+    `(labels ((gcd--2fixnum (a b)
+                "Calculate GCD of arguments, which are supposed to be two fixnums.
 Requires SBCL.
 (v1, available in occisn/cl-utils GitHub repository)"
-                  (declare (type fixnum a b))
-                  (cond ((eql a 0) (abs b))
-                        ((eql b 0) (abs a))
-                        (t (sb-kernel::fixnum-gcd a b)))))
-         
-         (let ((,gcd (gcd--2fixnum ,a ,b)))
-           (declare (type fixnum ,gcd))
-           (when (> ,gcd 1)
-             (setf ,a (floor ,a ,gcd)
-                   ,b (floor ,b ,gcd))))))))
+                (declare (type fixnum a b))
+                (cond ((eql a 0) (abs b))
+                      ((eql b 0) (abs a))
+                      (t (sb-kernel::fixnum-gcd a b)))))
+       
+       (let ((,gcd (gcd--2fixnum ,a ,b)))
+         (declare (type fixnum ,gcd))
+         (when (> ,gcd 1)
+           (setf ,a (floor ,a ,gcd)
+                 ,b (floor ,b ,gcd)))))))
 
 
 (defun SHOW-convert-to-proper-fraction-m (&optional (a 50) (b 15))

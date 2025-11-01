@@ -12,7 +12,7 @@ For instance #'SIN --> 'SIN'
 (v1 available in occisn/cl-utils GitHub repository)"
   (declare (type function fn))
 
-  (labels ((substring-after-last (str chr)
+  (flet ((substring-after-last (str chr)
              "Return the last substring of STR after character CHAR.
 For instance: 'abc::def' #\: --> 'def'
 (v1, available in occisn/cl-utils GitHub repository)"

@@ -16,7 +16,7 @@ All numbers are fixnum.
     (declare (type list last-line) 
              (type fixnum width))
     
-    (labels ((fill-with-zeros (initial-list)
+    (flet ((fill-with-zeros (initial-list)
                (declare (type list initial-list))
 	       (append initial-list
 		       (loop for i from (length initial-list) below width collect 0))))
