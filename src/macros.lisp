@@ -19,16 +19,16 @@
   "While macro based on CONDITION and BODY."
   (let ((start (gensym "START")))
     `(tagbody
-       ,start
-       (when ,condition
-         (progn ,@body)
-         (go ,start)))))
+        ,start
+        (when ,condition
+          (progn ,@body)
+          (go ,start)))))
 
 (defmacro while--alternative-2 (condition &body body)
   "While macro based on CONDITION and BODY."
   `(do ()
-      ((not ,condition))
-    (progn ,@body)))
+       ((not ,condition))
+     (progn ,@body)))
 
 (defun SHOW-while ()
   (let ((a 0))
@@ -55,10 +55,10 @@
 (v2 available in occisn/cl-utils GitHub repository)"
   (let ((start (gensym "START")))
     `(tagbody
-       ,start
-       (when ,condition
-         (progn ,@body)
-         (go ,start)))))
+        ,start
+        (when ,condition
+          (progn ,@body)
+          (go ,start)))))
 
 (defun SHOW-while1 ()
   (let ((a 0))
@@ -87,12 +87,27 @@
 (defun SHOW-repeat-until ()
   (locally
       (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
-      (let ((a 0))
-        (repeat-until
-         (incf a)
-         :until (> (* a a) 10))
-        a)))
-;; returns 4
+    (let ((a 0))
+      (repeat-until
+       (format t " ~a" a)
+       (incf a)
+       :until (> (* a a) 10))
+      a)))
+;; prints 0 1 2 3 and returns 4, which overshoots
+
+(defmacro repeat-until--alternative (&body body)
+  "Usage: (repeat-until sexp1 sexp2 ... sexpn :until condition)"
+  (declare (type list body))
+  (when (<= (length body) 2)
+    (error "Not enough arguments in repeat macro"))
+  (when (not (eql :until (elt body (- (length body) 2))))
+    (error "Keyword :until missing in repeat macro"))
+  (let ((body2 (butlast (butlast body)))
+	(until-test (car (last body))))
+    `(do nil
+         (nil) ; never exist via the 'do' test
+	,@body2
+	(when ,until-test (return)))))
 
 (defmacro do-while (&body body)
   "Usage: (do-while sexp1 sexp2 ... sexpn :while condition)
@@ -113,12 +128,28 @@
 (defun SHOW-do-while ()
   (locally
       (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
-      (let ((a 0))
-        (do-while
-            (incf a)
-          :while (<= (* a a) 10))
-        a)))
-;; returns 4
+    (let ((a 0))
+      (do-while
+          (format t " ~a" a)
+        (incf a)
+        :while (<= (* a a) 10))
+      a)))
+;; prints 0 1 2 3 and returns 4 (which overshoots)
+
+(defmacro do-while--alternative (&body body)
+  "Usage: (do-while sexp1 sexp2 ... sexpn :while condition)"
+  (declare (type cons body))
+  (when (<= (length body) 2)
+    (error "Not enough arguments in do-while macro"))
+  (when (not (eql :while (elt body (- (length body) 2))))
+    (error "Keyword :while missing in do-while macro"))
+  (let ((body2 (butlast (butlast body)))
+	(while-test (car (last body))))
+    `(do nil
+         (nil)  ; never exit via the 'do' test
+       ,@body2
+       (unless ,while-test (return)))))
+;; prints 0 1 2 3 and returns 4 (which overshoots)
 
 (defmacro aprogn (&rest args)
   "Anaphoric progn.
@@ -152,15 +183,15 @@ Source : On Lisp"
                "Anaphoric lambda."
                `(labels ((self ,parms ,@body))
                   #'self))) ; end of macrolet definitions
-      `(block ,tag
-         ,(funcall (%alambda (args)
-                             (declare (type cons args))
-                             (case (length args)
-		               (0 nil)
-		               (1 (car args))
-		               (t `(let ((it ,(car args)))
-			             ,(self (cdr args))))))
-	           args))))
+    `(block ,tag
+       ,(funcall (%alambda (args)
+                           (declare (type cons args))
+                           (case (length args)
+		             (0 nil)
+		             (1 (car args))
+		             (t `(let ((it ,(car args)))
+			           ,(self (cdr args))))))
+	         args))))
 ;; See "On Lisp" book
 
 (defun SHOW-ablock ()
@@ -168,7 +199,7 @@ Source : On Lisp"
           (dotimes (i 10)
             (when (= i 5)
               (return-from it i))))) ; it = current block
-; returns 5
+                                        ; returns 5
 
 (defmacro setf-min (x y)
   "Put at place X the min of X and Y.
@@ -211,8 +242,8 @@ Order is reversed (quicker).
 (defun SHOW-collecting--reversed-order ()
   (collecting--reversed-order
    (loop for i of-type fixnum from -5 to 5
-     when (> (* i i) 10)
-       do (collect1 i))))
+         when (> (* i i) 10)
+           do (collect1 i))))
 ;; --> (5 4 -4 -5)
 
 (defmacro collecting (&body body)
@@ -230,8 +261,8 @@ In the right order (using REVERSE, so slower than the previous macro).
 (defun SHOW-collecting ()
   (collecting
    (loop for i of-type fixnum from -5 to 5
-     when (> (* i i) 10)
-       do (collect1 i))))
+         when (> (* i i) 10)
+           do (collect1 i))))
 ;; --> (-5 -4 4 5)
 
 ;;; end

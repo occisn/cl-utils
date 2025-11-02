@@ -12,6 +12,7 @@
                              ;;
                              (:file "bit-vectors-tests")
                              (:file "lists-tests")
+                             (:file "macros-tests")
                              (:file "numbers-french-tests")
                              (:file "strings-tests")
                              (:file "symbols-tests"))))

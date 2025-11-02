@@ -52,6 +52,7 @@
    setf-min--df
    setf-max--df
    collecting
+   collect1 
    collecting--reversed-order
    ;; mails:
    send-mail-via-gmail
