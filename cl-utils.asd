@@ -36,7 +36,7 @@
                  (:file "web"))
                 ))
   :perform (load-op :after (op c)
-                    (format t "~%Welcome in cl-utils (~a exported symbols)~%"
+                    (format t "~%Welcome in cl-utils! (~a exported symbols)~%"
                             (let ((package-name :cl-utils)
                                   (count 0))
                               (do-external-symbols (sym package-name count)
