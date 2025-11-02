@@ -88,7 +88,7 @@ https://lisptips.com/post/44261316742/how-do-i-convert-an-integer-to-a-list-of-b
 
 (defun compare-duration-fixnum->bit-vector ()
   ""
-  (cl-utils::compare-durations
+  (compare-durations
    (%fixnum->bit-vector-v1
     %fixnum->bit-vector-v2
     %fixnum->bit-vector-v3
@@ -99,7 +99,7 @@ https://lisptips.com/post/44261316742/how-do-i-convert-an-integer-to-a-list-of-b
               ;; (declare (ftype (function (fixnum) simple-bit-vector) fn))
               (loop for i of-type fixnum from 1 to 10000000
                     do (funcall fn i)))
-   :start-up cl-utils::start-up-1))
+   :start-up start-up-1))
 ;;; v5 et v6 with coerce are longer
 ;;; v3 is quicker; v1 et v4 juste after
 
@@ -126,20 +126,20 @@ https://lisptips.com/post/44261316742/how-do-i-convert-an-integer-to-a-list-of-b
   %bit-vector->fixnum-v2)
  :predicate =
  :context (loop for i from 1000 to 2000
-                for v of-type (simple-array bit) = (cl-utils::fixnum->bit-vector i)
+                for v of-type (simple-array bit) = (fixnum->bit-vector i)
                 do (compare1 fn v)))
 
 (defun compare-duration-bit-vector->fixnum ()
   ""
-  (cl-utils::compare-durations
+  (compare-durations
    (%bit-vector->fixnum-v1
     %bit-vector->fixnum-v2)
    :context (lambda (fn)
               (loop for i of-type fixnum from 1 to 10000000
-                    for v of-type (simple-array bit) = (cl-utils::fixnum->bit-vector i)
+                    for v of-type (simple-array bit) = (fixnum->bit-vector i)
                     for j of-type fixnum = (funcall fn v)
                     do (assert (= i j))))
-   :start-up cl-utils::start-up-1))
+   :start-up start-up-1))
 ;; v1 is the quickest
 
 ;;; === bit-vector-logcount
@@ -174,20 +174,20 @@ https://lisptips.com/post/44261316742/how-do-i-convert-an-integer-to-a-list-of-b
     %bit-vector-logcount-v3)
  :predicate =
  :context (loop for i from 1000 to 2000
-                for v of-type (simple-array bit) = (cl-utils::fixnum->bit-vector i)
+                for v of-type (simple-array bit) = (fixnum->bit-vector i)
                 do (compare1 fn v)))
 
 (defun compare-duration-bit-vector-logcount ()
   ""
-  (cl-utils::compare-durations
+  (compare-durations
    (%bit-vector-logcount-v1
     %bit-vector-logcount-v2
     %bit-vector-logcount-v3)
    :context (lambda (fn)
               (loop for i of-type fixnum from 1 to 10000000
-                    for v of-type (simple-array bit) = (cl-utils::fixnum->bit-vector i)
+                    for v of-type (simple-array bit) = (fixnum->bit-vector i)
                     do (funcall fn v)))
-   :start-up cl-utils::start-up-1))
+   :start-up start-up-1))
 ;;; v1 is the quickest
 
 ;;; === Conclusion: To reset a bit vector to zero, it is less costly to create a new one than to set each bit to zero individually; the opposite is true for other types of vectors.
@@ -205,12 +205,12 @@ https://lisptips.com/post/44261316742/how-do-i-convert-an-integer-to-a-list-of-b
              (%fn2 ()
                (setf vec (make-array size :element-type 'double-float :initial-element 0.0d0))
                (loop repeat 3 do (setf (aref vec (random size)) 1.0d0))))
-      (cl-utils::compare-durations
+      (compare-durations
        (%fn1
         %fn2)
        :context (lambda (fn) (loop repeat 50000
                                    do (funcall fn)))
-       :start-up cl-utils::start-up-1))))
+       :start-up start-up-1))))
 ;; fn1 is two times quicker
 
 (defun %SHOW-vector-zeroisation-boolean-v1 ()
@@ -224,12 +224,12 @@ https://lisptips.com/post/44261316742/how-do-i-convert-an-integer-to-a-list-of-b
              (%fn2 ()
                (setf vec (make-array size :element-type 'boolean :initial-element nil))
                (loop repeat 3 do (setf (aref vec (random size)) t))))
-      (cl-utils::compare-durations
+      (compare-durations
        (%fn1
         %fn2)
        :context (lambda (fn) (loop repeat 50000
                                    do (funcall fn)))
-       :start-up cl-utils::start-up-1))))
+       :start-up start-up-1))))
 ;; fn1 is four times quicker
 
 (defun %SHOW-vector-zeroisation-fixnum-v1 ()
@@ -243,12 +243,12 @@ https://lisptips.com/post/44261316742/how-do-i-convert-an-integer-to-a-list-of-b
              (%fn2 ()
                (setf vec (make-array size :element-type 'fixnum :initial-element 0))
                (loop repeat 3 do (setf (aref vec (random size)) 1))))
-      (cl-utils::compare-durations
+      (compare-durations
        (%fn1
         %fn2)
        :context (lambda (fn) (loop repeat 50000
                                    do (funcall fn)))
-       :start-up cl-utils::start-up-1))))
+       :start-up start-up-1))))
 ;; fn1 is two times quicker
 
 (defun %SHOW-vector-zeroisation-bit-v1 (&optional (nb-iter 500) (size 1000000)) ; 1M
@@ -263,12 +263,12 @@ https://lisptips.com/post/44261316742/how-do-i-convert-an-integer-to-a-list-of-b
              (%fn2 ()
                (setf vec (make-array size :element-type 'bit :initial-element 0))
                (loop repeat nb-of-ones do (setf (sbit vec (random size)) 1))))
-      (cl-utils::compare-durations
+      (compare-durations
        (%fn1
         %fn2)
        :context (lambda (fn) (loop repeat nb-iter
                                    do (funcall fn)))
-       :start-up cl-utils::start-up-1))))
+       :start-up start-up-1))))
 ;; fn2 a little quicker
 
 ;;; === end
