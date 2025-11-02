@@ -2,10 +2,19 @@
 
 Personal utilities for Common Lisp.
 
-When relevant, functions and macros are illustrated or checked with `SHOW-xxx`.  
-A test suite is proposed.  
-When implementation alternatives are possible, their speed is compared in test files (do not forget to set: speed = 3).
+Some functions are specific to SBCL.
 
+This repository is not supposed to be forked or included in another project. It is more a kind of shelf with many functions, where each function is self-supporting: it does not require another function of the project (in case it requires another function of the project, the said function is included with `flet` or `labels`); in case of dependency to specific packages (`drakma`...), it is clearly specified.
+
+When relevant, functions and macros are illustrated or checked with `SHOW-xxx`.
+
+A test suite is proposed. In addition to traditional tests, when several implementations of the same function are ptoposed, tests file may *(i)* check that they yield the same returns and *(ii)* compare speed (do not forget to set: `speed = 3` in `asd` files).
+
+Table of contents:  
+- [list of functions and macros](#list-of-functions-and-macros)  
+- [personal notes](#personal-notes)
+
+## List of functions and macros
 
 File **arrays-and-vectors.lisp**  
    - functions `vec-view-all-content` and `vec-preview`  
@@ -82,5 +91,9 @@ File **web.lisp**
    - function `web-redirect-p`
 
 Any comment? Open an [issue](https://github.com/occisn/cl-utils/issues), or start a discussion [here](https://github.com/occisn/cl-utils/discussions) or [at profile level](https://github.com/occisn/occisn/discussions).
+
+## Personal notes
+
+In case a new function is added, it has to be included *(i)* in the list of exported symbols within `package.lisp`, and *(ii)* in this README file.
    
 (end of README)
