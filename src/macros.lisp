@@ -9,21 +9,26 @@
           syms)
      ,@body))
 
-(defmacro OLD-while (condition &body body)
+(defmacro while (condition &body body)
   "While macro based on CONDITION and BODY.
 (v1, available in occisn/cl-utils GitHub repository)"
   `(loop while ,condition
          do (progn ,@body)))
 
-(defmacro while (condition &body body)
-  "While macro based on CONDITION and BODY.
-(v2, available in occisn/cl-utils GitHub repository)"
+(defmacro while--alternative-1 (condition &body body)
+  "While macro based on CONDITION and BODY."
   (let ((start (gensym "START")))
     `(tagbody
        ,start
        (when ,condition
          (progn ,@body)
          (go ,start)))))
+
+(defmacro while--alternative-2 (condition &body body)
+  "While macro based on CONDITION and BODY."
+  `(do ()
+      ((not ,condition))
+    (progn ,@body)))
 
 (defun SHOW-while ()
   (let ((a 0))
@@ -33,7 +38,7 @@
     a))
 ;; prints 0 1 2 3 4 and returns 5
 
-(defmacro OLD-while1 (test &body body)
+(defmacro while1--OLD-VERSION (test &body body)
   "Typical 'while' macro. Same as 'while', but named as 'while1' to be used within 'loop' block, where 'while' is overshadowed.
 (v1 available in occisn/cl-utils GitHub repository)"
   (let ((beg-tag (gensym "BEG-TAG"))
