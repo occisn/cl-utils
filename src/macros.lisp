@@ -9,20 +9,31 @@
           syms)
      ,@body))
 
-(defmacro while (condition &body body)
+(defmacro OLD-while (condition &body body)
   "While macro based on CONDITION and BODY.
 (v1, available in occisn/cl-utils GitHub repository)"
   `(loop while ,condition
          do (progn ,@body)))
 
+(defmacro while (condition &body body)
+  "While macro based on CONDITION and BODY.
+(v2, available in occisn/cl-utils GitHub repository)"
+  (let ((start (gensym "START")))
+    `(tagbody
+       ,start
+       (when ,condition
+         (progn ,@body)
+         (go ,start)))))
+
 (defun SHOW-while ()
   (let ((a 0))
     (while (< a 5)
-      (incf a))
+           (format t "~a " a)
+           (incf a))
     a))
-;; returns 5
+;; prints 0 1 2 3 4 and returns 5
 
-(defmacro while1 (test &body body)
+(defmacro OLD-while1 (test &body body)
   "Typical 'while' macro. Same as 'while', but named as 'while1' to be used within 'loop' block, where 'while' is overshadowed.
 (v1 available in occisn/cl-utils GitHub repository)"
   (let ((beg-tag (gensym))
@@ -34,12 +45,23 @@
         (go ,beg-tag)
 	,end-tag)))
 
+(defmacro while1 (condition &body body)
+  "Typical 'while' macro. Same as 'while', but named as 'while1' to be used within 'loop' block, where 'while' is overshadowed.
+(v2 available in occisn/cl-utils GitHub repository)"
+  (let ((start (gensym "START")))
+    `(tagbody
+       ,start
+       (when ,condition
+         (progn ,@body)
+         (go ,start)))))
+
 (defun SHOW-while1 ()
   (let ((a 0))
     (while1 (< a 5)
-      (incf a))
+            (format t "~a " a)
+            (incf a))
     a))
-;; returns 5
+;; prints 0 1 2 3 4 and returns 5
 
 (defmacro repeat-until (&body body)
   "Usage: (repeat-until sexp1 sexp2 ... sexpn :until condition)
