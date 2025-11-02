@@ -106,15 +106,15 @@ This section is not specifically related to functions proposed by `cl-utils`.
 My actual Emacs configuration file is available in a [dedicated repository](https://github.com/occisn/emacs-config)
 
 When working :  
-- compile function/macro: `C-c C-c`  
-- compile buffer: `C-c C-k` (probably to be avoided with ASDF project, since it creates a `fasl` file next to `lisp` file, with a risk of confusion)  
-- send function to REPL, ready to be executed: `C-c C-y`  
+- **compile function/macro**: `C-c C-c`  
+- **compile buffer**: `C-c C-k` (probably to be avoided with ASDF project, since it creates a `fasl` file next to `lisp` file, with a risk of confusion)  
+- **send function to REPL**, ready to be executed: `C-c C-y`  
 - send function to REPL, ready to be executed with time measurement: `C-c C-x` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config))  
-- expand macro: `C-c C-m`; fully expand macro: `C-c M-m`
+- **expand macro**: `C-c C-m`; fully expand macro: `C-c M-m`
 
 **The rest of this section is specific to ASDF projects.**
 
-To **load** system from Common Lisp REPL, use one of the following instructions:
+To **load** system **from Common Lisp REPL**, use one of the following instructions:
 ```
 ,load-system [cl-my-project]
 (asdf:load-system :cl-my-project)
@@ -128,29 +128,30 @@ At the beginning of the work session, it could be smarter to load tests system, 
 (ql:quickload :cl-my-project-tests)
 ``` 
 
+To **force-load** system **from Common Lisp REPL**:
+```
+(asdf:load-system :cl-my-project :force t)
+,force-load-system [cl-my-project]
+```
+
+To **force-load** system **from project file** : `C-c d f l` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config))
+
 To **test** system from Common Lisp REPL, use one of the following instructions:
 ```
 ,test-system [cl-my-project]
 (asdf:test-system :cl-my-project)
 (parachute:test 'cl-my-project-tests)
 ```
+\+ equivalent forms to force-test
 
-For a specfic test:
-```
-(parachute:test 'cl-my-project-tests::test-triple)
-```
+To **force-test** system **from project file** : `C-c d f t` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config))
 
-To **reload** the whole system:
-```
-(asdf:load-system :cl-my-project :force t)
-,force-load-system [cl-my-project]
-```
+For a **specific test**: `(parachute:test 'cl-my-project-tests::test-triple)`  
+or **launch tests only related to the current function**: `C-c SPC` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config)) will create relevant instructions in REPL, ready to be executed.
 
-Switch between source and test file: `C-c d s` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config), accessible via hydra)
+**Switch between source and test file**: `C-c d s` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config), accessible via hydra)
 
-Jump to `asd` file: `C-c d a` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config), accessible via hydra)
-
-Launch tests only related to the current function: `C-c SPC` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config)) will create relevant instructions in REPL, ready to be executed.
+**Jump to `asd` file**: `C-c d a` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config), accessible via hydra)
 
 ## Personal notes
 
