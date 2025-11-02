@@ -44,11 +44,11 @@ Example:
                             (loop for elt in lst collect (sexp-replace-sexp-beginning-by elt prefix replace-builder-fn)))))))
         
         (let ((fn1 (car fns))
-              (fn (gensym))
-              (value1 (gensym))
-              (valuei (gensym))
-              (outer0 (gensym))
-              (j (gensym)))
+              (fn (gensym "FN"))
+              (value1 (gensym "VALUE-1"))
+              (valuei (gensym "VALUE-I"))
+              (outer0 (gensym "OUTER-0"))
+              (j (gensym "J")))
           
           `(parachute:define-test ,name
              (parachute:true

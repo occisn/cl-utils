@@ -110,8 +110,8 @@ Example: (my-time-real (+ 2 2))
 Example: (my-time (+ 2 2))
          (my-time (%long-function-A))"
 ;;; see https://rosettacode.org/wiki/Time_a_function#Common_Lisp
-  (let ((real-base (gensym))
-	(run-base (gensym)))
+  (let ((real-base (gensym "REAL-BASE"))
+	(run-base (gensym "RUN-BASE")))
     `(let* ((,real-base (get-internal-real-time))
 	    (,run-base (get-internal-run-time)))
        ,exp

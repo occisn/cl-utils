@@ -3,7 +3,7 @@
 (defmacro debug-output (form)
   "Execute FORM and prints both FORM and the result of its evaluation.
 (v1, available in occisn/cl-utils GitHub repository)"
-  (let ((res (gensym)))
+  (let ((res (gensym "RES")))
     `(let ((,res (progn ,form)))
        (format t "~:w --> ~s~%" ',form ,res)
        ,res)))

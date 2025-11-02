@@ -4,7 +4,7 @@
   "Modify A and B to transform A/B into a proper fraction.
 (v1, available in occisn/cl-utils GitHub repository)"
 
-  (let ((gcd (gensym)))
+  (let ((gcd (gensym "GCD")))
 
     `(labels ((gcd--2fixnum (a b)
                 "Calculate GCD of arguments, which are supposed to be two fixnums.
