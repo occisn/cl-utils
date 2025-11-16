@@ -6,7 +6,7 @@ Some functions are specific to SBCL.
 
 This repository is not supposed to be forked or included in another project. It is more a kind of shelf with many functions, where each function is self-supporting: it does not require another function of the project (in case it requires another function of the project, the said function is included with `flet` or `labels`); in case of dependency to specific packages (`drakma`...), it is clearly specified.
 
-When relevant, functions and macros are illustrated or checked with `SHOW-xxx`.
+When relevant, functions and macros are illustrated with `SHOW-xxx`.
 
 A test suite is proposed. In addition to traditional tests, when several implementations of the same function are ptoposed, tests file may *(i)* check that they yield the same returns and *(ii)* compare speed (do not forget to set: `speed = 3` in `asd` files).
 
