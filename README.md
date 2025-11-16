@@ -1,7 +1,6 @@
 # cl-utils
 
 Personal utilities for Common Lisp.  
-\+ considerations on development workflow
 
 Some functions are specific to SBCL.
 
@@ -11,13 +10,7 @@ When relevant, functions and macros are illustrated or checked with `SHOW-xxx`.
 
 A test suite is proposed. In addition to traditional tests, when several implementations of the same function are ptoposed, tests file may *(i)* check that they yield the same returns and *(ii)* compare speed (do not forget to set: `speed = 3` in `asd` files).
 
-Table of contents:  
-- [list of functions and macros](#list-of-functions-and-macros)  
-- [personal notes](#personal-notes)  
-- [minimal ASDF example](#minimal-ASDF-example) --> see [dedicated repository](https://github.com/occisn/cl-minimal-asdf-example)  
-- [interactive development workflow in Emacs](#interactive-development-workflow-in-emacs)
-
-## List of functions and macros
+Minimal ASDF example : see [dedicated repository](https://github.com/occisn/cl-minimal-asdf-example)
 
 File **arrays-and-vectors.lisp**  
    - functions `vec-view-all-content` and `vec-preview`  
@@ -71,6 +64,9 @@ File **mail-vis-gmail.lisp**
 File **numbers-french**  
    - function `en-toutes-lettres`
 
+File **numbers-primes**  
+   - function `largest-prime-factor`
+   
 File **numbers-rationals**  
    - macro `convert-to-proper-fraction-m`  
    - function `length-of-recurring-cycle`
@@ -94,67 +90,5 @@ File **web.lisp**
    - function `web-redirect-p`
 
 Any comment? Open an [issue](https://github.com/occisn/cl-utils/issues), or start a discussion [here](https://github.com/occisn/cl-utils/discussions) or [at profile level](https://github.com/occisn/occisn/discussions).
-
-## Minimal ASDF example
-
-See [dedicated repository](https://github.com/occisn/cl-minimal-asdf-example)
-
-## Interactive development workflow in Emacs
-
-This section is not specifically related to functions proposed by `cl-utils`.
-
-My actual Emacs configuration file is available in a [dedicated repository](https://github.com/occisn/emacs-config)
-
-When working :  
-- **compile function/macro**: `C-c C-c`  
-- **compile buffer**: `C-c C-k` (probably to be avoided with ASDF project, since it creates a `fasl` file next to `lisp` file, with a risk of confusion)  
-- **send function to REPL**, ready to be executed: `C-c C-y`  
-- send function to REPL, ready to be executed with time measurement: `C-c C-x` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config))  
-- **expand macro**: `C-c C-m`; fully expand macro: `C-c M-m`
-
-**The rest of this section is specific to ASDF projects.**
-
-To **load** system **from Common Lisp REPL**, use one of the following instructions:
-```
-,load-system [cl-my-project]
-(asdf:load-system :cl-my-project)
-(ql:quickload :cl-my-project)
-```
-
-At the beginning of the work session, it could be smarter to load tests system, which also force loading of main system:
-```
-,load-system [cl-my-project-tests]
-(asdf:load-system :cl-my-project-tests)
-(ql:quickload :cl-my-project-tests)
-``` 
-
-To **force-load** system **from Common Lisp REPL**:
-```
-(asdf:load-system :cl-my-project :force t)
-,force-load-system [cl-my-project]
-```
-
-To **force-load** system **from project file** : `C-c d f l` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config))
-
-To **test** system from Common Lisp REPL, use one of the following instructions:
-```
-,test-system [cl-my-project]
-(asdf:test-system :cl-my-project)
-(parachute:test 'cl-my-project-tests)
-```
-\+ equivalent forms to force-test
-
-To **force-test** system **from project file** : `C-c d f t` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config))
-
-For a **specific test**: `(parachute:test 'cl-my-project-tests::test-triple)`  
-or **launch tests only related to the current function**: `C-c SPC` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config)) will create relevant instructions in REPL, ready to be executed.
-
-**Switch between source and test file**: `C-c d s` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config), accessible via hydra)
-
-**Jump to `asd` file**: `C-c d a` (custom function defined in my [Emacs configuration file](https://github.com/occisn/emacs-config), accessible via hydra)
-
-## Personal notes
-
-In case a new function is added in `cl-utils`, it has to be included *(i)* in the list of exported symbols within `package.lisp`, and *(ii)* in this README file.
    
 (end of README)

@@ -5,9 +5,9 @@
   :licence "MIT"
   :description "Personal utilities for Common Lisp"
   ;; :long-description "A long description"
-  :depends-on (:parachute ; for tests
-               :cl-smtp
-               :drakma
+  :depends-on (;; :parachute ; for tests
+               #:cl-smtp
+               #:drakma
                )
   :serial t ; load files in order
   :around-compile (lambda (next)
@@ -29,6 +29,7 @@
                  (:file "macros")
                  (:file "mail-via-gmail")
                  (:file "numbers-french")
+                 (:file "numbers-primes")
                  (:file "numbers-rationals")
                  (:file "strings")
                  (:file "symbols")

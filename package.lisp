@@ -58,6 +58,8 @@
    send-mail-via-gmail
    ;; numbers-french:
    en-toutes-lettres
+   ;; numbers-primes
+   largest-prime-factor
    ;; numbers-rationals:
    convert-to-proper-fraction-m
    length-of-recurring-cycle

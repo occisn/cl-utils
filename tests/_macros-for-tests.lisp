@@ -39,7 +39,7 @@ Example:
                        ((list lst)
                         (if (eq prefix (car lst))
                             (progn
-                              (format t "~%lst = ~a~%prefix = ~a~%replace-builder-fn = ~a~%" lst prefix replace-builder-fn)
+                              ;; (format t "~%lst = ~a~%prefix = ~a~%replace-builder-fn = ~a~%" lst prefix replace-builder-fn)
                               (funcall replace-builder-fn lst))
                             (loop for elt in lst collect (sexp-replace-sexp-beginning-by elt prefix replace-builder-fn)))))))
         

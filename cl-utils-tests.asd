@@ -14,6 +14,7 @@
                              (:file "lists-tests")
                              (:file "macros-tests")
                              (:file "numbers-french-tests")
+                             (:file "numbers-primes-tests")
                              (:file "strings-tests")
                              (:file "symbols-tests"))))
   :perform (asdf:test-op (op c) (uiop:symbol-call :parachute :test  :cl-utils-tests)))
