@@ -4,11 +4,11 @@ Personal utilities for Common Lisp.
 
 Some functions are specific to SBCL.
 
-This repository is not supposed to be forked or included in another project. It is more a kind of shelf with many functions, where each function is self-supporting: it does not require another function of the project (in case it requires another function of the project, the said function is included with `flet` or `labels`); in case of dependency to specific packages (`drakma`...), it is clearly specified.
+This project is a kind of shelf providing many functions. With a few clearly indicated exceptions, these functions are self-supporting. They do not require any dependency, or to be built/integrated in any specific way. Because "the truly reusable code is the one that you can simply copy-paste".
 
 When relevant, functions and macros are illustrated with `SHOW-xxx`.
 
-A test suite is proposed. In addition to traditional tests, when several implementations of the same function are ptoposed, tests file may *(i)* check that they yield the same returns and *(ii)* compare speed (do not forget to set: `speed = 3` in `asd` files).
+A test suite is proposed. In addition to traditional tests, when several implementations of the same function are proposed, tests file may *(i)* check that they yield the same returns and *(ii)* compare speed (do not forget to set: `speed = 3` in `asd` files).
 
 Minimal ASDF example : see [dedicated repository](https://github.com/occisn/cl-minimal-asdf-example)
 
@@ -60,6 +60,9 @@ File **macros.lisp**
    
 File **mail-vis-gmail.lisp**  
    - function `send-mail-via-gmail`
+
+File **numbers-doubles**  
+   - macro `floor-of-positive-df`
    
 File **numbers-french**  
    - function `en-toutes-lettres`

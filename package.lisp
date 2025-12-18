@@ -56,6 +56,8 @@
    collecting--reversed-order
    ;; mails:
    send-mail-via-gmail
+   ;; numbers-doubles
+   floor-of-positive-df
    ;; numbers-french:
    en-toutes-lettres
    ;; numbers-primes
