@@ -60,9 +60,9 @@
    measure-duration-example
    ;; numbers-doubles
    floor-of-positive-df
-   ;; numbers-french:
+   ;; numbers-integers-french:
    en-toutes-lettres
-   ;; numbers-primes
+   ;; numbers-integers-primes
    largest-prime-factor
    ;; numbers-rationals:
    convert-to-proper-fraction-m
