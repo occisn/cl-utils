@@ -34,6 +34,7 @@
                  (:file "numbers-integers-french")
                  (:file "numbers-integers-primes")
                  (:file "numbers-rationals")
+                 (:file "optimization")
                  (:file "strings")
                  (:file "symbols")
                  (:file "triangles")

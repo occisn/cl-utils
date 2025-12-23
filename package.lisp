@@ -69,6 +69,8 @@
    ;; numbers-rationals:
    convert-to-proper-fraction-m
    length-of-recurring-cycle
+   ;; optimization
+   optimization-examples
    ;; strings:
    string-split
    substring-after-last
