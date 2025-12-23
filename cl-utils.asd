@@ -28,6 +28,7 @@
                  (:file "lists")
                  (:file "macros")
                  (:file "mail-via-gmail")
+                 (:file "measure-duration")
                  (:file "numbers-doubles")
                  (:file "numbers-french")
                  (:file "numbers-primes")

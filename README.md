@@ -61,6 +61,9 @@ File **macros.lisp**
 File **mail-vis-gmail.lisp**  
    - function `send-mail-via-gmail`
 
+File **measure-duration**  
+   - function `measure-duration-example`
+   
 File **numbers-doubles**  
    - macro `floor-of-positive-df`
    

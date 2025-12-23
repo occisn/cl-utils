@@ -56,6 +56,8 @@
    collecting--reversed-order
    ;; mails:
    send-mail-via-gmail
+   ;; measure-duration
+   measure-duration-example
    ;; numbers-doubles
    floor-of-positive-df
    ;; numbers-french:
