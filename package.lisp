@@ -60,6 +60,8 @@
    measure-duration-example
    ;; numbers-doubles
    floor-of-positive-df
+   ;; numbers-integers
+   reverse-number--fixnum
    ;; numbers-integers-french:
    en-toutes-lettres
    ;; numbers-integers-primes

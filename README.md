@@ -67,10 +67,13 @@ File **measure-duration**
 File **numbers-doubles**  
    - macro `floor-of-positive-df`
    
-File **numbers-french**  
+File **numbers-integers**  
+   - function `reverse-number--fixnum`
+
+File **numbers-integers-french**  
    - function `en-toutes-lettres`
 
-File **numbers-primes**  
+File **numbers-integers-primes**  
    - function `largest-prime-factor`
    
 File **numbers-rationals**  

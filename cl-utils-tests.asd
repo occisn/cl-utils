@@ -14,6 +14,7 @@
                              (:file "lists-tests")
                              (:file "macros-tests")
                              (:file "numbers-doubles-tests")
+                             (:file "numbers-integers-tests")
                              (:file "numbers-integers-french-tests")
                              (:file "numbers-integers-primes-tests")
                              (:file "strings-tests")

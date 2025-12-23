@@ -30,6 +30,7 @@
                  (:file "mail-via-gmail")
                  (:file "measure-duration")
                  (:file "numbers-doubles")
+                 (:file "numbers-integers")
                  (:file "numbers-integers-french")
                  (:file "numbers-integers-primes")
                  (:file "numbers-rationals")
