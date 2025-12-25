@@ -57,7 +57,7 @@
    ;; mails:
    send-mail-via-gmail
    ;; measure-duration
-   measure-duration-example
+   SHOW-measure-duration
    ;; numbers-doubles
    floor-of-positive-df
    ;; numbers-integers
@@ -66,6 +66,9 @@
    en-toutes-lettres
    ;; numbers-integers-primes
    largest-prime-factor
+   primep
+   next-prime
+   nth-prime
    ;; numbers-rationals:
    convert-to-proper-fraction-m
    length-of-recurring-cycle

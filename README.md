@@ -62,7 +62,7 @@ File **mail-vis-gmail.lisp**
    - function `send-mail-via-gmail`
 
 File **measure-duration**  
-   - function `measure-duration-example`
+   - function `SHOW-measure-duration`
    
 File **numbers-doubles**  
    - macro `floor-of-positive-df`
@@ -74,7 +74,10 @@ File **numbers-integers-french**
    - function `en-toutes-lettres`
 
 File **numbers-integers-primes**  
-   - function `largest-prime-factor`
+   - function `largest-prime-factor`  
+   - function `primep`  
+   - function `next-prime`  
+   - function `nth-prime`
    
 File **numbers-rationals**  
    - macro `convert-to-proper-fraction-m`  
