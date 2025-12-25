@@ -62,7 +62,8 @@ File **mail-vis-gmail.lisp**
    - function `send-mail-via-gmail`
 
 File **measure-duration**  
-   - function `SHOW-measure-duration`
+   - function `SHOW-measure-duration`  
+   - function `SHOW-benchmark-5-times-A` and `SHOW-benchmark-5-times-B`
    
 File **numbers-doubles**  
    - macro `floor-of-positive-df`

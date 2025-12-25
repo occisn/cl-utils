@@ -19,4 +19,66 @@
     (setq duration (/ (- (get-internal-real-time) real-base) internal-time-units-per-second 1.0))
     (format t "Executed in ~f seconds~%" duration)))
 
+(defun SHOW-benchmark-5-times-A ()
+  "Execute a function 5 times, print each duration, and report the quickest."
+
+  (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
+  
+  (flet ((foo ()
+           (let ((n 100000000)
+                 (tmp 0.0d0))
+             (dotimes (i n)
+               (let ((sign (if (evenp i) 1.0d0 -1.0d0)))
+                 (incf tmp (* sign (/ 1.0d0 (+ (* 2 i) 1))))))
+             (setq tmp (* 4 tmp))
+             tmp)))
+    
+    (let ((nb-runs 5)
+          (durations '())
+          (real-base 0)
+          (duration 0))
+      (dotimes (i nb-runs)
+        (setq real-base (get-internal-real-time))
+        (foo) ; <-- the function
+        (setq duration (/ (- (get-internal-real-time) real-base) internal-time-units-per-second 1.0))
+        (format t "Run ~D/~D: ~A seconds~%" (1+ i) nb-runs duration)
+        (push duration durations))
+      
+      (let ((quickest (apply #'min durations)))
+        (format t "~%Quickest time: ~A seconds~%" quickest)
+        quickest))))
+
+(defun SHOW-benchmark-5-times-B ()
+  "Execute function 5 times, print each duration, and report the quickest.
+In this version, the function shall return the execution duration to be benchmarked.
+This variant enable to do other things in the version, outside of the measured time, for instance printing result."
+
+  (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
+  
+  (flet ((foo ()
+           (let ((real-base (get-internal-real-time))
+                 (duration 0))
+             
+             (let ((n 100000000)
+                   (tmp 0.0d0))
+               (dotimes (i n)
+                 (let ((sign (if (evenp i) 1.0d0 -1.0d0)))
+                   (incf tmp (* sign (/ 1.0d0 (+ (* 2 i) 1))))))
+               (setq tmp (* 4 tmp))
+               (format t "Leibniz formula with n = ~a ==> pi = ~a~%" n tmp))
+             
+             (setq duration (/ (- (get-internal-real-time) real-base) internal-time-units-per-second 1.0))
+             (format t "Executed in ~f seconds~%" duration)
+             duration)))
+    
+    (let ((nb-runs 5)
+          (durations '()))
+      (dotimes (i nb-runs)
+        (let ((duration (foo)))         ; <--- the function
+          (format t "Run ~D/~D: ~A seconds~%" (1+ i) nb-runs duration)
+          (push duration durations)))
+      (let ((quickest (apply #'min durations)))
+        (format t "~%Quickest time: ~A seconds~%" quickest)
+        quickest))))
+
 ;;; end
