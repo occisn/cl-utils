@@ -11,8 +11,9 @@
     (setq tmp (the fixnum (expt m (the (integer 0) (- n 2)))))
     ;; (integer 0) can be replaced by unsigned-byte
 
-    ;; parachute for floats:
-    ;; (parachute:is (=    -->   (parachute:true (=
+    ;; parachute
+    ;; (locally
+    ;;     (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
 
     (format t "tmp = ~a~%" tmp)))
 
