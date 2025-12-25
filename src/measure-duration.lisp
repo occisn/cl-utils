@@ -41,17 +41,22 @@
         (setq real-base (get-internal-real-time))
         (foo) ; <-- the function
         (setq duration (/ (- (get-internal-real-time) real-base) internal-time-units-per-second 1.0))
-        (format t "Run ~D/~D: ~A seconds~%" (1+ i) nb-runs duration)
+        (format t "Run ~D / ~D: ~A seconds~%" (1+ i) nb-runs duration)
         (push duration durations))
       
-      (let ((quickest (apply #'min durations)))
-        (format t "~%Quickest time: ~A seconds~%" quickest)
-        quickest))))
+      (let ((quickest (apply #'min durations))
+            (slowest (apply #'max durations)))
+        (format t "~%RESULTS:~%")
+        (dotimes (i nb-runs)
+        (format t "Run ~D / ~D: ~A seconds~%" (1+ i) nb-runs (nth (- nb-runs 1 i) durations)))
+        (format t "=> quickest time: ~A seconds~%" quickest)
+        (format t "=> slowest time:  ~A seconds = quickest + ~a %~%" slowest (truncate (* 100 (/ (- slowest quickest) quickest))))
+        nil))))
 
 (defun SHOW-benchmark-5-times-B ()
   "Execute function 5 times, print each duration, and report the quickest.
 In this version, the function shall return the execution duration to be benchmarked.
-This variant enable to do other things in the version, outside of the measured time, for instance printing result."
+This variant enables to do other things in the version, outside of the measured time, for instance printing result."
 
   (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
   
@@ -75,10 +80,15 @@ This variant enable to do other things in the version, outside of the measured t
           (durations '()))
       (dotimes (i nb-runs)
         (let ((duration (foo)))         ; <--- the function
-          (format t "Run ~D/~D: ~A seconds~%" (1+ i) nb-runs duration)
+          (format t "Run ~D / ~D: ~A seconds~%" (1+ i) nb-runs duration)
           (push duration durations)))
-      (let ((quickest (apply #'min durations)))
-        (format t "~%Quickest time: ~A seconds~%" quickest)
-        quickest))))
+      (let ((quickest (apply #'min durations))
+            (slowest (apply #'max durations)))
+        (format t "~%RESULTS:~%")
+        (dotimes (i nb-runs)
+        (format t "Run ~D / ~D: ~A seconds~%" (1+ i) nb-runs (nth (- nb-runs 1 i) durations)))
+        (format t "=> quickest time: ~A seconds~%" quickest)
+        (format t "=> slowest time:  ~A seconds = quickest + ~a %~%" slowest (truncate (* 100 (/ (- slowest quickest) quickest))))
+        nil))))
 
 ;;; end
