@@ -80,15 +80,15 @@ This variant enables to do other things in the version, outside of the measured 
           (durations '()))
       (dotimes (i nb-runs)
         (let ((duration (foo)))         ; <--- the function
-          (format t "Run ~D / ~D: ~A seconds~%" (1+ i) nb-runs duration)
+          (format t "Run ~D / ~D: ~F seconds~%" (1+ i) nb-runs duration)
           (push duration durations)))
       (let ((quickest (apply #'min durations))
             (slowest (apply #'max durations)))
         (format t "~%RESULTS:~%")
         (dotimes (i nb-runs)
-        (format t "Run ~D / ~D: ~A seconds~%" (1+ i) nb-runs (nth (- nb-runs 1 i) durations)))
-        (format t "=> quickest time: ~A seconds~%" quickest)
-        (format t "=> slowest time:  ~A seconds = quickest + ~a %~%" slowest (truncate (* 100 (/ (- slowest quickest) quickest))))
+        (format t "Run ~D / ~D: ~F seconds~%" (1+ i) nb-runs (nth (- nb-runs 1 i) durations)))
+        (format t "=> quickest time: ~F seconds~%" quickest)
+        (format t "=> slowest time:  ~F seconds = quickest + ~a %~%" slowest (truncate (* 100 (/ (- slowest quickest) quickest))))
         nil))))
 
 ;;; end
