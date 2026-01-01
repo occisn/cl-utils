@@ -10,6 +10,7 @@
                 :components ((:file "_package-tests")
                              (:file "_macros-for-tests")
                              ;;
+                             (:file "arrays-and-vectors-tests")
                              (:file "bit-vectors-tests")
                              (:file "lists-tests")
                              (:file "macros-tests")

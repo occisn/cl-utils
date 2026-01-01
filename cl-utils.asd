@@ -6,8 +6,12 @@
   :description "Personal utilities for Common Lisp"
   ;; :long-description "A long description"
   :depends-on (;; :parachute ; for tests
+               #:bordeaux-threads
+               #:cffi
                #:cl-smtp
                #:drakma
+               #:lparallel
+               #:sb-concurrency
                )
   :serial t ; load files in order
   :around-compile (lambda (next)
@@ -24,6 +28,8 @@
                  (:file "compare-durations")
                  (:file "dates-and-times")
                  (:file "debug")
+                 (:file "ffi-with-cffi")
+                 (:file "ffi-with-sb-alien")
                  (:file "files")
                  (:file "lists")
                  (:file "macros")
@@ -35,13 +41,14 @@
                  (:file "numbers-integers-primes")
                  (:file "numbers-rationals")
                  (:file "optimization")
+                 (:file "parallelism")
                  (:file "strings")
                  (:file "symbols")
                  (:file "triangles")
-                 (:file "web"))
-                ))
+                 (:file "web")
+                 (:file "_show-all"))))
   :perform (load-op :after (op c)
-                    (format t "~%Welcome in cl-utils! (~a exported symbols)~%"
+                    (format t "~%Welcome in cl-utils! (~a exported symbols)~%~%Execute all functions with (cl--utils::SHOW-all).~%A complete test suite is also available.~%~%"
                             (let ((package-name :cl-utils)
                                   (count 0))
                               (do-external-symbols (sym package-name count)
