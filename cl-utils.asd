@@ -45,6 +45,7 @@
                  (:file "strings")
                  (:file "symbols")
                  (:file "tco")
+                 (:file "trampoline")
                  (:file "triangles")
                  (:file "web")
                  (:file "_show-all"))))

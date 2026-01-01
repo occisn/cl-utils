@@ -101,6 +101,10 @@ File **symbols.lisp**
    
 File **tco.lisp**  
    --> illustration that (speed 3) encourages tail-call optimization
+   
+File **trampoline.lisp**  
+   - function `trampoline` and example
+   
 File **triangles.lisp**  
    - function `triangle-to-2d-array`
    

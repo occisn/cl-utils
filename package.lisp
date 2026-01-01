@@ -87,6 +87,8 @@
    function-to-string-no-package
    ;; tco:
    ;;    (void)
+   ;; trampoline:
+   trampoline
    ;; triangles:
    triangle-to-2d-array
    ;; web:

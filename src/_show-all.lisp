@@ -24,6 +24,7 @@
   (SHOW-all-strings)
   (SHOW-all-symbols)
   (SHOW-all-tco)
+  (SHOW-all-trampoline)
   (SHOW-all-triangles)
   ;; (SHOW-all-web) ; requires Internet connection
   )
