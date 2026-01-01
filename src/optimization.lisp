@@ -1,9 +1,11 @@
 (in-package :cl-utils)
 
-(defun optimization-examples (m n)
-  "Example of tricks to comply with 'speed 3' compilation notes."
+(defun SHOW-all-optimization (m n)
+  "Example of methods to comply with 'speed 3' compilation notes."
   (declare (type fixnum m n))
-  
+
+    (format t "~%~%======~%=== OPTIMIZATION~%======~%")
+
   (let ((tmp 0))
     (declare (type fixnum tmp))
 
@@ -14,11 +16,15 @@
     ;; ceiling
     ;; (the fixnum (ceiling...
     ;; reason: The return type of ceiling in CL is always (values integer remainder) where integer is a general integer (not necessarily a fixnum)
+
+    ;; floor of double-float
+    ;; --> see floor-of-positive-df in double-floats utils
     
     ;; parachute
     ;; (locally
     ;;     (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
 
+    (format t "~%")
     (format t "tmp = ~a~%" tmp)))
 
 ;;; end
