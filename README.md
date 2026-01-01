@@ -100,7 +100,7 @@ File **symbols.lisp**
    - function `function-to-string` and `function-to-string-no-package`
    
 File **tco.lisp**  
-   --> illustration that (speed 3) encourages tail-call optimization
+   - illustration that (speed 3) encourages tail-call optimization
    
 File **trampoline.lisp**  
    - function `trampoline` and example
