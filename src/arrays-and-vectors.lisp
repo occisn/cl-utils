@@ -53,7 +53,7 @@
 (defun SHOW-unliteral--fixnum-vector ()
   (format t "unliteral--fixnum-vector: ~A~%" (unliteral--fixnum-vector #(1 2 3 4 5 6))))
 
-(defun SHOW-arrays-and-vectors ()
+(defun SHOW-all-arrays-and-vectors ()
   (format t "~%~%======~%=== ARRAYS-AND-VECTORS~%======~%")
   (SHOW-vec-view-all-content)
   (SHOW-vec-preview)

@@ -12,6 +12,7 @@
                              ;;
                              (:file "arrays-and-vectors-tests")
                              (:file "bit-vectors-tests")
+                             (:file "booleans-tests")
                              (:file "lists-tests")
                              (:file "macros-tests")
                              (:file "numbers-doubles-tests")

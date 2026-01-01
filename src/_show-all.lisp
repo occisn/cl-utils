@@ -1,6 +1,9 @@
 (in-package :cl-utils)
 
 (defun show-all ()
-  (show-arrays-and-vectors))
+  (show-all-arrays-and-vectors)
+  ;;
+  (show-all-booleans)
+  )
 
 ;;; end
