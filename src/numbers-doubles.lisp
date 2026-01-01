@@ -11,4 +11,10 @@ Use of macro to avoid 'doing float to pointer coercion'.
 (v1, available in occisn/cl-utils GitHub repository, 2025-12-18)"
   `(truncate (the positive-fixnum-range-double-float ,df)))
 
+(defun SHOW-all-numbers-doubles ()
+  ""
+  (format t "~%~%======~%=== NUMBERS-DOUBLES~%======~%")
+  (format t "~%")
+  (format t "floor of 4.5d0 is ~a~%" (floor-of-positive-df 4.5d0)))
+
 ;; end

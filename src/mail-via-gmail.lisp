@@ -34,4 +34,13 @@
                       :cc cc
                       :bcc bcc))
 
+(defun SHOW-all-mail-via-gmail ()
+  ""
+  (send-mail-via-gmail
+   :from "xxx.xxx@gmail.com"
+   :to "yyy.yyy@gmail.com"
+   :subject "test"
+   :body "This is a test."
+   :password "zzzzzzzzzzzzzz"))
+
 ;;; end

@@ -80,7 +80,25 @@ The argument is supposed to be a string with at least one character.
 (defun unliteral--string (str)
   "Return an unliteral version of string STR.
 (v1, available in occisn/cl-utils GitHub repository)"
-    (declare (type (simple-array character) str))
-    (make-array (length str) :element-type 'character :initial-contents str))
+  (declare (type (simple-array character) str))
+  (make-array (length str) :element-type 'character :initial-contents str))
+
+(defun SHOW-all-strings ()
+  ""
+  (format t "~%~%======~%=== STRINGS~%======~%")
+  (format t "~%")
+  (format t "string-split: \"abc def\" --> ~a~%" (string-split "abc def" #\space))
+  (format t "~%")
+  (format t "substring-after-last: \"abc::def\" --> ~a~%" (substring-after-last "abc::def" #\:))
+  (format t "~%")
+  (format t "string-repeat-string: ~a~%" (string-repeat-string 3 "abc"))
+  (format t "~%")
+  (format t "string-add-space-at-left: '~a'~%" (string-add-space-at-left "abc" :total-length 6))
+  (format t "~%")
+  (format t "palindrome-string-p: abcba --> ~a~%" (palindrome-string-p "abcba"))
+  (format t "~%")
+  (format t "unliteral--string: ~a~%" (unliteral--string "abcde")))
+
+
 
 ;;; end

@@ -1,6 +1,6 @@
 (in-package :cl-utils)
 
-(defun SHOW-measure-duration  ()
+(defun SHOW-measure-duration  (&optional (n 100000000))
   "Example of duration measurement"
   (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
   (let ((real-base (get-internal-real-time))
@@ -8,8 +8,7 @@
 
     ;; do something:
     ;; calculation of pi by Leibniz formula
-    (let ((n 100000000)
-          (tmp 0.0d0))
+    (let ((tmp 0.0d0))
       (dotimes (i n)
         (let ((sign (if (evenp i) 1.0d0 -1.0d0)))
           (incf tmp (* sign (/ 1.0d0 (+ (* 2 i) 1))))))
@@ -19,14 +18,13 @@
     (setq duration (/ (- (get-internal-real-time) real-base) internal-time-units-per-second 1.0))
     (format t "Executed in ~f seconds~%" duration)))
 
-(defun SHOW-benchmark-5-times-A ()
+(defun SHOW-benchmark-5-times-A (&optional (n 100000000))
   "Execute a function 5 times, print each duration, and report the quickest."
 
   (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
   
   (flet ((foo ()
-           (let ((n 100000000)
-                 (tmp 0.0d0))
+           (let ((tmp 0.0d0))
              (dotimes (i n)
                (let ((sign (if (evenp i) 1.0d0 -1.0d0)))
                  (incf tmp (* sign (/ 1.0d0 (+ (* 2 i) 1))))))
@@ -53,7 +51,7 @@
         (format t "=> slowest time:  ~A seconds = quickest + ~a %~%" slowest (truncate (* 100 (/ (- slowest quickest) quickest))))
         nil))))
 
-(defun SHOW-benchmark-5-times-B ()
+(defun SHOW-benchmark-5-times-B (&optional (n 100000000))
   "Execute function 5 times, print each duration, and report the quickest.
 In this version, the function shall return the execution duration to be benchmarked.
 This variant enables to do other things in the version, outside of the measured time, for instance printing result."
@@ -64,8 +62,7 @@ This variant enables to do other things in the version, outside of the measured 
            (let ((real-base (get-internal-real-time))
                  (duration 0))
              
-             (let ((n 100000000)
-                   (tmp 0.0d0))
+             (let ((tmp 0.0d0))
                (dotimes (i n)
                  (let ((sign (if (evenp i) 1.0d0 -1.0d0)))
                    (incf tmp (* sign (/ 1.0d0 (+ (* 2 i) 1))))))

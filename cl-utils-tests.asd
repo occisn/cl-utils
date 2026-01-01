@@ -19,6 +19,7 @@
                              (:file "numbers-integers-tests")
                              (:file "numbers-integers-french-tests")
                              (:file "numbers-integers-primes-tests")
+                             (:file "numbers-rationals-tests")
                              (:file "strings-tests")
                              (:file "symbols-tests")
                              (:file "triangles-tests"))))

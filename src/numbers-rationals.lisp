@@ -2,6 +2,7 @@
 
 (defmacro convert-to-proper-fraction-m (a b)
   "Modify A and B to transform A/B into a proper fraction.
+For instance, 50/15 --> 10/3
 (v1, available in occisn/cl-utils GitHub repository)"
 
   (let ((gcd (gensym "GCD")))
@@ -65,5 +66,13 @@ The argument is supposed to be a fixnum >= 0."
 	          for mult9 = 9 then (+ 9 (* mult9 10))
 	          until (zerop (mod mult9 denom2))
 	          finally (return i)))))))
+
+(defun SHOW-all-numbers-rationals ()
+  ""
+  (format t "~%~%======~%=== NUMBER-RATIONALS~%======~%")
+  (format t "~%")
+  (SHOW-convert-to-proper-fraction-m)
+  (format t "~%")
+  (format t "length-of-recurring-cycle: 1/7 --> ~a~%" (length-of-recurring-cycle 7)))
 
 ;;; end

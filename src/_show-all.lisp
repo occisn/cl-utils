@@ -12,20 +12,19 @@
   ;; files.lisp
   ;; lists.lisp
   ;; macros.lisp
-  ;; mail-via-gmail.lisp
+  ;; (SHOW-all-mail-via-gmail) ; requires Internet connection
   ;; measure-duration.lisp
-  ;; numbers-doubles.lisp
-  ;; numbers-integers-french.lisp
-  ;; numbers-integers.lisp
-  ;; numbers-integers-primes.lisp
-  ;; numbers-rationals.lisp
-  ;; optimization.lisp
+  (SHOW-all-numbers-doubles)
+  (SHOW-all-numbers-integers-french)
+  (SHOW-all-numbers-integers)
+  (SHOW-all-numbers-integers-primes)
+  (SHOW-all-numbers-rationals)
+  (SHOW-all-optimization 4 5)
   ;; parallelism.lisp
-  ;; _show-all.lisp
-  ;; strings.lisp
+  (SHOW-all-strings)
   (SHOW-all-symbols)
   (SHOW-all-triangles)
-  ;; (SHOW-all-web) ; need Internet connection
+  ;; (SHOW-all-web) ; requires Internet connection
   )
 
 ;;; end

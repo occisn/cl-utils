@@ -97,4 +97,10 @@ N shall be an integer >= 0 and <= 999 999 999 999
 
           (sub n t)))))
 
+(defun SHOW-all-numbers-integers-french ()
+  ""
+  (format t "~%~%======~%=== NUMBERS-INTEGERS-FRENCH~%======~%")
+  (format t "~%")
+  (format t "12345 --> ~a~%" (en-toutes-lettres 1234)))
+
 ;;; end

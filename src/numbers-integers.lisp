@@ -15,4 +15,10 @@ For instance: 123 --> 321.
                    (sub quotient (the fixnum (+ (the fixnum (* 10 acc)) remainder)))))))
     (sub n 0)))
 
+(defun SHOW-all-numbers-integers ()
+  ""
+  (format t "~%~%======~%=== NUMBERS-INTEGERS~%======~%")
+  (format t "~%")
+  (format t "123456 --> ~a~%" (reverse-number--fixnum 123456)))
+
 ;; end

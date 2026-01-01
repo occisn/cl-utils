@@ -2,6 +2,7 @@
 
 (defun largest-prime-factor (n)
   "Return the largest prime factor of N. N is supposed to be an integer > 1.
+For instance: 13195 = 5 x 7 x 13 x 29 --> 29.
 (v1, available in occisn/cl-utils GitHub repository)"
   (declare (type fixnum n))
   
@@ -73,5 +74,17 @@ Require 'primep' and 'next-prime'.
   (loop for n of-type fixnum = 2 then (next-prime n)
         and count of-type fixnum = 1 then (the fixnum (+ count 1))
         when (= count rank) do (return n)))
+
+(defun SHOW-all-numbers-integers-primes ()
+  ""
+  (format t "~%~%======~%=== NUMBER-INTEGERS-PRIMES~%======~%")
+  (format t "~%")
+  (format t "(largest-prime-factor 13195) --> ~a~%" (largest-prime-factor 13195))
+  (format t "~%")
+  (format t "9973 is prime: ~a~%" (primep 9973))
+  (format t "~%")
+  (format t "Next prime after 9971 is ~a~%" (next-prime 9971))
+  (format t "~%")
+  (format t "100th prime is ~a~%" (nth-prime 100)))
 
 ;;; end
