@@ -31,6 +31,7 @@
                  (:file "ffi-with-cffi")
                  (:file "ffi-with-sb-alien")
                  (:file "files")
+                 (:file "format")
                  (:file "lists")
                  (:file "macros")
                  (:file "mail-via-gmail")

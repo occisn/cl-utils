@@ -42,6 +42,9 @@ File **files.lisp**
    - function `random-file-name`  
    - function `reduce-for-each-line-of-file`
    
+File **format.lisp**  
+   - illustrations of various `format` directives
+   
 File **lists.lisp**  
    - function `delete-nth` and `replace-nth`  
    - function `list-preview`  

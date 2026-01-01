@@ -29,6 +29,8 @@
    ;; files:
    random-file-name
    reduce-for-each-line-of-file
+   ;; format:
+   ;;    (void)
    ;; lists:
    delete-nth
    replace-nth
