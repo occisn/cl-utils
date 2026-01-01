@@ -23,6 +23,7 @@
   ;; parallelism.lisp
   (SHOW-all-strings)
   (SHOW-all-symbols)
+  (SHOW-all-tco)
   (SHOW-all-triangles)
   ;; (SHOW-all-web) ; requires Internet connection
   )

@@ -99,6 +99,8 @@ File **strings.lisp**
 File **symbols.lisp**  
    - function `function-to-string` and `function-to-string-no-package`
    
+File **tco.lisp**  
+   --> illustration that (speed 3) encourages tail-call optimization
 File **triangles.lisp**  
    - function `triangle-to-2d-array`
    

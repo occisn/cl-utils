@@ -44,6 +44,7 @@
                  (:file "parallelism")
                  (:file "strings")
                  (:file "symbols")
+                 (:file "tco")
                  (:file "triangles")
                  (:file "web")
                  (:file "_show-all"))))

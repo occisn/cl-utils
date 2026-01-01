@@ -85,6 +85,8 @@
    ;; symbols:
    function-to-string
    function-to-string-no-package
+   ;; tco:
+   ;;    (void)
    ;; triangles:
    triangle-to-2d-array
    ;; web:
