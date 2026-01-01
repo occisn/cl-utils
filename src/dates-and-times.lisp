@@ -15,10 +15,11 @@
 ;;; =========================================
 ;;; ===
 
+
 (defun universal-time-to-YYYYMMDD-HHMMSS (universal-time)
-  "Return universal time under YYYYMMDD-HHMMSS format.
+  "Return universal time under YYYYMMDD-HHMMSS format under LOCAL time.
 For instance: 20220403-145223
-(v1 available in occisn/cl-utils GitHub repository)"
+(v2 available in occisn/cl-utils GitHub repository, 2026-01-01)"
   (multiple-value-bind
         (second minute hour day month year _day-of-week _dst-p _tz)
       (decode-universal-time universal-time)
@@ -38,14 +39,14 @@ For instance: 20220403-145223
 ;;; ===
 
 (defun get-current-YYYYMMDD-HHMMSS ()
-  "Return current time under YYYYMMDD-HHMMSS format.
+  "Return current time under YYYYMMDD-HHMMSS format under LOCAL time.
 For instance: 20220403-145223
-(v1 available in occisn/cl-utils GitHub repository)"
+(v2, available in occisn/cl-utils GitHub repository)"
 
   (flet ((universal-time-to-YYYYMMDD-HHMMSS (universal-time)
-           "Return universal time under YYYYMMDD-HHMMSS format.
+           "Return universal time under YYYYMMDD-HHMMSS format under LOCAL time.
 For instance: 20220403-145223
-(v1 available in occisn/cl-utils GitHub repository)"
+(v2 available in occisn/cl-utils GitHub repository)"
            (multiple-value-bind
                  (second minute hour day month year _day-of-week _dst-p _tz)
                (decode-universal-time universal-time)
@@ -56,9 +57,14 @@ For instance: 20220403-145223
                      day
                      hour
 	             minute
-	             second)))) ; end of labels definition
+	             second))))         ; end of labels definition
     
     (universal-time-to-YYYYMMDD-HHMMSS (get-universal-time))))
+
+(defun SHOW-get-current-YYYYMMDD-HHMMSS ()
+  ""
+  (format t "Current date-time in LOCAL time is ~a~%" (get-current-YYYYMMDD-HHMMSS)))
+
 
 ;;; ===
 ;;; ===========================
@@ -74,13 +80,13 @@ Used to create U~ series
   (declare (type fixnum YYYYMMDD-as-int HHMMSS-as-int))
   (let* ((tmp (the fixnum (mod YYYYMMDD-as-int 100)))
          (res (encode-universal-time
-               (mod HHMMSS-as-int 100) ; second 
+               (mod HHMMSS-as-int 100)               ; second 
                (floor (mod HHMMSS-as-int 10000) 100) ; minute
-               (floor HHMMSS-as-int 10000) ; hour 
-               tmp ; day
-               (the fixnum (floor (mod YYYYMMDD-as-int 10000) 100))   ; month
-               (the fixnum (floor YYYYMMDD-as-int 10000))  ; year
-               timezone                                  ; time zone
+               (floor HHMMSS-as-int 10000)           ; hour 
+               tmp                                   ; day
+               (the fixnum (floor (mod YYYYMMDD-as-int 10000) 100)) ; month
+               (the fixnum (floor YYYYMMDD-as-int 10000)) ; year
+               timezone                                   ; time zone
                )))
     (declare (type fixnum tmp)                                
              (type fixnum res))
@@ -135,7 +141,7 @@ For instance: Sunday 03/04/2022 15:59:26 (GMT+1, DST)
     (format nil "~a ~2,'0d/~2,'0d/~d ~2,'0d:~2,'0d:~2,'0d (GMT~@d, ~a)"
 	    (nth day-of-week '("Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" "Sunday"))
             date month year
-            hour minute  second
+            hour minute second
 	    (- tz) (if dst-p "DST" "no DST"))))
 
 (defun SHOW-pretty-print-universal-time-as-full-date-time ()
@@ -196,6 +202,8 @@ For instance: --> '3 days', '3.5 months', '1.3 years'
 (defun SHOW-all-dates-and-times ()
   ""
   (format t "~%~%======~%=== DATES-AND-TIMES~%======~%")
+  (format t "~%")
+  (SHOW-get-current-YYYYMMDD-HHMMSS)
   (format t "~%")
   (SHOW-pretty-print-universal-time-as-full-date-time)
   (format t "~%")

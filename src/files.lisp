@@ -1,15 +1,15 @@
 (in-package :cl-utils)
 
 (defun random-file-name (dir base suffix)
-  "Generate a random file name within DIR directory, with base BASE and suffix SUFFIX, inserting current datetime and random number. Directory is +tmp-directory+.
-For instance: c:/ graph1 gp --> c:/graph1-r264491-20220403-145457.gp
+  "Generate a random file name within DIR directory, with base BASE and suffix SUFFIX, inserting current datetime (under LOCAL time) and random number. Directory is +tmp-directory+.
+For instance: 'c:' 'graph1' 'gp' --> c:/graph1-r264491-20220403-145457.gp
 In this exemple, 264491 is a random number
-(v1 available in occisn/cl-utils GitHub repository)"
+(v2, available in occisn/cl-utils GitHub repository)"
 
   (labels ((universal-time-to-YYYYMMDD-HHMMSS (universal-time)
-             "Return universal time under YYYYMMDD-HHMMSS format.
+             "Return universal time under YYYYMMDD-HHMMSS format under LOCAL time.
 For instance: 20220403-145223
-(v1 available in occisn/cl-utils GitHub repository)"
+(v2, available in occisn/cl-utils GitHub repository)"
              (multiple-value-bind
                    (second minute hour day month year _day-of-week _dst-p _tz)
                  (decode-universal-time universal-time)
