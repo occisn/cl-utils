@@ -106,8 +106,8 @@
 	(until-test (car (last body))))
     `(do nil
          (nil) ; never exist via the 'do' test
-	,@body2
-	(when ,until-test (return)))))
+       ,@body2
+       (when ,until-test (return)))))
 
 (defmacro do-while (&body body)
   "Usage: (do-while sexp1 sexp2 ... sexpn :while condition)
@@ -264,5 +264,25 @@ In the right order (using REVERSE, so slower than the previous macro).
          when (> (* i i) 10)
            do (collect1 i))))
 ;; --> (-5 -4 4 5)
+
+(defun SHOW-all-macros ()
+  ""
+  (format t "~%~%======~%=== MACROS~%======~%")
+  (format t "~%")
+  (SHOW-while)
+  (format t "~%")
+  (SHOW-while1)
+  (format t "~%")
+  (SHOW-repeat-until)
+  (format t "~%")
+  (SHOW-do-while)
+  (format t "~%")
+  (SHOW-aprogn)
+  (format t "~%")
+  (SHOW-ablock)
+  (format t "~%")
+  (SHOW-collecting--reversed-order)
+  (format t "~%")
+  (SHOW-collecting))
 
 ;;; end

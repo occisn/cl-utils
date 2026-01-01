@@ -1,5 +1,99 @@
 (in-package :cl-utils-tests)
 
+;;; === delete-nth
+
+(parachute:define-test delete-nth-tests
+  
+  ;; Test deleting from middle of list
+  (parachute:define-test delete-middle
+    (parachute:is equal '(1 2 4 5) (delete-nth 2 '(1 2 3 4 5))))
+  
+  ;; Test deleting first element (n=0)
+  (parachute:define-test delete-first
+    (parachute:is equal '(2 3 4) (delete-nth 0 '(1 2 3 4))))
+  
+  ;; Test deleting last element
+  (parachute:define-test delete-last
+    (parachute:is equal '(1 2 3) (delete-nth 3 '(1 2 3 4))))
+  
+  ;; Test single element list
+  (parachute:define-test delete-single-element
+    (parachute:is equal '() (delete-nth 0 '(42))))
+  
+  ;; Test empty list
+  (parachute:define-test delete-from-empty
+    (parachute:is equal '() (delete-nth 0 '())))
+  
+  ;; Test n out of bounds (larger than list length)
+  (parachute:define-test delete-out-of-bounds
+    (parachute:is equal '(1 2 3) (delete-nth 10 '(1 2 3))))
+  
+  ;; Test n negative (shouldn't match any index)
+  (parachute:define-test delete-negative-index
+    (parachute:is equal '(1 2 3) (delete-nth -1 '(1 2 3))))
+  
+  ;; Test non-destructive behavior
+  (parachute:define-test delete-non-destructive
+    (let ((original '(1 2 3 4 5)))
+      (delete-nth 2 original)
+      (parachute:is equal '(1 2 3 4 5) original)))
+  
+  ;; Test with different data types
+  (parachute:define-test delete-mixed-types
+    (parachute:is equal '(a "hello" 42) (delete-nth 1 '(a :symbol "hello" 42)))))
+
+
+;; replace-nth
+
+(parachute:define-test replace-nth-tests
+  
+  ;; Test replacing in middle of list
+  (parachute:define-test replace-middle
+    (parachute:is equal '(1 2 99 4 5) (replace-nth 2 99 '(1 2 3 4 5))))
+  
+  ;; Test replacing first element (n=0)
+  (parachute:define-test replace-first
+    (parachute:is equal '(99 2 3 4) (replace-nth 0 99 '(1 2 3 4))))
+  
+  ;; Test replacing last element
+  (parachute:define-test replace-last
+    (parachute:is equal '(1 2 3 99) (replace-nth 3 99 '(1 2 3 4))))
+  
+  ;; Test single element list
+  (parachute:define-test replace-single-element
+    (parachute:is equal '(99) (replace-nth 0 99 '(42))))
+  
+  ;; Test empty list
+  (parachute:define-test replace-in-empty
+    (parachute:is equal '() (replace-nth 0 99 '())))
+  
+  ;; Test n out of bounds (larger than list length)
+  (parachute:define-test replace-out-of-bounds
+    (parachute:is equal '(1 2 3) (replace-nth 10 99 '(1 2 3))))
+  
+  ;; Test n negative (shouldn't match any index)
+  (parachute:define-test replace-negative-index
+    (parachute:is equal '(1 2 3) (replace-nth -1 99 '(1 2 3))))
+  
+  ;; Test non-destructive behavior
+  (parachute:define-test replace-non-destructive
+    (let ((original '(1 2 3 4 5)))
+      (replace-nth 2 99 original)
+      (parachute:is equal '(1 2 3 4 5) original)))
+  
+  ;; Test replacing with different data types
+  (parachute:define-test replace-with-symbol
+    (parachute:is equal '(1 foo 3) (replace-nth 1 'foo '(1 2 3))))
+  
+  (parachute:define-test replace-with-string
+    (parachute:is equal '(1 "hello" 3) (replace-nth 1 "hello" '(1 2 3))))
+  
+  (parachute:define-test replace-with-nil
+    (parachute:is equal '(1 nil 3) (replace-nth 1 nil '(1 2 3))))
+  
+  (parachute:define-test replace-number-with-list
+    (parachute:is equal '(1 (a b c) 3) (replace-nth 1 '(a b c) '(1 2 3)))))
+
 ;;; === arg-min
 
 (parachute:define-test test-arg-min

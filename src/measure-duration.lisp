@@ -46,7 +46,7 @@
             (slowest (apply #'max durations)))
         (format t "~%RESULTS:~%")
         (dotimes (i nb-runs)
-        (format t "Run ~D / ~D: ~A seconds~%" (1+ i) nb-runs (nth (- nb-runs 1 i) durations)))
+          (format t "Run ~D / ~D: ~A seconds~%" (1+ i) nb-runs (nth (- nb-runs 1 i) durations)))
         (format t "=> quickest time: ~A seconds~%" quickest)
         (format t "=> slowest time:  ~A seconds = quickest + ~a %~%" slowest (truncate (* 100 (/ (- slowest quickest) quickest))))
         nil))))
@@ -83,9 +83,19 @@ This variant enables to do other things in the version, outside of the measured 
             (slowest (apply #'max durations)))
         (format t "~%RESULTS:~%")
         (dotimes (i nb-runs)
-        (format t "Run ~D / ~D: ~F seconds~%" (1+ i) nb-runs (nth (- nb-runs 1 i) durations)))
+          (format t "Run ~D / ~D: ~F seconds~%" (1+ i) nb-runs (nth (- nb-runs 1 i) durations)))
         (format t "=> quickest time: ~F seconds~%" quickest)
         (format t "=> slowest time:  ~F seconds = quickest + ~a %~%" slowest (truncate (* 100 (/ (- slowest quickest) quickest))))
         nil))))
+
+(defun SHOW-all-measure-duration ()
+  ""
+  (format t "~%~%======~%=== MEASURE-DURATION~%======~%")
+  (format t "~%")
+  (SHOW-measure-duration 10000)
+  (format t "~%")
+  (SHOW-benchmark-5-times-A 10000)
+  (format t "~%")
+  (SHOW-benchmark-5-times-B 10000))
 
 ;;; end

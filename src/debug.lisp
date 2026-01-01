@@ -24,4 +24,10 @@
 ;; (INCF CL-UTILS--DEBUG::RES CL-UTILS--DEBUG::I) --> 15
 ;; 15
 
+(defun SHOW-all-debug ()
+  ""
+  (format t "~%~%======~%=== DEBUG~%======~%")
+  (format t "~%")
+  (SHOW-debug-output))
+
 ;;; end

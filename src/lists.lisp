@@ -117,4 +117,28 @@ The argument is supposed to be a list of fixnum.
   (declare (type list lst))
   (loop for i of-type fixnum in lst collect i))
 
+(defun SHOW-all-lists ()
+  ""
+  (format t "~%~%======~%=== LISTS~%======~%")
+  (format t "~%")
+  (format t "(delete-nth 2 '(1 2 3 4 5)) --> ~a~%" (delete-nth 2 '(1 2 3 4 5)))
+  (format t "~%")
+  (format t "(replace-nth 2 33 '(1 2 3 4 5)) --> ~a~%" (replace-nth 2 33 '(1 2 3 4 5)))
+  (format t "~%")
+  (list-preview '(1 2 3 4 5 6 7 8 9))
+  (format t "~%")
+  (format t "(arg-min '(1 3 2 0 5) #'<) --> ~a~%" (arg-min '(1 3 2 0 5) #'<))
+  (format t "~%")
+  (format t "(arg-max '(1 3 2 0 5) #'<) --> ~a~%" (arg-max '(1 3 2 0 5) #'<))
+  (format t "~%")
+  (format t "nb-of-occurrences-of-sublist-in-list: ~a~%" (nb-of-occurrences-of-sublist-in-list '(4 5) '(1 2 3 4 5 6 7 4 5 6 7 4 5 8 9 4 5 6 4 5 4 5)))
+  (format t "~%")
+  (make-circular-DO-NOT-PRINT--AND-NOT-LITERAL (list 1 2 3))
+  (format t "make-circular-DO-NOT-PRINT--AND-NOT-LITERAL... done~%")
+  (format t "~%")
+  (format t "circular-list-length: ~a~%" (circular-list-length (make-circular-DO-NOT-PRINT--AND-NOT-LITERAL (list 1 2 3))))
+  (format t "~%")
+  (format t "unliteral--fixnum-list: ~a~%" (unliteral--fixnum-list '(1 2 3)))
+  )
+
 ;;; end

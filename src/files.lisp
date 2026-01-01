@@ -46,4 +46,10 @@ For instance: 20220403-145223
 		    (funcall fn current-value (funcall key line))))
       current-value)))
 
+(defun SHOW-all-files ()
+  ""
+  (format t "~%~%======~%=== FILES~%======~%")
+  (format t "~%")
+  (format t "random-file-name: ~a~%" (random-file-name "c:/" "comment" "md")))
+
 ;;; end

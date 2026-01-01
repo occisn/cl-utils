@@ -140,88 +140,88 @@ Usage: see examples below."
                (/ (- (get-internal-real-time) real-base) internal-time-units-per-second 1.0)
                (/ (- (get-internal-run-time) run-base) internal-time-units-per-second 1.0)))))
 
-      `(let ((results '()))
+    `(let ((results '()))
 
-         (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
+       (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
 
-         (labels ((substring-after-last (str chr)
-                    "Return the last substring of STR after character CHAR.
+       (labels ((substring-after-last (str chr)
+                  "Return the last substring of STR after character CHAR.
 For instance: 'abc::def' #\: --> 'def'
 (v1, available in occisn/cl-utils GitHub repository)"
-                    (declare (type character chr)
-                             ;; (type (simple-array character) str)
-                             )
-                    (if
-                     (= 0 (length str))
-                     str
-                     (let ((idx
-                             (loop with res of-type fixnum = 0
-                                   for c of-type character across str
-                                   for i of-type fixnum from 0
-                                   when (char= c chr)
-                                     do (setq res i)
-                                   finally (return res))))
-                       (if (= idx 0)
-                           str
-                           (subseq str (+ idx 1) )))))
+                  (declare (type character chr)
+                           ;; (type (simple-array character) str)
+                           )
+                  (if
+                   (= 0 (length str))
+                   str
+                   (let ((idx
+                           (loop with res of-type fixnum = 0
+                                 for c of-type character across str
+                                 for i of-type fixnum from 0
+                                 when (char= c chr)
+                                   do (setq res i)
+                                 finally (return res))))
+                     (if (= idx 0)
+                         str
+                         (subseq str (+ idx 1) )))))
 
-                  (function-to-string-no-package (fn)
-                    "Return a string corresponding to function FN without the possible initial part corresponding to the package. This initial part is identified through ':'.
+                (function-to-string-no-package (fn)
+                  "Return a string corresponding to function FN without the possible initial part corresponding to the package. This initial part is identified through ':'.
 (v1 available in occisn/cl-utils GitHub repository)"
-                    (declare (type function fn))
+                  (declare (type function fn))
 
-                    (substring-after-last
-                     (format nil "~a" (nth-value 2 (function-lambda-expression fn)))
-                     #\:))
+                  (substring-after-last
+                   (format nil "~a" (nth-value 2 (function-lambda-expression fn)))
+                   #\:))
 
-                  (print-and-store-results (fn0 real-time run-time)
-                    ,(if show-doc
+                (print-and-store-results (fn0 real-time run-time)
+                  ,(if show-doc
+		       
+		       `(format t "~%Real-time: ~s run-time: ~s for ~a (~s)"
+			        real-time
+			        run-time
+			        (function-to-string-no-package fn0)
+			        (documentation fn0 'function))
+                       `(format t "~%Real-time: ~s run-time: ~s for ~a"
+			        real-time
+			        run-time
+			        (function-to-string-no-package fn0)))
+
+                  (push (list fn0 real-time run-time) results))) ; end of labels definition
+
+         (funcall #',start-up)
+         
+         (format t "~%~%(1) One after the other~%---")
+         ,@(mapcar #'(lambda (fn)
+		       
+		       (cond
 		         
-		         `(format t "~%Real-time: ~s run-time: ~s for ~a (~s)"
-			          real-time
-			          run-time
-			          (function-to-string-no-package fn0)
-			          (documentation fn0 'function))
-                         `(format t "~%Real-time: ~s run-time: ~s for ~a"
-			          real-time
-			          run-time
-			          (function-to-string-no-package fn0)))
+		         ((not (null context))
+		          `(multiple-value-bind (real-time run-time)
+			       ,(my-time2 `(dotimes (i ,repeat) (funcall ,context #',fn)))
+			     (print-and-store-results #',fn real-time run-time)))
+		         (t
+		          `(multiple-value-bind (real-time run-time)
+			       ,(my-time2 `(dotimes (i, repeat) (funcall #',fn ,@args)))
+			     (print-and-store-results #',fn real-time run-time)))))
+		   
+		   list-of-functions)
 
-                    (push (list fn0 real-time run-time) results))) ; end of labels definition
+         (setf results (sort results #'< :key #'cadr))
 
-           (funcall #',start-up)
-           
-           (format t "~%~%(1) One after the other~%---")
-           ,@(mapcar #'(lambda (fn)
-		         
-		         (cond
-		           
-		           ((not (null context))
-		            `(multiple-value-bind (real-time run-time)
-			         ,(my-time2 `(dotimes (i ,repeat) (funcall ,context #',fn)))
-			       (print-and-store-results #',fn real-time run-time)))
-		           (t
-		            `(multiple-value-bind (real-time run-time)
-			         ,(my-time2 `(dotimes (i, repeat) (funcall #',fn ,@args)))
-			       (print-and-store-results #',fn real-time run-time)))))
-		     
-		     list-of-functions)
-
-           (setf results (sort results #'< :key #'cadr))
-
-           (format t "~%~%(2) Sorted by increasing real-time~%---")
-           (dolist (one-result results)
-             ,(if show-doc
-                  `(format t "~%Real-time: ~s run-time: ~s for ~a (~s)"
-		           (second one-result) ; real-time
-		           (third one-result)  ; run-time
-		           (function-to-string-no-package (first one-result)) ; name
-		           (documentation (first one-result) 'function))
-                  `(format t "~%Real-time: ~s run-time: ~s for ~a"
-		           (second one-result) ; real-time
-		           (third one-result)  ; run-time
-		           (function-to-string-no-package (first one-result)))) ; name
-	     )))))
+         (format t "~%~%(2) Sorted by increasing real-time~%---")
+         (dolist (one-result results)
+           ,(if show-doc
+                `(format t "~%Real-time: ~s run-time: ~s for ~a (~s)"
+		         (second one-result) ; real-time
+		         (third one-result)  ; run-time
+		         (function-to-string-no-package (first one-result)) ; name
+		         (documentation (first one-result) 'function))
+                `(format t "~%Real-time: ~s run-time: ~s for ~a"
+		         (second one-result) ; real-time
+		         (third one-result)  ; run-time
+		         (function-to-string-no-package (first one-result)))) ; name
+	   )))))
 
 (defun SHOW-1-compare-durations ()
   "Example of usage of 'compare-durations'."
@@ -236,7 +236,7 @@ For instance: 'abc::def' #\: --> 'def'
    :start-up (lambda () (loop for i from 1 to 10))
    :context (lambda (f) (loop for i from 15 to 16 do (funcall f i)))))
 
-(defun SHOW-3-compare-durations ()
+(defun SHOW-3-compare-durations (&optional (n 10000))
   "Example of usage of 'compare-durations'."
   (compare-durations
    (%for-bench-fact-1
@@ -245,9 +245,9 @@ For instance: 'abc::def' #\: --> 'def'
     %for-bench-fact-3
     %for-bench-fact-4
     %for-bench-fact-5)
-   :args (10000)))
+   :args (n)))
 
-(defun SHOW-4-compare-durations ()
+(defun SHOW-4-compare-durations (&optional (n 10000))
   "Example of usage of 'compare-durations'."
   (compare-durations
    (%for-bench-fact-1
@@ -256,10 +256,10 @@ For instance: 'abc::def' #\: --> 'def'
     %for-bench-fact-3
     %for-bench-fact-4
     %for-bench-fact-5)
-   :args (10000)
+   :args (n)
    :repeat 10))
 
-(defun SHOW-5-compare-durations ()
+(defun SHOW-5-compare-durations (&optional (n 1000))
   "Example of usage of 'compare-durations'."
   (compare-durations
    (%for-bench-fact-1
@@ -268,6 +268,20 @@ For instance: 'abc::def' #\: --> 'def'
     %for-bench-fact-3
     %for-bench-fact-4
     %for-bench-fact-5)
-   :context (lambda (fn) (dotimes (i 1000) (funcall fn i)))))
+   :context (lambda (fn) (dotimes (i n) (funcall fn i)))))
+
+(defun SHOW-all-compare-durations ()
+  ""
+  (format t "~%~%======~%=== COMPARE-DURATIONS~%======~%")
+  (format t "~%")
+  (SHOW-1-compare-durations)
+  (format t "~%")
+  (SHOW-2-compare-durations)
+  (format t "~%")
+  (SHOW-3-compare-durations 100)
+  (format t "~%")
+  (SHOW-4-compare-durations 100)
+  (format t "~%")
+  (SHOW-5-compare-durations 100))
 
 ;;; end

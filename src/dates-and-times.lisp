@@ -193,4 +193,14 @@ For instance: --> '3 days', '3.5 months', '1.3 years'
            (format nil "~,1f months" (* 12.0 (* delta-in-days (/ 1.0 365.0)))))
           (t (format nil "~,1f years" (* delta-in-days (/ 1.0 365.0)))))))
 
+(defun SHOW-all-dates-and-times ()
+  ""
+  (format t "~%~%======~%=== DATES-AND-TIMES~%======~%")
+  (format t "~%")
+  (SHOW-pretty-print-universal-time-as-full-date-time)
+  (format t "~%")
+  (SHOW-pretty-print-universal-time-as-long-date)
+  (format t "~%")
+  (SHOW-pretty-print-universal-time-as-short-date))
+
 ;;; end

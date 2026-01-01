@@ -4,16 +4,16 @@
   (SHOW-all-arrays-and-vectors)
   (SHOW-all-bit-vectors)
   (SHOW-all-booleans)
-  ;; compare-durations.lisp
-  ;; dates-and-times.lisp
-  ;; debug.lisp
+  (SHOW-all-compare-durations)
+  (SHOW-all-dates-and-times)
+  (SHOW-all-debug)
   ;; ffi-with-cffi.lisp
   ;; ffi-with-sb-alien.lisp
-  ;; files.lisp
-  ;; lists.lisp
-  ;; macros.lisp
+  (SHOW-all-files)
+  (SHOW-all-lists)
+  (SHOW-all-macros)
   ;; (SHOW-all-mail-via-gmail) ; requires Internet connection
-  ;; measure-duration.lisp
+  (SHOW-all-measure-duration)
   (SHOW-all-numbers-doubles)
   (SHOW-all-numbers-integers-french)
   (SHOW-all-numbers-integers)
