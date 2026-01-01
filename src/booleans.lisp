@@ -8,14 +8,10 @@ It allows for instance to convert 2 to t.
 "
   `(not (not ,x)))
 
-(defun SHOW-boolean-value ()
-  ""
-  (format t "boolean value of 2 is ~a~%" (boolean-value 2)))
-
-(defun show-all-booleans ()
+(defun SHOW-all-booleans ()
   ""
   (format t "~%~%======~%=== BOOLEANS~%======~%")
   (format t "~%")
-  (SHOW-boolean-value))
+  (format t "boolean value of 2 is ~a~%" (boolean-value 2)))
 
 ;;; end

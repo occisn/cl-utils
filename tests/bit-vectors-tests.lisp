@@ -101,7 +101,7 @@ https://lisptips.com/post/44261316742/how-do-i-convert-an-integer-to-a-list-of-b
                     do (funcall fn i)))
    :start-up start-up-1))
 ;;; v5 et v6 with coerce are longer
-;;; v3 is quicker; v1 et v4 juste after
+;;; v3 is quicker; v1 et v4 just after
 
 ;;; === bit-vector->fixnum
 
@@ -113,11 +113,11 @@ https://lisptips.com/post/44261316742/how-do-i-convert-an-integer-to-a-list-of-b
 (defun %bit-vector->fixnum-v2 (v)
   "LEFT-ENDIAN"
   (declare (type (simple-array bit) v))
-  ;; (format4 t "length(v) = ~s~%" (length v))
+  ;; (format t "length(v) = ~s~%" (length v))
   (loop for i of-type fixnum from (- (length v) 1) downto 0
         for b of-type bit = (sbit v i)
         for res of-type fixnum = b then (+ (* res 2) b)
-        ;; do (format4 t "i = ~s ; b = ~s ; res = ~s~%" i b res)
+        ;; do (format t "i = ~s ; b = ~s ; res = ~s~%" i b res)
         finally (return res)))
 
 (test-variants-give-same-result

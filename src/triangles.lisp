@@ -25,4 +25,10 @@ All numbers are fixnum.
                   :element-type 'fixnum
 		  :initial-contents (mapcar #'fill-with-zeros triangle)))))
 
+(defun SHOW-all-triangles ()
+  ""
+  (format t "~%~%======~%=== TRIANGLES~%======~%")
+  (format t "~%")
+  (format t "((1) (2 3) (4 5 6)) --> ~a~%" (triangle-to-2d-array '((1) (2 3) (4 5 6)))))
+
 ;;; end

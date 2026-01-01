@@ -38,4 +38,12 @@ For instance: 'abc::def' #\: --> 'def'
      (format nil "~a" (nth-value 2 (function-lambda-expression fn)))
      #\:)))
 
+(defun SHOW-all-symbols ()
+  ""
+  (format t "~%~%======~%=== SYMBOLS~%======~%")
+  (format t "~%")
+  (format t "#'sin --> ~a~%" (function-to-string #'sin))
+  (format t "~%")
+  (format t "#'sin --> ~a~%" (function-to-string #'sin)))
+
 ;;; end

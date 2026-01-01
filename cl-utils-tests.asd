@@ -20,5 +20,6 @@
                              (:file "numbers-integers-french-tests")
                              (:file "numbers-integers-primes-tests")
                              (:file "strings-tests")
-                             (:file "symbols-tests"))))
+                             (:file "symbols-tests")
+                             (:file "triangles-tests"))))
   :perform (asdf:test-op (op c) (uiop:symbol-call :parachute :test  :cl-utils-tests)))

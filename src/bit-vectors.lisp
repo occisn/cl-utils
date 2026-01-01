@@ -31,4 +31,14 @@ Requires SBCL.
   (logcount (sb-kernel:%vector-raw-bits v 0)))
 ;; Inspiration: https://stackoverflow.com/questions/62478318/sbcl-optimization-can-we-compile-an-efficient-population-count-for-bit-vectors
 
+(defun SHOW-all-bit-vectors ()
+  ""
+  (format t "~%~%======~%=== BIT-VECTORS~%======~%")
+  (format t "~%")
+  (format t "10 --> ~a (left-endian)~%" (fixnum->bit-vector 10))
+  (format t "~%")
+  (format t "#*0101 (left-endian) --> ~a~%" (bit-vector->fixnum #*0101))
+  (format t "~%")
+  (format t "Number of 1 in #*010101 is ~a~%" (bit-vector-logcount #*010101)))
+
 ;;; end
