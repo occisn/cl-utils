@@ -1,6 +1,6 @@
 # cl-utils
 
-Personal utilities for Common Lisp.  
+Personal utilities for Common Lisp.
 
 Some functions are specific to SBCL.
 
@@ -8,9 +8,7 @@ This project is a kind of shelf providing many functions. With a few clearly ind
 
 When relevant, functions and macros are illustrated with `SHOW-xxx`.
 
-A test suite is proposed. In addition to traditional tests, when several implementations of the same function are proposed, tests file may *(i)* check that they yield the same returns and *(ii)* compare speed (do not forget to set: `speed = 3` in `asd` files).
-
-Minimal ASDF example : see [dedicated repository](https://github.com/occisn/cl-minimal-asdf-example)
+A test suite is proposed. In addition to traditional tests, when several implementations of the same function are proposed, tests files may *(i)* check that the various implementations yield the same results and *(ii)* compare speed (`asd` files specify `(speed 3)`).
 
 File **arrays-and-vectors.lisp**  
    - functions `vec-view-all-content` and `vec-preview`  
