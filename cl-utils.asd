@@ -33,6 +33,7 @@
                  (:file "ffi-with-sb-alien")
                  (:file "files")
                  (:file "format")
+                 (:file "function-arguments-passed-by-reference-or-by-value")
                  (:file "lists")
                  (:file "macros")
                  (:file "mail-via-gmail")

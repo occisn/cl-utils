@@ -12,6 +12,7 @@
   ;; ffi-with-sb-alien.lisp
   (SHOW-all-files)
   (SHOW-all-format)
+  (SHOW-all-function-arguments-passed-by-reference-or-by-value)
   (SHOW-all-lists)
   (SHOW-all-macros)
   ;; (SHOW-all-mail-via-gmail) ; requires Internet connection
