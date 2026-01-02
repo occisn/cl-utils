@@ -37,6 +37,9 @@ File **dates-and-times.lisp**
 
 File **debug.lisp**  
    - function `debug-output`
+   
+File **equality.lisp**  
+   - considerations on equality predicates
 
 File **files.lisp**  
    - function `random-file-name`  
