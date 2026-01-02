@@ -1,5 +1,10 @@
 (in-package :cl-utils)
 
+;; SLDB:
+;; -----
+;; shall be 'debug 3) (speed 0)
+;; commands: see Emacs dedicated hydra
+
 (defmacro debug-output (form)
   "Execute FORM and prints both FORM and the result of its evaluation.
 (v1, available in occisn/cl-utils GitHub repository)"
