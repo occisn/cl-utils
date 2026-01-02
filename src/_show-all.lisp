@@ -28,6 +28,7 @@
   (SHOW-all-tco)
   (SHOW-all-trampoline)
   (SHOW-all-triangles)
+  (SHOW-all-variables-and-bindings)
   ;; (SHOW-all-web) ; requires Internet connection
   )
 

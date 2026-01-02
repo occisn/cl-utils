@@ -49,6 +49,7 @@
                  (:file "tco")
                  (:file "trampoline")
                  (:file "triangles")
+                 (:file "variables-and-bindings")
                  (:file "web")
                  (:file "_show-all"))))
   :perform (load-op :after (op c)
