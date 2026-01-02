@@ -36,6 +36,7 @@ File **dates-and-times.lisp**
    - function `pretty-print-time-difference`
 
 File **debug.lisp**  
+   - SLDB commands: see Emacs related hydra  
    - function `debug-output`
    
 File **equality.lisp**  
