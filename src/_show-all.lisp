@@ -7,6 +7,7 @@
   (SHOW-all-compare-durations)
   (SHOW-all-dates-and-times)
   (SHOW-all-debug)
+  (SHOW-all-equality)
   ;; ffi-with-cffi.lisp
   ;; ffi-with-sb-alien.lisp
   (SHOW-all-files)

@@ -28,6 +28,7 @@
                  (:file "compare-durations")
                  (:file "dates-and-times")
                  (:file "debug")
+                 (:file "equality")
                  (:file "ffi-with-cffi")
                  (:file "ffi-with-sb-alien")
                  (:file "files")
