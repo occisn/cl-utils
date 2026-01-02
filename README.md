@@ -8,6 +8,8 @@ This project is a kind of shelf providing many functions. With a few clearly ind
 
 When relevant, functions and macros are illustrated with `SHOW-xxx`.
 
+The function `(SHOW-all-cl-utils)` defined in `_show-all.lisp` file executes most of the `SHOW-xxx` functions one after the other.
+
 A test suite is proposed. In addition to traditional tests, when several implementations of the same function are proposed, tests files may *(i)* check that the various implementations yield the same results and *(ii)* compare speed (`asd` files specify `(speed 3)`).
 
 File **arrays-and-vectors.lisp**  
