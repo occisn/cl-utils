@@ -5,6 +5,8 @@
    vec-view-all-content
    vec-preview
    unliteral--fixnum-vector
+   ;; association lists:
+   ;;   (void)
    ;; bit-vectors:
    fixnum->bit-vector
    bit-vector->fixnum
@@ -30,6 +32,10 @@
    random-file-name
    reduce-for-each-line-of-file
    ;; format:
+   ;;    (void)
+   ;; functions:
+   ;;    (void)
+   ;; hash tables:
    ;;    (void)
    ;; lists:
    delete-nth
@@ -58,15 +64,15 @@
    collecting--reversed-order
    ;; mails:
    send-mail-via-gmail
-   ;; measure-duration
+   ;; measure-duration:
    SHOW-measure-duration
-   ;; numbers-doubles
-   floor-of-positive-df
-   ;; numbers-integers
+   ;; numbers-doubles:
+   ;;   (void)
+   ;; numbers-integers:
    reverse-number--fixnum
    ;; numbers-integers-french:
    en-toutes-lettres
-   ;; numbers-integers-primes
+   ;; numbers-integers-primes:
    largest-prime-factor
    primep
    next-prime
@@ -74,8 +80,14 @@
    ;; numbers-rationals:
    convert-to-proper-fraction-m
    length-of-recurring-cycle
-   ;; optimization
+   ;; optimization:
    optimization-examples
+   fixnum-range-double-float
+   round-of-df
+   positive-fixnum-range-double-float
+   floor-of-positive-df
+   ;; property lists:
+   ;;   (void)
    ;; strings:
    string-split
    substring-after-last
@@ -93,7 +105,12 @@
    trampoline
    ;; triangles:
    triangle-to-2d-array
+   ;; types:
+   ;;    (void)
+   ;; variables:
+   ;;    (void)
    ;; web:
-   web-redirect-p))
+   web-redirect-p)
 
-;; end
+  ;; end
+  )

@@ -86,7 +86,7 @@ File **measure-duration**
    - function `SHOW-benchmark-5-times-A` and `SHOW-benchmark-5-times-B`
    
 File **numbers-doubles**  
-   - macro `floor-of-positive-df`
+   - (void)
    
 File **numbers-integers**  
    - function `reverse-number--fixnum`
@@ -104,8 +104,12 @@ File **numbers-rationals**
    - macro `convert-to-proper-fraction-m`  
    - function `length-of-recurring-cycle`
    
-File **optimization**  
-   - function `optimization-examples`
+File **optimization** (how comply with 'speed 3' compilation notes?)  
+   - general considerations and methods  
+   - type `fixnum-range-double-float`  
+   - macro `round-of-df`  
+   - type `positive-fixnum-range-double-float`  
+   - macro `floor-of-positive-df`
    
 File **property-lists**  
    - useful standard functions
