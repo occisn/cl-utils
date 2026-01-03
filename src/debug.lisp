@@ -2,7 +2,7 @@
 
 ;; SLDB:
 ;; -----
-;; shall be 'debug 3) (speed 0)
+;; shall be (debug 3) (speed 0)
 ;; commands: see Emacs dedicated hydra
 
 (defmacro debug-output (form)
