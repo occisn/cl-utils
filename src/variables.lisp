@@ -68,6 +68,8 @@
   ;; Visible: To all functions called in the dynamic extent
   ;; Declaration: defvar, defparameter, or declare special
   ;; Convention: Named with *earmuffs*
+  ;;     (which prevents from inadvertenly over-shadow it
+  ;;      within a function)
   ;;
   ;; They are mainly for configuration settings, thread-local storage,
   ;; runtime-configurable context that flows down the call stack.
