@@ -51,8 +51,7 @@ File **format**
 
 File **functions**  
    - generalities on functions  
-   - are arguments passed by reference of by value?  
-   - lexical vs dynamic scoping
+   - are arguments passed by reference of by value?
    
 File **lists**  
    - function `delete-nth` and `replace-nth`  
@@ -124,7 +123,9 @@ File **triangles**
    
 File **variables**  
    - general considerations on variables  
-   - explanations about bindings
+   - explanations about bindings  
+   - lexical vs dynamic scoping
+
    
 File **web**  
    - function `web-redirect-p`
