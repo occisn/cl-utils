@@ -54,6 +54,7 @@ File **functions**
    - are arguments passed by reference of by value?
    
 File **lists**  
+   - general considerations on lists  
    - function `delete-nth` and `replace-nth`  
    - function `list-preview`  
    - functions `arg-min` and `arg-max`  
