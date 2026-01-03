@@ -176,6 +176,9 @@ For instance: 'abc::def' #\: --> 'def'
   ;; They are usually written with a leading colon: :foo
   ;; They are globally accessible
   ;; They are typically used to name function arguments, as labels in lists, or as symbolic constants.
+  ;;
+  ;; (keywordp :key)  ; => T
+  ;; (intern "BAR" :keyword)  ; => :BAR, :EXTERNAL
 
   )
 
