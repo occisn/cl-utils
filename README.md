@@ -12,22 +12,22 @@ The function `(SHOW-all-cl-utils)` defined in `_show-all.lisp` file executes mos
 
 A test suite is proposed. In addition to traditional tests, when several implementations of the same function are proposed, tests files may *(i)* check that the various implementations yield the same results and *(ii)* compare speed (`asd` files specify `(speed 3)`).
 
-File **arrays-and-vectors.lisp**  
+File **arrays-and-vectors**  
    - functions `vec-view-all-content` and `vec-preview`  
    - function `unliteral--fixnum-vector`
    
-File **bit-vectors.lisp**  
+File **bit-vectors**  
    - functions `fixnum->bit-vector` and `bit-vector->fixnum`  
    - function `bit-vector-logcount`
 
-File **booleans.lisp**  
+File **booleans**  
    - macro `boolean-value`
 
-File **compare-durations.lisp**  
+File **compare-durations**  
    - function `start-up-1`  
    - macro `compare-durations` 
    
-File **dates-and-times.lisp**  
+File **dates-and-times**  
    - function `universal-time-to-YYYYMMDD-HHMMSS`  
    - function `get-current-YYYYMMDD-HHMMSS`  
    - functions `convert-int-YYYYMMDD-and-HHMMSS-to-universal-time` and `convert-int-YYYYMMDD-to-universal-time`  
@@ -35,25 +35,26 @@ File **dates-and-times.lisp**
    - functions `pretty-print-universal-time-as-full-date-time`, `pretty-print-universal-time-as-long-date` and `pretty-print-universal-time-as-short-date`  
    - function `pretty-print-time-difference`
 
-File **debug.lisp**  
+File **debug**  
    - SLDB commands: see Emacs related hydra  
    - function `debug-output`
    
-File **equality.lisp**  
+File **equality**  
    - considerations on equality predicates
 
-File **files.lisp**  
+File **files**  
    - function `random-file-name`  
    - function `reduce-for-each-line-of-file`
    
-File **format.lisp**  
+File **format**  
    - illustrations of various `format` directives
 
 File **functions**  
    - generalities on functions  
-   - are arguments passed by reference of by value?
+   - are arguments passed by reference of by value?  
+   - lexical vs dynamic scoping
    
-File **lists.lisp**  
+File **lists**  
    - function `delete-nth` and `replace-nth`  
    - function `list-preview`  
    - functions `arg-min` and `arg-max`  
@@ -61,7 +62,7 @@ File **lists.lisp**
    - functions `make-circular-DO-NOT-PRINT--AND-NOT-LITERAL` and `circular-list-length`  
    - function `unliteral--fixnum-list`
       
-File **macros.lisp**  
+File **macros**  
    - macro `with-gensyms`  
    - macros `while`and `while1`  
    - macros `repeat-until`and `do-while`  
@@ -70,7 +71,7 @@ File **macros.lisp**
    - macros `collecting` and `collecting--reversed-order`  
    - macro `let+`
    
-File **mail-vis-gmail.lisp**  
+File **mail-vis-gmail**  
    - function `send-mail-via-gmail`
 
 File **measure-duration**  
@@ -99,7 +100,7 @@ File **numbers-rationals**
 File **optimization**  
    - function `optimization-examples`
    
-File **strings.lisp**  
+File **strings**  
    - function `string-split`  
    - function `substring-after-last`  
    - function `string-repeat-string`  
@@ -108,24 +109,24 @@ File **strings.lisp**
    - function `palindrome-string-p`  
    - function `unliteral--string`
 
-File **symbols.lisp**  
+File **symbols**  
    - general considerations on symbols, including keywords, at the end of the file  
    - function `function-to-string` and `function-to-string-no-package`
    
-File **tco.lisp**  
+File **tco**  
    - illustration that (speed 3) encourages tail-call optimization
    
-File **trampoline.lisp**  
+File **trampoline**  
    - function `trampoline` and example
    
-File **triangles.lisp**  
+File **triangles**  
    - function `triangle-to-2d-array`
    
 File **variables**  
    - general considerations on variables  
    - explanations about bindings
    
-File **web.lisp**  
+File **web**  
    - function `web-redirect-p`
 
 Any comment? Open an [issue](https://github.com/occisn/cl-utils/issues), or start a discussion [here](https://github.com/occisn/cl-utils/discussions) or [at profile level](https://github.com/occisn/occisn/discussions).
