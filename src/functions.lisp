@@ -1,5 +1,12 @@
 (in-package :cl-utils)
 
+(defun SHOW-functions-general ()
+  ""
+
+  ;; LABELS allows recursion but FLET does not
+
+  )
+
 (defun SHOW-function-arguments-passed-by-reference-or-by-value ()
   ""
   
@@ -16,25 +23,27 @@
   ;; This is NOT "pass by reference" (which would allow rebinding the caller's variable)
 
   (defun modify-list-1 (lst)
-    (setf (car lst) 'changed)      ; Modifies the shared object - visible to caller
-    (setf lst '(new list)))        ; Only rebinds local parameter - NOT visible to caller
+    (setf (car lst) 'changed) ; Modifies the shared object - visible to caller
+    (setf lst '(new list))) ; Only rebinds local parameter - NOT visible to caller
 
   (let ((my-list '(a b c)))
     (modify-list-1 my-list)
-    my-list)  ; => (CHANGED B C)
+    my-list)                            ; => (CHANGED B C)
 
   (defun modify-list-2 (lst)
-    (rplaca lst 'changed)          ; Modifies the shared object - visible to caller
-    (push 'NEW lst))               ; Rebinds local parameter - NOT visible to caller
+    (rplaca lst 'changed) ; Modifies the shared object - visible to caller
+    (push 'NEW lst)) ; Rebinds local parameter - NOT visible to caller
 
   (let ((my-list '(a b c)))
     (modify-list-2 my-list)
-    my-list)  ; => (CHANGED B C)
+    my-list)                            ; => (CHANGED B C)
   )
 
-(defun SHOW-all-function-arguments-passed-by-reference-or-by-value ()
+(defun SHOW-all-functions ()
   ""
-  (format t "~%~%======~%=== FUNCTION ARGUMENTS PASSED BY REFERENCE OR BY VALUE~%======~%")
+  (format t "~%~%======~%=== FUNCTIONS~%======~%")
+  (format t "~%")
+  (SHOW-functions-general)
   (format t "~%")
   (SHOW-function-arguments-passed-by-reference-or-by-value))
 

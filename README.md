@@ -49,8 +49,9 @@ File **files.lisp**
 File **format.lisp**  
    - illustrations of various `format` directives
 
-File **function-arguments-passed-by-reference-or-by-value**  
-   - explanations on the subject
+File **functions**  
+   - generalities on functions  
+   - are arguments passed by reference of by value?
    
 File **lists.lisp**  
    - function `delete-nth` and `replace-nth`  
