@@ -1,11 +1,30 @@
 (in-package :cl-utils)
 
+(defun SHOW-arrays-and-vectors-general ()
+  ""
+
+  ;; vector = 1-dimension array
+  
+  (make-array '(4) :initial-element 3)
+
+  (let ((v #(1 2 3 4))) ; array literal
+    (aref v 2))
+  
+  (make-sequence 'vector 4) ; ==> #(0 0 0 0)
+  
+  (make-array 5) ; ==> #(0 0 0 0 0)
+  
+  (vector 1 2 3) ; ==> #(1 2 3)
+  
+  #(1 2 3 4) ; literal
+  )
+
 (defun vec-view-all-content (v)
   "Print all content of vector V.
 (v1, available in occisn/cl-utils GitHub repository)"
   (locally
       (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
-      (format t "~%VECTOR VIEW ALL CONTENT~%")
+    (format t "~%VECTOR VIEW ALL CONTENT~%")
     (let ((n (length v)))
       (cond ((null v)
              (format t "Null vector~%"))
@@ -55,6 +74,7 @@
 
 (defun SHOW-all-arrays-and-vectors ()
   (format t "~%~%======~%=== ARRAYS-AND-VECTORS~%======~%")
+  (SHOW-arrays-and-vectors-general)
   (SHOW-vec-view-all-content)
   (SHOW-vec-preview)
   (format t "~%")
