@@ -1,6 +1,17 @@
 (in-package :cl-utils)
 
+(defun SHOW-variable-general ()
+  ""
+
+  ;; Variables are UNTYPED containers
+  ;; Values are TYPED objects.
+  ;; Type declarations are optional optimization hints,
+  ;; not type constraints (unless you explicitly check them).
+
+  )
+
 (defun SHOW-variables-bindings ()
+  ""
 
   (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
   
@@ -35,9 +46,11 @@
     ;; whereas Y still refers to the original (modified) list.
     ))
 
-(defun SHOW-all-variables-and-bindings ()
+(defun SHOW-all-variables ()
   ""
   (format t "~%~%======~%=== VARIABLES AND BINDINGS~%======~%")
+  (format t "~%")
+  (SHOW-variable-general)
   (format t "~%")
   (SHOW-variables-bindings))
 

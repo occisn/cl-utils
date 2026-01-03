@@ -121,8 +121,9 @@ File **trampoline.lisp**
 File **triangles.lisp**  
    - function `triangle-to-2d-array`
    
-File **variables-and-bindings**  
-   - explanations about variables, reference, bindings, etc.
+File **variables**  
+   - general considerations on variables  
+   - explanations about bindings
    
 File **web.lisp**  
    - function `web-redirect-p`
