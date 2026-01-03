@@ -55,7 +55,10 @@ File **format**
 File **functions**  
    - generalities on functions  
    - are arguments passed by reference of by value?
-   
+
+File **hash-tables**  
+   - useful standard functions
+
 File **lists**  
    - general considerations on lists  
    - function `delete-nth` and `replace-nth`  

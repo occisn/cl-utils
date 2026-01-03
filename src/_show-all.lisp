@@ -14,6 +14,7 @@
   (SHOW-all-files)
   (SHOW-all-format)
   (SHOW-all-functions)
+  (SHOW-all-hash-tables)
   (SHOW-all-lists)
   (SHOW-all-macros)
   ;; (SHOW-all-mail-via-gmail) ; requires Internet connection
@@ -33,6 +34,7 @@
   (SHOW-all-triangles)
   (SHOW-all-variables)
   ;; (SHOW-all-web) ; requires Internet connection
+  nil
   )
 
 ;;; end

@@ -35,6 +35,7 @@
                  (:file "files")
                  (:file "format")
                  (:file "functions")
+                 (:file "hash-tables")
                  (:file "lists")
                  (:file "macros")
                  (:file "mail-via-gmail")
