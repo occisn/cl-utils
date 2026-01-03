@@ -100,6 +100,7 @@ File **optimization**
    - function `optimization-examples`
    
 File **strings**  
+   - useful standard functions  
    - function `string-split`  
    - function `substring-after-last`  
    - function `string-repeat-string`  
@@ -125,7 +126,6 @@ File **variables**
    - general considerations on variables  
    - explanations about bindings  
    - lexical vs dynamic scoping
-
    
 File **web**  
    - function `web-redirect-p`

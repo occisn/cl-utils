@@ -1,5 +1,33 @@
 (in-package :cl-utils)
 
+(defun SHOW-strings-useful-functions ()
+  ""
+
+  (concatenate 'string "hello " "Mary") ; ==> "hello Mary"
+
+  ;; find position of a substring:
+  (search "ran" "I ran") ; ==> 2 (otherwise nil)
+
+  ;; Replace substring:
+  (substitute #\- #\space "hello world")  ; => "hello-world"
+
+  ;; extract a substring:
+  (subseq "happy new year" 6 9) ; ==> "new" (9 not included)
+
+  ;; delete specifc characters at the beginning or at the end:
+  (string-trim '(#\space #\tab) "    hello  ") ; ==> "hello"
+
+  ;; case conversion:
+  (string-upcase "hello") ; ==> "HELLO"
+  (string-downcase "HELLO") ; ==> "hello"
+
+  ;; get character at position:
+  (char "abc" 2) ; ==> #\c
+
+  ;; reverse a string:
+  (reverse "hello")               ; => "olleh"
+  )
+
 (defun string-split (str delimiter)
   "Split STR according to DELIMITER and return a list.
 For instance: 'abc def' #\space --> ('abc' 'def')
@@ -86,6 +114,8 @@ The argument is supposed to be a string with at least one character.
 (defun SHOW-all-strings ()
   ""
   (format t "~%~%======~%=== STRINGS~%======~%")
+  (format t "~%")
+  (SHOW-strings-useful-functions)
   (format t "~%")
   (format t "string-split: \"abc def\" --> ~a~%" (string-split "abc def" #\space))
   (format t "~%")
