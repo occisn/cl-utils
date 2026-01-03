@@ -133,6 +133,9 @@ File **trampoline**
 File **triangles**  
    - function `triangle-to-2d-array`
    
+File **types**  
+   - general considerations on types
+   
 File **variables**  
    - general considerations on variables  
    - explanations about bindings  

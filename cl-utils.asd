@@ -53,6 +53,7 @@
                  (:file "tco")
                  (:file "trampoline")
                  (:file "triangles")
+                 (:file "types")
                  (:file "variables")
                  (:file "web")
                  (:file "_show-all"))))

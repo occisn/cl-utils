@@ -31,6 +31,7 @@
   (SHOW-all-symbols)
   (SHOW-all-tco)
   (SHOW-all-trampoline)
+  (SHOW-all-types)
   (SHOW-all-triangles)
   (SHOW-all-variables)
   ;; (SHOW-all-web) ; requires Internet connection
