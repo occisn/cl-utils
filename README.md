@@ -16,6 +16,9 @@ File **arrays-and-vectors**
    - functions `vec-view-all-content` and `vec-preview`  
    - function `unliteral--fixnum-vector`
    
+File **associaton-lists**  
+   - useful standard functions
+
 File **bit-vectors**  
    - functions `fixnum->bit-vector` and `bit-vector->fixnum`  
    - function `bit-vector-logcount`

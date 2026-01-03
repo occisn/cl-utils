@@ -23,6 +23,7 @@
                (:module "src"
                 :components
                 ((:file "arrays-and-vectors")
+                 (:file "association-lists")
                  (:file "bit-vectors")
                  (:file "booleans")
                  (:file "compare-durations")

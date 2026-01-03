@@ -2,6 +2,7 @@
 
 (defun SHOW-all-cl-utils ()
   (SHOW-all-arrays-and-vectors)
+  (SHOW-all-association-lists)
   (SHOW-all-bit-vectors)
   (SHOW-all-booleans)
   (SHOW-all-compare-durations)
