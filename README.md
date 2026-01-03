@@ -66,7 +66,8 @@ File **macros.lisp**
    - macros `repeat-until`and `do-while`  
    - macros `aprogn` and `ablock`  
    - macros `setf-min`, `setf-max`, `setf-min--df`, `setf-max--df`  
-   - macros `collecting` and `collecting--reversed-order`
+   - macros `collecting` and `collecting--reversed-order`  
+   - macro `let+`
    
 File **mail-vis-gmail.lisp**  
    - function `send-mail-via-gmail`

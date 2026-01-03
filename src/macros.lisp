@@ -265,6 +265,45 @@ In the right order (using REVERSE, so slower than the previous macro).
            do (collect1 i))))
 ;; --> (-5 -4 4 5)
 
+(defmacro let+ (bindings &body body)
+  "Unified binding form that recognizes both variables and functions.
+Like LET, but automatically recognizes lambda expressions and function definitions, treating them as local functions (using LABELS) while treating other values as regular variable bindings (using LET)."
+  (if (null bindings)
+      `(progn ,@body)
+      (let* ((binding (car bindings))
+             (name (car binding))
+             (value (cadr binding))
+             (rest-bindings (cdr bindings)))
+        (if (and (listp value) (eq (car value) 'lambda))
+            ;; It's a function - use labels
+            `(labels ((,name ,@(cdr value)))
+               (let+ ,rest-bindings ,@body))
+            ;; It's a variable - use let
+            `(let (,binding)
+               (let+ ,rest-bindings ,@body))))))
+
+
+(defun SHOW-let+ ()
+  ""
+  (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
+  (let+ ((x 10)
+         (square (lambda (n) (* n n)))
+         (y 20)
+         (factorial (lambda (n)
+                      "Compute the factorial of N"
+                      (if (zerop n) 
+                          1
+                          (* n (factorial (- n 1))))))
+         (z 30)
+         (plusz (lambda (x)
+                  "Add previously-defined Z to argument X"
+                  (+ x z))))
+    (format t "let+: ~A~%"
+            (list (square x) 
+                  (square y) 
+                  (factorial 5)
+                  (plusz 100)))))
+
 (defun SHOW-all-macros ()
   ""
   (format t "~%~%======~%=== MACROS~%======~%")
@@ -283,6 +322,8 @@ In the right order (using REVERSE, so slower than the previous macro).
   (format t "~%")
   (SHOW-collecting--reversed-order)
   (format t "~%")
-  (SHOW-collecting))
+  (SHOW-collecting)
+  (format t "~%")
+  (SHOW-let+))
 
 ;;; end
