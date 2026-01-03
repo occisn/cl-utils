@@ -15,26 +15,26 @@ For instance #'SIN --> 'SIN'
   (declare (type function fn))
 
   (flet ((substring-after-last (str chr)
-             "Return the last substring of STR after character CHAR.
+           "Return the last substring of STR after character CHAR.
 For instance: 'abc::def' #\: --> 'def'
 (v1, available in occisn/cl-utils GitHub repository)"
-             (declare (type character chr)
-                      ;; (type (simple-array character) str)
-                      
-                      )
-             (if
-              (= 0 (length str))
-              str
-              (let ((idx
-                      (loop with res of-type fixnum = 0
-                            for c of-type character across str
-                            for i of-type fixnum from 0
-                            when (char= c chr)
-                              do (setq res i)
-                            finally (return res))))
-                (if (= idx 0)
-                    str
-                    (subseq str (+ idx 1) )))))) ; end of labels definitions
+           (declare (type character chr)
+                    ;; (type (simple-array character) str)
+                    
+                    )
+           (if
+            (= 0 (length str))
+            str
+            (let ((idx
+                   (loop with res of-type fixnum = 0
+                         for c of-type character across str
+                         for i of-type fixnum from 0
+                         when (char= c chr)
+                         do (setq res i)
+                         finally (return res))))
+              (if (= idx 0)
+                  str
+                  (subseq str (+ idx 1) )))))) ; end of labels definitions
     
     (substring-after-last
      (format nil "~a" (nth-value 2 (function-lambda-expression fn)))
@@ -119,8 +119,8 @@ For instance: 'abc::def' #\: --> 'def'
   (get '*foo8* 'color)                   ; ==> RED
   (symbol-plist '*foo8*)                 ; ==> (COLOR RED)
 
-  ;; full content:
-  ;; -------------
+  ;; know full content:
+  ;; ------------------
 
   ;; (1/3)
   ;; (describe '*foo8*)
@@ -159,7 +159,6 @@ For instance: 'abc::def' #\: --> 'def'
   ;; It is a function: #<FUNCTION (LAMBDA (N) :IN "c:/Users/noccis/Downloads/tmp.lisp") {2264ED3B}> [unbind]
   ;; It is internal to the package: COMMON-LISP-USER [export] [unintern]
   ;; Property list: (COLOR RED)
-
   
   ;; interned or uninterned symbols:
   ;; -------------------------------
@@ -168,6 +167,15 @@ For instance: 'abc::def' #\: --> 'def'
   (gensym "VAR") ; => #:VAR1235
   (intern "FOO9")           ; => FOO, :INTERNAL
   (unintern 'my-symbol4)
+
+  ;; keywords:
+  ;; ---------
+  ;; In Common Lisp, keywords are a specific kind of symbol.
+  ;; They belong to the KEYWORD package
+  ;; They are self-evaluating
+  ;; They are usually written with a leading colon: :foo
+  ;; They are globally accessible
+  ;; They are typically used to name function arguments, as labels in lists, or as symbolic constants.
 
   )
 

@@ -107,7 +107,7 @@ File **strings.lisp**
    - function `unliteral--string`
 
 File **symbols.lisp**  
-   - general considerations at the end of the file  
+   - general considerations on symbols, including keywords, at the end of the file  
    - function `function-to-string` and `function-to-string-no-package`
    
 File **tco.lisp**  
