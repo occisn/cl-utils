@@ -45,6 +45,7 @@
                  (:file "numbers-rationals")
                  (:file "optimization")
                  (:file "parallelism")
+                 (:file "property-lists")
                  (:file "strings")
                  (:file "symbols")
                  (:file "tco")

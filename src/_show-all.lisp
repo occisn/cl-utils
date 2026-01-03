@@ -24,6 +24,7 @@
   (SHOW-all-numbers-rationals)
   (SHOW-all-optimization 4 5)
   ;; parallelism.lisp
+  (SHOW-all-property-lists)
   (SHOW-all-strings)
   (SHOW-all-symbols)
   (SHOW-all-tco)

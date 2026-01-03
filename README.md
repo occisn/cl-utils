@@ -100,6 +100,9 @@ File **numbers-rationals**
 File **optimization**  
    - function `optimization-examples`
    
+File **property-lists**  
+   - useful standard functions
+   
 File **strings**  
    - useful standard functions  
    - function `string-split`  
