@@ -15,7 +15,8 @@ A test suite is proposed. In addition to traditional tests, when several impleme
 File **arrays-and-vectors**  
    - general considerations  
    - functions `vec-view-all-content` and `vec-preview`  
-   - function `unliteral--fixnum-vector`
+   - function `unliteral--fixnum-vector`  
+   - in the tests: a benchmark showing that `svref` does not bring extra performance (at least with `(speed 3)`)
    
 File **association-lists**  
    - useful standard functions
