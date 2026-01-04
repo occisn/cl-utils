@@ -17,7 +17,7 @@ File **arrays-and-vectors**
    - functions `vec-view-all-content` and `vec-preview`  
    - function `unliteral--fixnum-vector`
    
-File **associaton-lists**  
+File **association-lists**  
    - useful standard functions
 
 File **bit-vectors**  
@@ -110,8 +110,9 @@ File **optimization** (how comply with 'speed 3' compilation notes?)
    - type `fixnum-range-double-float`  
    - macro `round-of-df`  
    - type `positive-fixnum-range-double-float`  
-   - macro `floor-of-positive-df`
-   
+   - macro `floor-of-positive-df`  
+\+ a [note](notes/float-to-pointer-coercion.md) about "doing float to pointer coercion (cost 13) to \<return value\>" compilation notes. 
+
 File **property-lists**  
    - useful standard functions
    
