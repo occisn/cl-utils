@@ -83,7 +83,8 @@ File **mail-vis-gmail**
 
 File **measure-duration**  
    - function `SHOW-measure-duration`  
-   - function `SHOW-benchmark-5-times-A` and `SHOW-benchmark-5-times-B`
+   - function `SHOW-benchmark-5-times-A` and `SHOW-benchmark-5-times-B`  
+   - macro `with-timing`
    
 File **numbers-doubles**  
    - (void)

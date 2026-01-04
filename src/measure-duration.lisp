@@ -88,6 +88,27 @@ This variant enables to do other things in the version, outside of the measured 
         (format t "=> slowest time:  ~F seconds = quickest + ~a %~%" slowest (truncate (* 100 (/ (- slowest quickest) quickest))))
         nil))))
 
+(defmacro with-timing ((var) &body body)
+  `(let ((start (get-internal-real-time)))
+     (prog1
+         (progn ,@body)
+       (setf ,var
+             (/ (- (get-internal-real-time) start)
+                internal-time-units-per-second)))))
+
+(defun SHOW-with-timing (&optional (n 100000000))
+  "Example of duration measurement"
+  (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
+  (let ((duration)
+        (tmp 0.0d0))
+    (with-timing (duration)
+      ;; do something:
+      (dotimes (i n)
+        (let ((sign (if (evenp i) 1.0d0 -1.0d0)))
+          (incf tmp (* sign (/ 1.0d0 (+ (* 2 i) 1))))))
+      (setq tmp (* 4 tmp)))
+    (format t "Leibniz formula with n = ~a ==> pi = ~a (in ~f seconds)~%" n tmp duration)))
+
 (defun SHOW-all-measure-duration ()
   ""
   (format t "~%~%======~%=== MEASURE-DURATION~%======~%")
@@ -96,6 +117,8 @@ This variant enables to do other things in the version, outside of the measured 
   (format t "~%")
   (SHOW-benchmark-5-times-A 10000)
   (format t "~%")
-  (SHOW-benchmark-5-times-B 10000))
+  (SHOW-benchmark-5-times-B 10000)
+  (format t "~%")
+  (SHOW-with-timing 10000))
 
 ;;; end

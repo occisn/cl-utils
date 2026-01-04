@@ -66,6 +66,7 @@
    send-mail-via-gmail
    ;; measure-duration:
    SHOW-measure-duration
+   with-timing
    ;; numbers-doubles:
    ;;   (void)
    ;; numbers-integers:
