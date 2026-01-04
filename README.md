@@ -48,6 +48,12 @@ File **debug**
    
 File **equality**  
    - considerations on equality predicates
+   
+File **ffi-with-cffi**  
+   - function `SHOW-ffi-with-cffi`
+
+File **ffi-with-sb-alien**  
+   - function `SHOW-ffi-with-sb-alien`
 
 File **files**  
    - function `random-file-name`  

@@ -9,8 +9,8 @@
   (SHOW-all-dates-and-times)
   (SHOW-all-debug)
   (SHOW-all-equality)
-  ;; ffi-with-cffi.lisp
-  ;; ffi-with-sb-alien.lisp
+  (SHOW-ffi-with-cffi)
+  (SHOW-ffi-with-sb-alien)
   (SHOW-all-files)
   (SHOW-all-format)
   (SHOW-all-functions)
