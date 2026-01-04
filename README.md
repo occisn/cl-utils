@@ -16,14 +16,16 @@ File **arrays-and-vectors**
    - general considerations  
    - functions `vec-view-all-content` and `vec-preview`  
    - function `unliteral--fixnum-vector`  
-   - in the tests: a benchmark showing that `svref` does not bring extra performance (at least with `(speed 3)`)
+   - in the tests: a benchmark showing that `svref` does not bring extra performance (at least with `(speed 3)`)  
+   - bit-vectors: see specific file below
    
 File **association-lists**  
    - useful standard functions
 
 File **bit-vectors**  
    - functions `fixnum->bit-vector` and `bit-vector->fixnum`  
-   - function `bit-vector-logcount`
+   - function `bit-vector-logcount`  
+   - in the tests: a benchmark showing that, in order to reset a bit vector to zero, it is less costly to create a new one than to set each bit to zero individually.
 
 File **booleans**  
    - macro `boolean-value`
