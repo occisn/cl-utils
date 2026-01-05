@@ -122,6 +122,9 @@ File **optimization** (how comply with 'speed 3' compilation notes?)
    - macro `floor-of-positive-df`  
 \+ a [note](notes/float-to-pointer-coercion.md) about "doing float to pointer coercion (cost 13) to \<return value\>" compilation notes. 
 
+File **parallelism**  
+   - multiple functions illustrating various methods
+
 File **property-lists**  
    - useful standard functions
    

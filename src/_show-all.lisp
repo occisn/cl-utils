@@ -25,7 +25,8 @@
   (SHOW-all-numbers-integers-primes)
   (SHOW-all-numbers-rationals)
   (SHOW-all-optimization 4 5)
-  ;; parallelism.lisp
+  ;; parallelism:
+  ;;    (void)
   (SHOW-all-property-lists)
   (SHOW-all-strings)
   (SHOW-all-symbols)
