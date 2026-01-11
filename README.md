@@ -84,7 +84,7 @@ File **macros**
    - macros `repeat-until`and `do-while`  
    - macros `aprogn` and `ablock`  
    - macros `setf-min`, `setf-max`, `setf-min--df`, `setf-max--df`  
-   - macros `collecting` and `collecting--reversed-order`  
+   - macros `with-collector` and `with-collector--reversed-order`  
    - macro `let+`
    
 File **mail-vis-gmail**  

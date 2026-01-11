@@ -111,13 +111,13 @@
 
 ;;; === collecting ===
 
-(parachute:define-test test-collecting
+(parachute:define-test test-with-collector
   (parachute:is
    equal
    '(-5 -4 4 5)
-   (collecting
+   (with-collector (collect)
     (loop for i of-type fixnum from -5 to 5
           when (> (* i i) 10)
-            do (collect1 i)))))
+            do (collect i)))))
 
 ;;; === end
