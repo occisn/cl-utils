@@ -14,7 +14,8 @@
   (parachute:is string= "" (substring-after-last "" #\:))
   (parachute:is string= "abc" (substring-after-last "abc" #\:))
   (parachute:is string= "ghi" (substring-after-last "abc:def:::ghi" #\:)) 
-  (parachute:is string= "" (substring-after-last "abcdef:" #\:)))
+  (parachute:is string= "" (substring-after-last "abcdef:" #\:))
+  (parachute:is string= "abc:def:::ghi" (substring-after-last "abc:def:::ghi" #\x)))
 
 ;;; === string-repeat-string
 
