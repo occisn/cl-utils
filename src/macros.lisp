@@ -201,15 +201,33 @@ Source : On Lisp"
               (return-from it i))))) ; it = current block
                                         ; returns 5
 
+;; (defmacro setf-min (x y)
+;;   "Put at place X the min of X and Y.
+;; (v1 available in occisn/cl-utils GitHub repository)"
+;;   `(when (< ,y ,x) (setf ,x ,y)))
+
 (defmacro setf-min (x y)
   "Put at place X the min of X and Y.
-(v1 available in occisn/cl-utils GitHub repository)"
-  `(when (< ,y ,x) (setf ,x ,y)))
+(v2 available in occisn/cl-utils GitHub repository)"
+  (let ((gx (gensym)) (gy (gensym)))
+    `(let ((,gx ,x)
+           (,gy ,y))
+       (when (< ,gy ,gx)
+         (setf ,x ,gy)))))
+
+;; (defmacro setf-max (x y)
+;;   "Put at place X the max of X and Y.
+;; (v1 available in occisn/cl-utils GitHub repository)"
+;;   `(when (> ,y ,x) (setf ,x ,y)))
 
 (defmacro setf-max (x y)
-  "Put at place X the max of X and Y.
-(v1 available in occisn/cl-utils GitHub repository)"
-  `(when (> ,y ,x) (setf ,x ,y)))
+    "Put at place X the max of X and Y.
+(v2 available in occisn/cl-utils GitHub repository)"
+  (let ((gx (gensym)) (gy (gensym)))
+    `(let ((,gx ,x)
+           (,gy ,y))
+       (when (> ,gy ,gx)
+         (setf ,x ,gy)))))
 
 (defmacro setf-min--df (x y)
   "Put at place X the min of X and Y. Y is supposed to be a double-float.
