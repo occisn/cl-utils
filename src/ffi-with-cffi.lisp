@@ -2,7 +2,10 @@
 
 ;; Define shared library
 (cffi:define-foreign-library lib-ffi-with-cffi
-  (:windows "c:/Users/noccis/Dropbox/local-repos/cl-utils/src/ffi-c-library/ffi.dll"))
+  (:windows
+   (:or
+    "c:/Users/noccis/Dropbox/local-repos/cl-utils/src/ffi-c-library/ffi.dll"
+    "c:/Users/nicol/Dropbox/local-repos/cl-utils/src/ffi-c-library/ffi.dll")))
 
 ;; Load the shared library
 (cffi:use-foreign-library lib-ffi-with-cffi)

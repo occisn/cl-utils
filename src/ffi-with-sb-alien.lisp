@@ -1,7 +1,12 @@
 (in-package :cl-utils)
 
 ;; Load the shared library
-(sb-alien:load-shared-object "c:/Users/noccis/Dropbox/local-repos/cl-utils/src/ffi-c-library/ffi.dll")
+(let ((primary "c:/Users/noccis/Dropbox/local-repos/cl-utils/src/ffi-c-library/ffi.dll")
+      (fallback "c:/Users/nicol/Dropbox/local-repos/cl-utils/src/ffi-c-library/ffi.dll"))
+  (sb-alien:load-shared-object
+   (if (probe-file primary)
+       primary
+       fallback)))
 
 ;; Define the alien types and functions
 (sb-alien:define-alien-routine ("add" add-2) sb-alien:int
