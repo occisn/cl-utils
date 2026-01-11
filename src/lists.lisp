@@ -76,15 +76,15 @@ For instance: '(1 3 2 0 5) #'< --> 3
 For instance: '(1 3 2 0 5) #'< --> 4
 (v1, available in occisn/cl-utils GitHub repository)"
   (declare (type function predicate))
-  (let ((index-min 0)
-        (value-min (car lst)))
-    (declare (type fixnum index-min))
+  (let ((index-max 0)
+        (value-max (car lst)))
+    (declare (type fixnum index-max))
     (loop for x in (cdr lst)
           for i of-type fixnum from 1
-          when (funcall predicate value-min x)
-          do (setq index-min i
-                   value-min x))
-    index-min))
+          when (funcall predicate value-max x)
+          do (setq index-max i
+                   value-max x))
+    index-max))
 
 (defun nb-of-occurrences-of-sublist-in-list (sub L)
   "Return the number of occurrences of list SUB within list L.
