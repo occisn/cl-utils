@@ -44,6 +44,7 @@ For instance: 'abc def' #\space --> ('abc' 'def')
 (defun substring-after-last (str chr)
   "Return the last substring of STR after character CHAR.
 For instance: 'abc::def' #\: --> 'def'
+Caution: if CHR is not in STR, return the original string.
 (v1, available in occisn/cl-utils GitHub repository)"
   (declare (type character chr)
            (type (simple-array character) str))
@@ -90,19 +91,31 @@ For instance: ('abc' 'def' 'abc') --> ('abc')
 ;; do not inline, since recursive
 ;; https://stackoverflow.com/questions/27757670/finding-duplicate-elemntes-in-a-list-with-lisp-language
 
+;; (defun palindrome-string-p (str)
+;;   "Return true if and only if the argument STR is a palindrome string.
+;; For instance: 'aba' --> t.
+;; The argument is supposed to be a string with at least one character.
+;; (v1, available in occisn/cl-utils GitHub repository)"
+;;   (declare (type (simple-array character) str))
+;;   (loop
+;;     for i of-type fixnum from 0
+;;     for a across str
+;;     for b across (reverse str)
+;;     always (char= a b)
+;;     until (> i (ash (length str) -1))))
+;; https://gist.github.com/Denommus/8530515
+
 (defun palindrome-string-p (str)
   "Return true if and only if the argument STR is a palindrome string.
 For instance: 'aba' --> t.
 The argument is supposed to be a string with at least one character.
-(v1, available in occisn/cl-utils GitHub repository)"
+(v2, available in occisn/cl-utils GitHub repository)"
   (declare (type (simple-array character) str))
   (loop
-    for i of-type fixnum from 0
-    for a across str
-    for b across (reverse str)
-    always (char= a b)
-    until (> i (ash (length str) -1))))
-;; https://gist.github.com/Denommus/8530515
+    with len of-type fixnum = (length str)
+    for i of-type fixnum from 0 below (ash len -1)
+    always (char= (aref str i)
+                  (aref str (- len i 1)))))
 
 (declaim (ftype (function ((simple-array character)) (simple-array character)) unliteral--string))
 (defun unliteral--string (str)
