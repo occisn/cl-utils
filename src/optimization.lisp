@@ -34,7 +34,9 @@
     ;; if POSITIVE double-float:
     ;;   floor-of-positive-df below ≡ (truncate (the fixnum-range-double-float df))
     ;;   to be tested: (floor (the (double-float 0.0d0) log10n))
-
+    ;;
+    ;; BETTER: use truncate
+    
     ;; ROUND of double-float
     ;; ---------------------
     ;; ROUND-OF-DF below ≡ (round (the fixnum-range-double-float param1))
