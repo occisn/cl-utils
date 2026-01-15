@@ -37,6 +37,8 @@
    ;;    (void)
    ;; hash tables:
    ;;    (void)
+   ;; images:
+   ;;    (void)
    ;; lists:
    delete-nth
    replace-nth

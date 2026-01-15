@@ -69,6 +69,10 @@ File **functions**
 File **hash-tables**  
    - useful standard functions
 
+File **images**  
+   - function `draw-pic-from-rgb-arrays` (uses [zpng library](https://github.com/xach/zpng))  
+   - function `draw-heatmap-from-values` (uses [zpng library](https://github.com/xach/zpng))
+
 File **lists**  
    - general considerations on lists  
    - function `delete-nth` and `replace-nth`  

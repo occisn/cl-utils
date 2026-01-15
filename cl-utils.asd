@@ -12,6 +12,7 @@
                #:drakma
                #:lparallel
                #:sb-concurrency
+               #:zpng
                )
   :serial t ; load files in order
   :around-compile (lambda (next)
@@ -36,6 +37,7 @@
                  (:file "format")
                  (:file "functions")
                  (:file "hash-tables")
+                 (:file "images")
                  (:file "lists")
                  (:file "macros")
                  (:file "mail-via-gmail")
