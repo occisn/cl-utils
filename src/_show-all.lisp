@@ -39,4 +39,7 @@
   nil
   )
 
+(defun main ()
+  (SHOW-all-cl-utils))
+
 ;;; end
