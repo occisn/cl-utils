@@ -118,6 +118,10 @@ File **numbers-rationals**
    - macro `convert-to-proper-fraction-m`  
    - function `length-of-recurring-cycle`
    
+File **ollama**  
+   - function `call-ollama1` (requires jonathan, dexador)  
+   - function `call-ollama2` (requires jonathan, dexador, bordeaux-threads)
+
 File **optimization** (how comply with 'speed 3' compilation notes?)  
    - general considerations and methods  
    - type `fixnum-range-double-float`  

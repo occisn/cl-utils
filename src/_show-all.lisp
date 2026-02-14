@@ -24,6 +24,7 @@
   (SHOW-all-numbers-integers)
   (SHOW-all-numbers-integers-primes)
   (SHOW-all-numbers-rationals)
+  (SHOW-all-ollama)
   (SHOW-all-optimization 4 5)
   ;; parallelism:
   ;;    (void)

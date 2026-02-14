@@ -9,7 +9,9 @@
                #:bordeaux-threads
                #:cffi
                #:cl-smtp
+               #:dexador
                #:drakma
+               #:jonathan
                #:lparallel
                #:sb-concurrency
                #:zpng
@@ -47,6 +49,7 @@
                  (:file "numbers-integers-french")
                  (:file "numbers-integers-primes")
                  (:file "numbers-rationals")
+                 (:file "ollama")
                  (:file "optimization")
                  (:file "parallelism")
                  (:file "property-lists")

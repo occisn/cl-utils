@@ -111,6 +111,9 @@
    ;;    (void)
    ;; variables:
    ;;    (void)
+   ;; ollama:
+   call-ollama1
+   call-ollama2
    ;; web:
    web-redirect-p)
 
