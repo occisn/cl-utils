@@ -114,6 +114,60 @@
   (parachute:is = 6 (nb-of-occurrences-of-sublist-in-list '(4 5) '(1 2 3 4 5 6 7 4 5 6 7 4 5 8 9 4 5 6 4 5 4 5)))
  (parachute:is = 0 (nb-of-occurrences-of-sublist-in-list '(0 1) '(1 2 3 4 5 6 7 4 5 6 7 4 5 8 9 4 5 6 4 5 4 5))))
 
+;;; === sublist-knowing-indexes-as-list
+
+(parachute:define-test sublist-knowing-indexes-as-list-test
+  (parachute:is equal '(c d f) (sublist-knowing-indexes-as-list '(a b c d e f) '(2 3 5)))
+  (parachute:is equal '(a) (sublist-knowing-indexes-as-list '(a b c) '(0)))
+  (parachute:is equal nil (sublist-knowing-indexes-as-list '(a b c) nil))
+  ;; Unsorted indexes should still work
+  (parachute:is equal '(a c) (sublist-knowing-indexes-as-list '(a b c d) '(2 0))))
+
+;;; === shuffle
+
+(parachute:define-test shuffle-test
+  ;; Shuffle preserves all elements (same set)
+  (let* ((original (list 1 2 3 4 5))
+         (shuffled (shuffle (copy-list original))))
+    (parachute:is = (length original) (length shuffled))
+    (parachute:is equal (sort (copy-list original) #'<) (sort (copy-list shuffled) #'<)))
+  ;; Single element list
+  (parachute:is equal '(42) (shuffle (list 42)))
+  ;; Empty list
+  (parachute:is equal nil (shuffle nil)))
+
+;;; === fixnump
+
+(parachute:define-test fixnump-test
+  (parachute:true (fixnump 42))
+  (parachute:true (fixnump 0))
+  (parachute:true (fixnump -1))
+  (parachute:false (fixnump 3.14))
+  (parachute:false (fixnump "hello")))
+
+;;; === list-of-fixnums-p
+
+(parachute:define-test list-of-fixnums-p-test
+  (parachute:true (list-of-fixnums-p '(1 2 3)))
+  (parachute:false (list-of-fixnums-p '(1 2.0 3)))
+  (parachute:false (list-of-fixnums-p nil))
+  (parachute:false (list-of-fixnums-p '())))
+
+;;; === double-float-p
+
+(parachute:define-test double-float-p-test
+  (parachute:true (double-float-p 3.14d0))
+  (parachute:false (double-float-p 3.14))
+  (parachute:false (double-float-p 42))
+  (parachute:false (double-float-p "hello")))
+
+;;; === list-of-double-floats-p
+
+(parachute:define-test list-of-double-floats-p-test
+  (parachute:true (list-of-double-floats-p '(1.0d0 2.0d0 3.0d0)))
+  (parachute:false (list-of-double-floats-p '(1.0d0 2.0 3.0d0)))
+  (parachute:false (list-of-double-floats-p nil)))
+
 ;;; === circular-lists
 
 (parachute:define-test test-circular-lists

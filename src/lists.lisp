@@ -132,6 +132,67 @@ The argument is supposed to be a list of fixnum.
   (declare (type list lst))
   (loop for i of-type fixnum in lst collect i))
 
+(defun shuffle (list)
+  "Return LIST after shuffling it in place using Fisher-Yates algorithm.
+The argument is modified destructively."
+  (declare (type list list))
+  (let ((vec (coerce list 'simple-vector)))
+    (declare (type simple-vector vec))
+    (loop for i of-type fixnum from (length vec) downto 2
+          do (rotatef (svref vec (random i))
+                      (svref vec (the fixnum (1- i)))))
+    (loop for cell on list
+          for j of-type fixnum from 0
+          do (setf (car cell) (svref vec j)))
+    list))
+
+(defun sublist-knowing-indexes-as-list (list indexes)
+  "Return elements of LIST at positions specified by INDEXES (a list of 0-based indices).
+For instance: '(a b c d e f) '(2 3 5) --> '(C D F)."
+  (declare (type list list indexes))
+  (block out
+    (when (null indexes) (return-from out nil))
+    (let ((sorted-indexes (sort (copy-list indexes) #'<)))
+      (loop for i of-type fixnum from 0
+            for l on list
+            when (= i (the fixnum (car sorted-indexes)))
+              collect (progn
+                        (pop sorted-indexes)
+                        (car l))
+            until (null sorted-indexes)))))
+
+(defun new-random-fixnum-list (length &key (mini 0) (maxi 100))
+  "Return a list of LENGTH random fixnums between MINI included (default: 0) and MAXI excluded (default: 100)."
+  (declare (type fixnum length mini maxi))
+  (loop for idx of-type fixnum from 0 below length
+        collect (the fixnum (+ mini (random (the fixnum (- maxi mini)))))))
+
+(defun fixnump (x)
+  "Return t if and only if X is a fixnum."
+  (typep x 'fixnum))
+
+(defun list-of-fixnums-p (list)
+  "Return t if LIST is non-nil and contains only fixnums."
+  (and (consp list)
+       (every #'fixnump list)))
+
+(deftype list-of-fixnums ()
+  "Type: a list containing only fixnums."
+  `(satisfies list-of-fixnums-p))
+
+(defun double-float-p (x)
+  "Return t if and only if X is a double-float."
+  (typep x 'double-float))
+
+(defun list-of-double-floats-p (list)
+  "Return t if LIST is non-nil and contains only double-floats."
+  (and (consp list)
+       (every #'double-float-p list)))
+
+(deftype list-of-double-floats ()
+  "Type: a list containing only double-floats."
+  `(satisfies list-of-double-floats-p))
+
 (defun SHOW-all-lists ()
   ""
   (format t "~%~%======~%=== LISTS~%======~%")
@@ -149,6 +210,12 @@ The argument is supposed to be a list of fixnum.
   (format t "(arg-max '(1 3 2 0 5) #'<) --> ~a~%" (arg-max '(1 3 2 0 5) #'<))
   (format t "~%")
   (format t "nb-of-occurrences-of-sublist-in-list: ~a~%" (nb-of-occurrences-of-sublist-in-list '(4 5) '(1 2 3 4 5 6 7 4 5 6 7 4 5 8 9 4 5 6 4 5 4 5)))
+  (format t "~%")
+  (format t "(shuffle (list 1 2 3 4 5)) --> ~a~%" (shuffle (list 1 2 3 4 5)))
+  (format t "~%")
+  (format t "(sublist-knowing-indexes-as-list '(a b c d e f) '(2 3 5)) --> ~a~%" (sublist-knowing-indexes-as-list '(a b c d e f) '(2 3 5)))
+  (format t "~%")
+  (format t "(new-random-fixnum-list 5) --> ~a~%" (new-random-fixnum-list 5))
   (format t "~%")
   (make-circular-DO-NOT-PRINT--AND-NOT-LITERAL (list 1 2 3))
   (format t "make-circular-DO-NOT-PRINT--AND-NOT-LITERAL... done~%")
