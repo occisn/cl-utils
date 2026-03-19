@@ -35,4 +35,12 @@
   (parachute:true (palindrome-string-p "aba"))
   (parachute:true (not (palindrome-string-p "abab"))))
 
+;;; === duplicate-strings-in-list
+
+(parachute:define-test duplicate-strings-in-list-test
+  (parachute:is equal '("abc") (duplicate-strings-in-list '("abc" "def" "abc")))
+  (parachute:is equal nil (duplicate-strings-in-list '("a" "b" "c")))
+  (parachute:is equal nil (duplicate-strings-in-list nil))
+  (parachute:is equal '("x" "x") (duplicate-strings-in-list '("x" "x" "x"))))
+
 ;;; end
