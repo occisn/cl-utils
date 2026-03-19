@@ -12,6 +12,7 @@
                #:dexador
                #:drakma
                #:jonathan
+               #:cl-cpus
                #:lparallel
                #:sb-concurrency
                #:zpng
@@ -39,18 +40,32 @@
                  (:file "format")
                  (:file "functions")
                  (:file "hash-tables")
-                 (:file "images")
-                 (:file "lists")
                  (:file "macros")
+                 (:file "sexp")
+                 (:file "high-order-functions")
+                 (:file "images")
+                 (:file "lazy")
+                 (:file "lists")
                  (:file "mail-via-gmail")
-                 (:file "measure-duration")
                  (:file "numbers-doubles")
+                 (:file "math-functions")
+                 (:file "memoization")
+                 (:file "measure-duration")
+                 (:file "optimization")
                  (:file "numbers-integers")
                  (:file "numbers-integers-french")
                  (:file "numbers-integers-primes")
                  (:file "numbers-rationals")
+                 (:file "continued-fractions")
+                 (:file "farey-sequences")
+                 (:file "sorting")
+                 (:file "permutations")
+                 (:file "combinations")
+                 (:file "search")
+                 (:file "gnuplot")
+                 (:file "console-charts")
+                 (:file "os-interaction-windows")
                  (:file "ollama")
-                 (:file "optimization")
                  (:file "parallelism")
                  (:file "property-lists")
                  (:file "strings")
