@@ -284,4 +284,72 @@ For instance: 'abc::def' #\: --> 'def'
   (format t "~%")
   (SHOW-5-compare-durations 100))
 
+;;; ===
+;;; === Gnuplot-based benchmark plotting
+;;; ===
+
+(defun plot-basic (n-min n-max n-step fns gnuplot-program tmp-directory)
+  "Plot chart comparing the duration of execution of several functions.
+
+N-MIN, N-MAX, N-STEP: parameters of iteration
+FNS: list of functions
+GNUPLOT-PROGRAM: location of Gnuplot program
+TMP-DIRECTORY: temp directory
+
+Usage: see examples below."
+  (locally
+      (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
+      (let* ((nb-fns (length fns))
+             (data (loop for n from n-min to n-max
+	                when (= 0 (mod n n-step))
+                          collect (cons n
+		                        (loop for i from 0 to (- nb-fns 1)
+			                      collect (%my-time-run (funcall (elt fns i) n))))))
+             (nb-points (length data))
+             (x-vector (make-array nb-points :initial-contents (mapcar #'car data)))
+             (ys (loop for i from 1 to nb-fns
+                       collect (list :top (make-array nb-points :initial-contents (mapcar (lambda (lst) (elt lst i)) data)) 'legend (function-to-string-no-package (elt fns (- i 1)))))))
+        (gnuplot-plot-line-chart x-vector ys gnuplot-program tmp-directory :title "Comparison of execution times / BASIC"))))
+
+(defun plot-cumulated (n-min n-max n-step fns gnuplot-program tmp-directory &key (transform-fn nil))
+  "Plot chart comparing the _cumulated_ duration of execution of several functions.
+
+N-MIN, N-MAX, N-STEP: parameters of iteration
+FNS: list of functions
+GNUPLOT-PROGRAM: location of Gnuplot program
+TMP-DIRECTORY: temp directory
+TRANSFORM-FN: optional transformation applied to n before passing to FNS
+
+Usage: see examples below."
+  (locally
+      (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
+    (let* ((nb-fns (length fns))
+           (cumulated-times (make-array nb-fns :initial-element 0))
+           (data (loop for n from n-min to n-max
+                       for n2 = (if transform-fn (funcall transform-fn n) n)
+	               do (loop for i from 0 to (- nb-fns 1)
+	                        do (incf (aref cumulated-times i)
+			                  (%my-time-run (funcall (elt fns i) n2))))
+	               when (= 0 (mod n n-step))
+                         collect (cons n (loop for x across cumulated-times collect x))))
+           (ranked-performances (make-array nb-fns :element-type 'single-float :initial-contents (cdr (car (last data)))))
+           (ranked-indexes
+             (let ((tmp2 (new-sequence-fixnum-vector nb-fns)))
+               (vec-qsortssi-singlefloat-slave-fixnum ranked-performances tmp2)
+               tmp2))
+           (index-of-best (aref ranked-indexes 0))
+           (best-fn (elt fns index-of-best))
+           (nb-points (length data))
+           (x-vector (make-array nb-points :initial-contents (mapcar #'car data)))
+           (ys (loop for i from 1 to nb-fns
+                     collect (list :top (make-array nb-points :initial-contents (mapcar (lambda (lst) (elt lst i)) data)) 'legend (function-to-string-no-package (elt fns (- i 1)))))))
+      (format t "~%From quickest to slowest:~%")
+      (loop for i across ranked-indexes
+            for perf across ranked-performances
+            do (format t "   (~s) ~a - ~s~%"
+                       i
+                       (function-to-string-no-package (elt fns i))
+                       perf))
+      (gnuplot-plot-line-chart x-vector ys gnuplot-program tmp-directory :title "Comparison of execution times / CUMULATED" :subtitle (format nil "Quickest: ~a" (function-to-string-no-package best-fn))))))
+
 ;;; end
