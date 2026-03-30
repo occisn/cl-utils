@@ -1,12 +1,11 @@
 (in-package :cl-utils)
 
-;; Load the shared library
-(let ((primary "c:/Users/noccis/Dropbox/local-repos/cl-utils/src/ffi-c-library/ffi.dll")
-      (fallback "c:/Users/nicol/Dropbox/local-repos/cl-utils/src/ffi-c-library/ffi.dll"))
-  (sb-alien:load-shared-object
-   (if (probe-file primary)
-       primary
-       fallback)))
+;; Load the shared library (path computed relative to this source file)
+(sb-alien:load-shared-object
+ #.(namestring
+    (merge-pathnames #+windows "ffi-c-library/ffi.dll"
+                     #-windows "ffi-c-library/ffi.so"
+                     (make-pathname :directory (pathname-directory *compile-file-pathname*)))))
 
 ;; Define the alien types and functions
 (sb-alien:define-alien-routine ("add" add-2) sb-alien:int

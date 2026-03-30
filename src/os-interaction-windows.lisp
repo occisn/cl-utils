@@ -13,11 +13,13 @@
 ;;; === BROWSER ===
 ;;; ===
 
+#+windows
 (defun open-html-file-with-default-browser (filename)
   "Open FILENAME with the default browser.
 Windows-specific: uses the 'start' command."
   (uiop:run-program (format nil "start ~a" filename)))
 
+#+windows
 (defun open-url-with-default-browser (url)
   "Open URL with the default browser (Firefox).
 Windows-specific: uses the 'start firefox' command."
@@ -27,10 +29,11 @@ Windows-specific: uses the 'start firefox' command."
 ;;; === CLIPBOARD ===
 ;;; ===
 
-(declaim (type character +field-delimiter-for-export-to-clipboard+))
-(defparameter +field-delimiter-for-export-to-clipboard+ #\TAB)
+#+windows (declaim (type character +field-delimiter-for-export-to-clipboard+))
+#+windows (defparameter +field-delimiter-for-export-to-clipboard+ #\TAB)
 
-(declaim (inline convert-double-float-to-string-ready-for-clipboard-towards-Excel))
+#+windows (declaim (inline convert-double-float-to-string-ready-for-clipboard-towards-Excel))
+#+windows
 (defun convert-double-float-to-string-ready-for-clipboard-towards-Excel (x)
   "Convert double-float X into a string ready to be pasted to clipboard for Excel,
 i.e. with decimal dot replaced by comma.
@@ -39,7 +42,8 @@ Windows-specific."
   (let ((df1 (format nil "~f" x)))
     (substitute #\, #\. df1)))
 
-(declaim (inline convert-single-float-to-string-ready-for-clipboard-towards-Excel))
+#+windows (declaim (inline convert-single-float-to-string-ready-for-clipboard-towards-Excel))
+#+windows
 (defun convert-single-float-to-string-ready-for-clipboard-towards-Excel (x)
   "Convert single-float X into a string ready to be pasted to clipboard for Excel,
 i.e. with decimal dot replaced by comma.
@@ -48,12 +52,13 @@ Windows-specific."
   (let ((df1 (format nil "~f" x)))
     (substitute #\, #\. df1)))
 
-(defconstant +win32-gmem-moveable+ 2)
-(defconstant +win32-gmem-ddeshare+ 8192)
-(defconstant +win32-cf-unicodetext+ 13)
+#+windows (defconstant +win32-gmem-moveable+ 2)
+#+windows (defconstant +win32-gmem-ddeshare+ 8192)
+#+windows (defconstant +win32-cf-unicodetext+ 13)
 
-(cffi:load-foreign-library '(:default "User32"))
+#+windows (cffi:load-foreign-library '(:default "User32"))
 
+#+windows
 (defun copy-string-to-clipboard (string)
   "Send STRING to the Windows clipboard via Win32 API (CFFI).
 Windows-specific."
@@ -100,6 +105,7 @@ Windows-specific."
                        (error "SetClipboardData failed.")))
               (cffi:foreign-funcall "CloseClipboard" :boolean))))))))
 
+#+windows
 (defmacro with-export-to-clipboard (flag &body body)
   "Macro creating an environment for export to the Windows clipboard.
 FLAG is a boolean stating if we actually want to copy to clipboard.

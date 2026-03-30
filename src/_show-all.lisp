@@ -37,7 +37,7 @@
   ;; (SHOW-all-gnuplot) ; requires Gnuplot installation
   (SHOW-all-console-charts)
   ;; (SHOW-all-os-interaction-windows) ; Windows-specific
-  (SHOW-all-ollama)
+  ;; (SHOW-all-ollama)
   (SHOW-all-optimization 4 5)
   ;; parallelism:
   ;;    (void)
@@ -55,6 +55,7 @@
   )
 
 (defun main ()
-  (SHOW-all-cl-utils))
+  (SHOW-all-cl-utils)
+  (format t "~%Done.~%~%"))
 
 ;;; end

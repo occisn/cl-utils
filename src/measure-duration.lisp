@@ -48,7 +48,9 @@
         (dotimes (i nb-runs)
           (format t "Run ~D / ~D: ~A seconds~%" (1+ i) nb-runs (nth (- nb-runs 1 i) durations)))
         (format t "=> quickest time: ~A seconds~%" quickest)
-        (format t "=> slowest time:  ~A seconds = quickest + ~a %~%" slowest (truncate (* 100 (/ (- slowest quickest) quickest))))
+        (if (zerop quickest)
+            (format t "=> slowest time:  ~A seconds~%" slowest)
+            (format t "=> slowest time:  ~A seconds = quickest + ~a %~%" slowest (truncate (* 100 (/ (- slowest quickest) quickest)))))
         nil))))
 
 (defun SHOW-benchmark-5-times-B (&optional (n 100000000))
@@ -90,7 +92,9 @@ This variant enables to do other things in the version, outside of the measured 
           (format t "Run ~D / ~D: ~F seconds~%" (1+ i) nb-runs (nth (- nb-runs 1 i) durations)))
         (format t "=> quickest duration: ~,4F seconds~%" quickest)
         (format t "=> second best:       ~,4F seconds~%" second-best)
-        (format t "=> slowest duration:  ~,4F seconds = quickest + ~a %~%" slowest (truncate (* 100 (/ (- slowest quickest) quickest)))))
+        (if (zerop quickest)
+            (format t "=> slowest duration:  ~,4F seconds~%" slowest)
+            (format t "=> slowest duration:  ~,4F seconds = quickest + ~a %~%" slowest (truncate (* 100 (/ (- slowest quickest) quickest))))))
       nil))))
 
 (defmacro with-timing ((var) &body body)

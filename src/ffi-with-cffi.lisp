@@ -1,11 +1,15 @@
 (in-package :cl-utils)
 
-;; Define shared library
+;; Define shared library (path computed relative to this source file)
 (cffi:define-foreign-library lib-ffi-with-cffi
   (:windows
-   (:or
-    "c:/Users/noccis/Dropbox/local-repos/cl-utils/src/ffi-c-library/ffi.dll"
-    "c:/Users/nicol/Dropbox/local-repos/cl-utils/src/ffi-c-library/ffi.dll")))
+   #.(namestring
+      (merge-pathnames "ffi-c-library/ffi.dll"
+                       (make-pathname :directory (pathname-directory *compile-file-pathname*)))))
+  (:unix
+   #.(namestring
+      (merge-pathnames "ffi-c-library/ffi.so"
+                       (make-pathname :directory (pathname-directory *compile-file-pathname*))))))
 
 ;; Load the shared library
 (cffi:use-foreign-library lib-ffi-with-cffi)

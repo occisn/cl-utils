@@ -247,7 +247,7 @@ Uses a prime product trick for speed."
     (format t "~s~%" v))
   (format t "~%--- next-distinct-lexicographic-permutation --~%")
   (loop for i of-type fixnum from 1
-        for a = "123" then (next-distinct-lexicographic-permutation--string a #'char<)
+        for a = (copy-seq "123") then (next-distinct-lexicographic-permutation--string a #'char<)
         while a
         do (format t "(~s) ~s  " i a))
   (format t "~%~%--- list-of-distinct-rotated-numbers ---~%")

@@ -12,6 +12,18 @@ The function `(SHOW-all-cl-utils)` defined in `_show-all.lisp` file executes mos
 
 A test suite is proposed. In addition to traditional tests, when several implementations of the same function are proposed, tests files may *(i)* check that the various implementations yield the same results and *(ii)* compare speed (`asd` files specify `(speed 3)`).
 
+To produce an executable in Windows, execute following command in Powershell within project directory;
+``` powershell
+sbcl --load build_windows.lisp
+```
+Then launch `./my_program.exe`
+
+To produce an executable in WSL, execute following command within project directory;
+``` powershell
+sbcl --load build_linux.lisp
+```
+Then launch `./my_program`
+
 File **arrays-and-vectors**  
    - general considerations  
    - functions `vec-view-all-content` and `vec-preview`  
