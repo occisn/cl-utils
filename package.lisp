@@ -126,6 +126,8 @@
    labels-memo-mix
    ;; measure-duration:
    SHOW-measure-duration
+   SHOW-benchmark-5-times-A
+   SHOW-benchmark-5-times-B
    with-timing
    ;; numbers-doubles:
    type-df-box
@@ -307,7 +309,6 @@
    copy-string-to-clipboard
    with-export-to-clipboard
    ;; optimization:
-   optimization-examples
    fixnum-range-double-float
    round-of-df
    positive-fixnum-range-double-float
