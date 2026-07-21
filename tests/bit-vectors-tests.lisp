@@ -1,3 +1,5 @@
+;;;; Tests for the bit vectors utilities.
+
 (in-package :cl-utils-tests)
 
 ;;; === fixnum->bit-vector

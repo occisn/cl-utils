@@ -26,6 +26,7 @@ Each function is followed by a one-line usage example.
 
 - [Quick start](#quick-start)
 - [Building executables](#building-executables)
+- [License](#license)
 - [Files](#files-1) — [arrays-and-vectors](#arrays-and-vectors) · [association-lists *(ref. notes)*](#association-lists-reference-notes) · [bit-vectors](#bit-vectors) · [booleans](#booleans) · [combinations](#combinations) · [compare-durations](#compare-durations) · [console-charts](#console-charts) · [continued-fractions](#continued-fractions) · [dates-and-times](#dates-and-times) · [debug](#debug) · [equality *(ref. notes)*](#equality-reference-notes) · [farey-sequences](#farey-sequences) · [ffi-with-cffi *(ref. notes)*](#ffi-with-cffi-reference-notes) · [ffi-with-sb-alien *(ref. notes)*](#ffi-with-sb-alien-reference-notes) · [files](#files) · [format *(ref. notes)*](#format-reference-notes) · [functions *(ref. notes)*](#functions-reference-notes) · [gnuplot](#gnuplot) · [hash-tables *(ref. notes)*](#hash-tables-reference-notes) · [high-order-functions](#high-order-functions) · [images *(ref. notes)*](#images-reference-notes) · [lazy](#lazy) · [lists](#lists) · [macros](#macros) · [mail-via-gmail](#mail-via-gmail-requires-cl-smtp) · [math-functions](#math-functions) · [measure-duration](#measure-duration) · [memoization](#memoization) · [numbers-doubles](#numbers-doubles) · [numbers-integers](#numbers-integers) · [numbers-integers-french](#numbers-integers-french) · [numbers-integers-primes](#numbers-integers-primes) · [numbers-rationals](#numbers-rationals) · [ollama](#ollama-requires-jonathan-and-dexador) · [optimization](#optimization-sbcl-specific) · [os-interaction-windows](#os-interaction-windows-windows-specific-requires-cffi) · [parallelism](#parallelism-requires-lparallel-bordeaux-threads-sb-concurrency) · [permutations](#permutations) · [property-lists *(ref. notes)*](#property-lists-reference-notes) · [search](#search) · [sexp](#sexp) · [sorting](#sorting) · [strings](#strings) · [symbols](#symbols) · [tco *(ref. notes)*](#tco-reference-notes) · [trampoline](#trampoline) · [triangles](#triangles) · [types *(ref. notes)*](#types-reference-notes) · [variables *(ref. notes)*](#variables-reference-notes) · [web](#web-requires-drakma)
 
 ## Quick start
@@ -39,7 +40,7 @@ Each function is followed by a one-line usage example.
 (cl-utils:fibonacci-through-iteration 10) ; => 55
 
 ;; 3. Run all the demonstrations
-(cl-utils:SHOW-all-cl-utils)
+(cl-utils::SHOW-all-cl-utils)
 
 ;; 4. Run the test suite
 (asdf:test-system "cl-utils-tests")
@@ -53,13 +54,13 @@ To produce an executable in Windows, execute following command in Powershell wit
 ``` powershell
 sbcl --load build_windows.lisp
 ```
-Then launch `./my_program.exe`
+Then launch `./my-program.exe`
 
 To produce an executable in WSL, execute following command within project directory;
 ``` powershell
 sbcl --load build_linux.lisp
 ```
-Then launch `./my_program`
+Then launch `./my-program`
 
 ---
 
@@ -702,5 +703,11 @@ General considerations on variables; bindings; lexical vs dynamic scoping.
 ---
 
 Any comment? Open an [issue](https://github.com/occisn/cl-utils/issues), or start a discussion [here](https://github.com/occisn/cl-utils/discussions) or [at profile level](https://github.com/occisn/occisn/discussions).
+
+## License
+
+Copyright (c) 2025 Nicolas Occis
+
+Licensed under the MIT License.
 
 (end of README)

@@ -1,6 +1,9 @@
+;;;; Runs every SHOW-xxx demonstration defined in this system.
+
 (in-package :cl-utils)
 
 (defun SHOW-all-cl-utils ()
+  "Run every SHOW-xxx demonstration of this system, one after the other."
   (SHOW-all-arrays-and-vectors)
   (SHOW-all-association-lists)
   (SHOW-all-bit-vectors)
@@ -55,6 +58,7 @@
   )
 
 (defun main ()
+  "Entry point of the executable built by build_linux.lisp and build_windows.lisp."
   (SHOW-all-cl-utils)
   (format t "~%Done.~%~%"))
 

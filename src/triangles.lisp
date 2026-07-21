@@ -1,3 +1,5 @@
+;;;; Utilities for triangles.
+
 (in-package :cl-utils)
 
 (declaim (ftype (function (list) simple-array) triangle-to-2d-array))

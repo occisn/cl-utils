@@ -1,3 +1,5 @@
+;;;; Tests for the files utilities.
+
 (in-package :cl-utils-tests)
 
 ;;; === reduce-for-each-line-of-file

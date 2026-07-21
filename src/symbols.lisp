@@ -1,3 +1,5 @@
+;;;; Utilities for symbols.
+
 (in-package :cl-utils)
 
 ;; General explanations at the end of the file.
@@ -10,7 +12,8 @@ For instance #'SIN --> 'SIN'
   (format nil "~a" (nth-value 2 (function-lambda-expression fn))))
 
 (defun function-to-string-no-package (fn)
-  "Return a string corresponding to function FN without the possible initial part corresponding to the package. This initial part is identified through ':'.
+  "Return a string corresponding to function FN without the possible initial part corresponding to
+the package. This initial part is identified through ':'.
 (v1 available in occisn/cl-utils GitHub repository)"
   (declare (type function fn))
 

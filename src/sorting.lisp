@@ -1,3 +1,5 @@
+;;;; Utilities for sorting.
+
 (in-package :cl-utils)
 
 ;;; ===============
@@ -5,7 +7,8 @@
 ;;; ===============
 
 (defun vec-qsortd-doublefloat (data &key (first-index 0) (last-index -1))
-  "Sort double-float vector DATA in place, from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector).
+  "Sort double-float vector DATA in place, from FIRST-INDEX (default: 0) to LAST-INDEX included
+(default: -1, which means the end of the vector).
 
 Source: Timothy Masters' QSORTD.CPP"
   (declare (type (simple-array double-float (*)) data)
@@ -37,7 +40,8 @@ Source: Timothy Masters' QSORTD.CPP"
     (when (< lower1 last-index) (vec-qsortd-doublefloat data :first-index lower1 :last-index last-index))))
 
 (defun vec-qsortds-doublefloat-slave-doublefloat (data slave &key (first-index 0) (last-index -1))
-  "Sort double-float vector DATA in place, from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector).
+  "Sort double-float vector DATA in place, from FIRST-INDEX (default: 0) to LAST-INDEX included
+(default: -1, which means the end of the vector).
 Double-float vector SLAVE is sorted accordingly.
 
 Source: Timothy Masters' QSORTD.CPP"
@@ -73,7 +77,8 @@ Source: Timothy Masters' QSORTD.CPP"
     (when (< lower1 last-index) (vec-qsortds-doublefloat-slave-doublefloat data slave :first-index lower1 :last-index last-index))))
 
 (defun vec-qsortdsi-doublefloat-slave-fixnum (data slave &key (first-index 0) (last-index -1))
-  "Sort double-float vector DATA in place, from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector).
+  "Sort double-float vector DATA in place, from FIRST-INDEX (default: 0) to LAST-INDEX included
+(default: -1, which means the end of the vector).
 Fixnum vector SLAVE is sorted accordingly.
 
 Source: Timothy Masters' QSORTD.CPP"
@@ -111,7 +116,8 @@ Source: Timothy Masters' QSORTD.CPP"
     (when (< lower1 last-index) (vec-qsortdsi-doublefloat-slave-fixnum data slave :first-index lower1 :last-index last-index))))
 
 (defun vec-qsortssi-singlefloat-slave-fixnum (data slave &key (first-index 0) (last-index -1))
-  "Sort single-float vector DATA in place, from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector).
+  "Sort single-float vector DATA in place, from FIRST-INDEX (default: 0) to LAST-INDEX included
+(default: -1, which means the end of the vector).
 Fixnum vector SLAVE is sorted accordingly."
   (declare (type (simple-array single-float) data)
            (type (simple-array fixnum (*)) slave)
@@ -147,7 +153,8 @@ Fixnum vector SLAVE is sorted accordingly."
     (when (< lower1 last-index) (vec-qsortssi-singlefloat-slave-fixnum data slave :first-index lower1 :last-index last-index))))
 
 (defun vec-qsortisi-fixnum-slave-fixnum (data slave &key (first-index 0) (last-index -1))
-  "Sort fixnum vector DATA in place, from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector).
+  "Sort fixnum vector DATA in place, from FIRST-INDEX (default: 0) to LAST-INDEX included (default:
+-1, which means the end of the vector).
 Fixnum vector SLAVE is sorted accordingly."
   (declare (type (simple-array fixnum (*)) data slave)
            (type fixnum first-index last-index))

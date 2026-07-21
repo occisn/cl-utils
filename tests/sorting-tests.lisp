@@ -1,3 +1,5 @@
+;;;; Tests for the sorting utilities.
+
 (in-package :cl-utils-tests)
 
 (parachute:define-test vec-qsortd-doublefloat-test

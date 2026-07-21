@@ -1,3 +1,10 @@
+;;;; Utilities for ffi with sb alien.
+;;;;
+;;;; Demonstration of foreign-function interface via SBCL's `sb-alien` (`SHOW-ffi-with-sb-alien`).
+;;;;
+;;;; Reference notes: illustrations and considerations rather than
+;;;; exported functions.
+
 (in-package :cl-utils)
 
 ;; Load the shared library (path computed relative to this source file)
@@ -40,6 +47,7 @@
 
 ;; Example of usage
 (defun SHOW-ffi-with-sb-alien ()
+  "Demonstrate FFI-WITH-SB-ALIEN."
 
   (format t "~%~%======~%=== FFI WITH SB-ALIEN~%======~%")
   (format t "~%")

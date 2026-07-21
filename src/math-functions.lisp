@@ -1,3 +1,5 @@
+;;;; Utilities for math functions.
+
 (in-package :cl-utils)
 
 ;;; ===
@@ -36,7 +38,8 @@
 
 (declaim (inline legendre1))
 (defun legendre1 (n work1)
-  "Compute first-order normalized orthogonal coefficients of discrete Legendre polynomial for N data points into WORK1.
+  "Compute first-order normalized orthogonal coefficients of discrete Legendre polynomial for N data
+points into WORK1.
 
 Source: Timothy Masters' LEGENDRE.CPP"
   (declare (type fixnum n)
@@ -53,7 +56,8 @@ Source: Timothy Masters' LEGENDRE.CPP"
 
 (declaim (inline legendre2))
 (defun legendre2 (n work1 work2)
-  "Compute first- and second-order normalized orthogonal coefficients of discrete Legendre polynomial for N data points into WORK1 and WORK2.
+  "Compute first- and second-order normalized orthogonal coefficients of discrete Legendre
+polynomial for N data points into WORK1 and WORK2.
 
 Source: Timothy Masters' LEGENDRE.CPP"
   (declare (type fixnum n)
@@ -78,7 +82,8 @@ Source: Timothy Masters' LEGENDRE.CPP"
 
 (declaim (inline legendre3))
 (defun legendre3 (n work1 work2 work3)
-  "Compute first-, second- and third-order normalized orthogonal coefficients of discrete Legendre polynomial for N data points into WORK1, WORK2 and WORK3.
+  "Compute first-, second- and third-order normalized orthogonal coefficients of discrete Legendre
+polynomial for N data points into WORK1, WORK2 and WORK3.
 
 Source: Timothy Masters' LEGENDRE.CPP"
   (declare (type fixnum n)
@@ -165,7 +170,8 @@ Source: Timothy Masters."
   "Calculate lgamma(X) and store the result in RES-BOX.
 
 Source: Timothy Masters
-ln-gamma(x) = x.ln(x) - x - ln(x)/2 + ln(2pi)/2 + 1/(12x) - 1/(360x^3) + 1/(1260x^5) - 1/(1680x^7) + ..."
+ln-gamma(x) = x.ln(x) - x - ln(x)/2 + ln(2pi)/2 + 1/(12x) - 1/(360x^3) + 1/(1260x^5) - 1/(1680x^7) +
+..."
   (declare (type double-float x)
            (type type-df-box res-box))
   (block outer

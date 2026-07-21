@@ -1,3 +1,7 @@
+;;;; Utilities for the web.
+;;;;
+;;;; Requires the drakma HTTP client.
+
 (in-package :cl-utils)
 
 (defun web-redirect-p (url &key (print-info nil))
@@ -14,6 +18,7 @@ Requires drakma.
       (not (string= url (format nil "~a" final-uri))))))
 
 (defun SHOW-all-web ()
+  "Demonstrate the web utilities."
   (format t "~%~%======~%=== WEB~%======~%")
   (format t "~%")
   (web-redirect-p "http://www.google.fr" :print-info t))

@@ -1,8 +1,11 @@
+;;;; Utilities for sexp.
+
 (in-package :cl-utils)
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (defun sexp-replace-sexp-beginning-by (lst prefix replace-builder-fn)
-    "Transform sexp LST in the following way: each time a sexp, called sexp1, is found within LST of format sexp1 = (PREFIX...), it is replaced by (REPLACE-BUILDER-FN sexp1).
+    "Transform sexp LST in the following way: each time a sexp, called sexp1, is found within LST of
+format sexp1 = (PREFIX...), it is replaced by (REPLACE-BUILDER-FN sexp1).
 
 Used by macros.
 

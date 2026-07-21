@@ -1,3 +1,5 @@
+;;;; Utilities for ollama.
+
 (in-package :cl-utils)
 
 ;;; requires :jonathan :dexador :bordeaux-threads
@@ -72,6 +74,7 @@ Requires: jonathan, dexador, bordeaux-threads"
         nil))))
 
 (defun SHOW-all-ollama ()
+  "Demonstrate the ollama utilities."
   (format t "~%~%======~%=== OLLAMA~%======~%")
   (format t "~%")
   (format t "call-ollama1: skipped~%")

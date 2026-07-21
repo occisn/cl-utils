@@ -1,3 +1,10 @@
+;;;; Utilities for property lists.
+;;;;
+;;;; Useful standard functions for property lists.
+;;;;
+;;;; Reference notes: illustrations and considerations rather than
+;;;; exported functions.
+
 (in-package :cl-utils)
 
 (defun SHOW-property-lists-general ()

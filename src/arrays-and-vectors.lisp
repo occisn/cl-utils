@@ -1,3 +1,5 @@
+;;;; Utilities for arrays and vectors.
+
 (in-package :cl-utils)
 
 (defun SHOW-arrays-and-vectors-general ()
@@ -35,6 +37,7 @@
              (format t "Content: ~{~a~^ ~}~%" (loop for i across v collect i)))))))
 
 (defun SHOW-vec-view-all-content ()
+  "Demonstrate VEC-VIEW-ALL-CONTENT."
   (let ((v (make-array 8 :initial-contents '(1 2 3 4 5 6 7 8))))
     (vec-view-all-content v)))
 
@@ -59,6 +62,7 @@
              (format t "3 last:  ~a ~a ~a~%" (aref v (- n 3)) (aref v (- n 2)) (aref v (- n 1))))))))
 
 (defun SHOW-vec-preview ()
+  "Demonstrate VEC-PREVIEW."
   (let ((v (make-array 8 :initial-contents '(1 2 3 4 5 6 7 8))))
     (vec-preview v)))
 
@@ -70,9 +74,11 @@
     (make-array (length vec) :element-type 'fixnum :initial-contents vec))
 
 (defun SHOW-unliteral--fixnum-vector ()
+  "Demonstrate UNLITERAL--FIXNUM-VECTOR."
   (format t "unliteral--fixnum-vector: ~A~%" (unliteral--fixnum-vector #(1 2 3 4 5 6))))
 
 (defun SHOW-all-arrays-and-vectors ()
+  "Demonstrate the arrays and vectors utilities."
   (format t "~%~%======~%=== ARRAYS-AND-VECTORS~%======~%")
   (SHOW-arrays-and-vectors-general)
   (SHOW-vec-view-all-content)

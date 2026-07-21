@@ -1,3 +1,5 @@
+;;;; Utilities for bit vectors.
+
 (in-package :cl-utils)
 
 (defun fixnum->bit-vector (n)

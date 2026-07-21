@@ -1,7 +1,10 @@
+;;;; Utilities for files.
+
 (in-package :cl-utils)
 
 (defun random-file-name (dir base suffix)
-  "Generate a random file name within DIR directory, with base BASE and suffix SUFFIX, inserting current datetime (under LOCAL time) and random number. Directory is +tmp-directory+.
+  "Generate a random file name within DIR directory, with base BASE and suffix SUFFIX, inserting
+current datetime (under LOCAL time) and random number. Directory is +tmp-directory+.
 For instance: 'c:' 'graph1' 'gp' --> c:/graph1-r264491-20220403-145457.gp
 In this exemple, 264491 is a random number
 (v2, available in occisn/cl-utils GitHub repository)"

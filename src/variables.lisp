@@ -1,3 +1,10 @@
+;;;; Utilities for variables.
+;;;;
+;;;; General considerations on variables; bindings; lexical vs dynamic scoping.
+;;;;
+;;;; Reference notes: illustrations and considerations rather than
+;;;; exported functions.
+
 (in-package :cl-utils)
 
 (defun SHOW-variable-general ()

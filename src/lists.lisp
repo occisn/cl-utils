@@ -1,3 +1,5 @@
+;;;; Utilities for lists.
+
 (in-package :cl-utils)
 
 (defun SHOW-lists-general ()
@@ -26,7 +28,8 @@ Not optimized.
           unless (= i n) collect elt)))
 
 (defun replace-nth (n new-value lst)
-  "Return a list which is the original LST where N-th element is replaced by NEW-VALUE. Not destructive.
+  "Return a list which is the original LST where N-th element is replaced by NEW-VALUE. Not
+destructive.
 Not optimized.
 (v1 as of 2025-05-18, available in occisn/cl-utils GitHub repository)"
   (locally
@@ -57,7 +60,8 @@ Not optimized.
                    (elt lst (- n 1)))))))
 
 (defun arg-min (lst predicate)
-  "Return the position (starting at 0) of the lowest element in list LST according to predicate PREDICATE.
+  "Return the position (starting at 0) of the lowest element in list LST according to predicate
+PREDICATE.
 For instance: '(1 3 2 0 5) #'< --> 3
 (v1, available in occisn/cl-utils GitHub repository)"
   (declare (type function predicate))
@@ -72,7 +76,8 @@ For instance: '(1 3 2 0 5) #'< --> 3
     index-min))
 
 (defun arg-max (lst predicate)
-  "Return the position (starting at 0) of the highest element in list LST according to predicate PREDICATE.
+  "Return the position (starting at 0) of the highest element in list LST according to predicate
+PREDICATE.
 For instance: '(1 3 2 0 5) #'< --> 4
 (v1, available in occisn/cl-utils GitHub repository)"
   (declare (type function predicate))
@@ -113,8 +118,10 @@ Do not print the result.
 
 (defun circular-list-length (list) ; for list of numbers
   "Return the length of a circular list of *different* numbers.
-For instance: (circular-list-length (make-circular-DO-NOT-PRINT--AND-NOT-LITERAL (copy-seq '(1 2 3)))) --> 3.
-but (circular-list-length (make-circular-DO-NOT-PRINT--AND-NOT-LITERAL (copy-seq '(1 2 3 1 4 5)))) --> 3 (and not 5).
+For instance: (circular-list-length (make-circular-DO-NOT-PRINT--AND-NOT-LITERAL (copy-seq '(1 2
+3)))) --> 3.
+but (circular-list-length (make-circular-DO-NOT-PRINT--AND-NOT-LITERAL (copy-seq '(1 2 3 1 4 5))))
+--> 3 (and not 5).
 The argument is supposed to be a list of fixnum.
 (v1, available in occisn/cl-utils GitHub repository)"
   (declare (type (cons (integer)) list))
@@ -162,7 +169,8 @@ For instance: '(a b c d e f) '(2 3 5) --> '(C D F)."
             until (null sorted-indexes)))))
 
 (defun new-random-fixnum-list (length &key (mini 0) (maxi 100))
-  "Return a list of LENGTH random fixnums between MINI included (default: 0) and MAXI excluded (default: 100)."
+  "Return a list of LENGTH random fixnums between MINI included (default: 0) and MAXI excluded
+(default: 100)."
   (declare (type fixnum length mini maxi))
   (loop for idx of-type fixnum from 0 below length
         collect (the fixnum (+ mini (random (the fixnum (- maxi mini)))))))

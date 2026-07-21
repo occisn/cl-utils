@@ -1,3 +1,5 @@
+;;;; Tests for the combinations utilities.
+
 (in-package :cl-utils-tests)
 
 (parachute:define-test with-combinations-of-index-test

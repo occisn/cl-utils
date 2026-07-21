@@ -1,3 +1,5 @@
+;;;; Utilities for numbers doubles.
+
 (in-package :cl-utils)
 
 ;;; ===
@@ -65,7 +67,8 @@
 
 (declaim (inline %string-to-doublefloat-into))
 (defun %string-to-doublefloat-into (box string decimal-delimiter)
-  "Parse STRING into a double-float with DECIMAL-DELIMITER decimal delimiter (typically #\\. or #\\,). Store it into BOX. Faster than parse-float library."
+  "Parse STRING into a double-float with DECIMAL-DELIMITER decimal delimiter (typically #\\. or
+#\\,). Store it into BOX. Faster than parse-float library."
   (declare (type type-df-box box)
            (type (simple-array character) string)
            (type character decimal-delimiter))
@@ -105,7 +108,8 @@
     nil))
 
 (defmacro string-to-doublefloat-m (tmp-box string decimal-delimiter)
-  "Parse STRING into a double-float with DECIMAL-DELIMITER decimal delimiter (typically #\\. or #\\,). Return result. Use temporary TMP-BOX. Faster than parse-float library."
+  "Parse STRING into a double-float with DECIMAL-DELIMITER decimal delimiter (typically #\\. or
+#\\,). Return result. Use temporary TMP-BOX. Faster than parse-float library."
   `(progn
      (%string-to-doublefloat-into ,tmp-box ,string ,decimal-delimiter)
      (value-of ,tmp-box)))
@@ -140,7 +144,8 @@
 
 (declaim (inline random-dfvec))
 (defun random-dfvec (length &key (limit 100.0d0))
-  "Return a vector of length LENGTH containing double-float random numbers between 0 and LIMIT (default: 100.0d0).
+  "Return a vector of length LENGTH containing double-float random numbers between 0 and LIMIT
+(default: 100.0d0).
 
 Example: (random-dfvec 3 :limit 10.0d0)"
   (declare (type fixnum length)
@@ -194,7 +199,8 @@ MAXI: high value (default: 100.0d0)"
 
 (declaim (inline %vec-mean-into))
 (defun %vec-mean-into (res-box input-vec &key (first-index 0) (last-index -1))
-  "Calculate the mean of INPUT-VEC from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector), and stores it into RES-BOX."
+  "Calculate the mean of INPUT-VEC from FIRST-INDEX (default: 0) to LAST-INDEX included (default:
+-1, which means the end of the vector), and stores it into RES-BOX."
   (declare (type (simple-array double-float (*)) input-vec)
            (type type-df-box res-box)
            (type fixnum first-index last-index))
@@ -210,14 +216,16 @@ MAXI: high value (default: 100.0d0)"
     nil))
 
 (defmacro vec-mean-m (tmp-box input-vec &key (first-index 0) (last-index -1))
-  "Return the mean of INPUT-VEC from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector). Use temporary TMP-BOX."
+  "Return the mean of INPUT-VEC from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1,
+which means the end of the vector). Use temporary TMP-BOX."
   `(progn
      (%vec-mean-into ,tmp-box ,input-vec :first-index ,first-index :last-index ,last-index)
      (value-of ,tmp-box)))
 
 (declaim (inline %vec-variance-into))
 (defun %vec-variance-into (res-box input-vec &key (first-index 0) (last-index -1))
-  "Calculate the variance of INPUT-VEC from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector), and stores it into RES-BOX."
+  "Calculate the variance of INPUT-VEC from FIRST-INDEX (default: 0) to LAST-INDEX included
+(default: -1, which means the end of the vector), and stores it into RES-BOX."
   (declare (type (simple-array double-float (*)) input-vec)
            (type type-df-box res-box)
            (type fixnum first-index last-index))
@@ -240,14 +248,16 @@ MAXI: high value (default: 100.0d0)"
     nil))
 
 (defmacro vec-variance-m (tmp-box input-vec &key (first-index 0) (last-index -1))
-  "Return the variance of INPUT-VEC from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector). Use temporary TMP-BOX."
+  "Return the variance of INPUT-VEC from FIRST-INDEX (default: 0) to LAST-INDEX included (default:
+-1, which means the end of the vector). Use temporary TMP-BOX."
   `(progn
      (%vec-variance-into ,tmp-box ,input-vec :first-index ,first-index :last-index ,last-index)
      (value-of ,tmp-box)))
 
 (declaim (inline %vec-highest-into))
 (defun %vec-highest-into (res-box input-vec &key (first-index 0))
-  "Calculate the highest element in double-float vector INPUT-VEC, starting at index FIRST-INDEX (default: 0), and store it into RES-BOX."
+  "Calculate the highest element in double-float vector INPUT-VEC, starting at index FIRST-INDEX
+(default: 0), and store it into RES-BOX."
   (declare (type fixnum first-index)
            (type type-df-box res-box)
            (type (simple-array double-float (*)) input-vec))
@@ -259,14 +269,16 @@ MAXI: high value (default: 100.0d0)"
     nil))
 
 (defmacro vec-highest-m (tmp-box input-vec &key (first-index 0))
-  "Return the highest element in double-float vector INPUT-VEC, starting at index FIRST-INDEX (default: 0). Use temporary TMP-BOX."
+  "Return the highest element in double-float vector INPUT-VEC, starting at index FIRST-INDEX
+(default: 0). Use temporary TMP-BOX."
   `(progn
      (%vec-highest-into ,tmp-box ,input-vec :first-index ,first-index)
      (value-of ,tmp-box)))
 
 (declaim (inline %vec-lowest-into))
 (defun %vec-lowest-into (res-box input-vec &key (first-index 0))
-  "Calculate the lowest element in double-float vector INPUT-VEC, starting at index FIRST-INDEX (default: 0), and store it into RES-BOX."
+  "Calculate the lowest element in double-float vector INPUT-VEC, starting at index FIRST-INDEX
+(default: 0), and store it into RES-BOX."
   (declare (type fixnum first-index)
            (type type-df-box res-box)
            (type (simple-array double-float (*)) input-vec))
@@ -278,7 +290,8 @@ MAXI: high value (default: 100.0d0)"
     nil))
 
 (defmacro vec-lowest-m (tmp-box input-vec &key (first-index 0))
-  "Return the lowest element in double-float vector INPUT-VEC, starting at index FIRST-INDEX (default: 0). Use temporary TMP-BOX."
+  "Return the lowest element in double-float vector INPUT-VEC, starting at index FIRST-INDEX
+(default: 0). Use temporary TMP-BOX."
   `(progn
      (%vec-lowest-into ,tmp-box ,input-vec :first-index ,first-index)
      (value-of ,tmp-box)))
@@ -336,7 +349,8 @@ Source: Timothy Masters."
 
 (declaim (inline %vec-SORTED-median-into))
 (defun %vec-SORTED-median-into (res-box input-vec &key (first-index 0) (last-index -1) &aux (n (length input-vec)))
-  "Calculate the median of a >>sorted<< double-float vector INPUT-VEC, from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector), and store it into RES-BOX."
+  "Calculate the median of a >>sorted<< double-float vector INPUT-VEC, from FIRST-INDEX (default: 0)
+to LAST-INDEX included (default: -1, which means the end of the vector), and store it into RES-BOX."
   (declare (type (simple-array double-float (*)) input-vec)
            (type type-df-box res-box)
            (type fixnum first-index last-index))
@@ -350,14 +364,17 @@ Source: Timothy Masters."
   nil)
 
 (defmacro vec-SORTED-median-m (tmp-box input-vec &key (first-index 0) (last-index -1))
-  "Return the median of a >>sorted<< double-float vector INPUT-VEC, from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector). Use temporary TMP-BOX."
+  "Return the median of a >>sorted<< double-float vector INPUT-VEC, from FIRST-INDEX (default: 0) to
+LAST-INDEX included (default: -1, which means the end of the vector). Use temporary TMP-BOX."
   `(progn
      (%vec-SORTED-median-into ,tmp-box ,input-vec :first-index ,first-index :last-index ,last-index)
      (value-of ,tmp-box)))
 
 (declaim (inline %vec-SORTED-quartiles-into))
 (defun %vec-SORTED-quartiles-into (res-box input-vec &key (first-index 0) (last-index -1) &aux (n (length input-vec)))
-  "Calculate the quartiles 25, 50 and 75 of a >>sorted<< double-float vector INPUT-VEC, from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector), and store them into 3-cell RES-BOX."
+  "Calculate the quartiles 25, 50 and 75 of a >>sorted<< double-float vector INPUT-VEC, from
+FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector),
+and store them into 3-cell RES-BOX."
   (declare (type (simple-array double-float (*)) input-vec)
            (type type-df-3box res-box)
            (type fixnum first-index last-index))
@@ -375,14 +392,17 @@ Source: Timothy Masters."
   nil)
 
 (defmacro vec-SORTED-quartiles-m (tmp-box input-vec &key (first-index 0) (last-index -1))
-  "Return the quartiles 25, 50 and 75 of a >>sorted<< double-float vector INPUT-VEC as a 3-cell box. Use temporary TMP-BOX (type-df-3box)."
+  "Return the quartiles 25, 50 and 75 of a >>sorted<< double-float vector INPUT-VEC as a 3-cell box.
+Use temporary TMP-BOX (type-df-3box)."
   `(progn
      (%vec-SORTED-quartiles-into ,tmp-box ,input-vec :first-index ,first-index :last-index ,last-index)
      ,tmp-box))
 
 (declaim (inline %vec-SORTED-centile-into))
 (defun %vec-SORTED-centile-into (res-box input-vec cent &key (first-index 0) (last-index -1) &aux (n (length input-vec)))
-  "Calculate the centile CENT (0...100) of a >>sorted<< double-float vector INPUT-VEC, from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector), and store it into 1-cell RES-BOX."
+  "Calculate the centile CENT (0...100) of a >>sorted<< double-float vector INPUT-VEC, from
+FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector),
+and store it into 1-cell RES-BOX."
   (declare (type (simple-array double-float (*)) input-vec)
            (type type-df-box res-box)
            (type fixnum cent n first-index last-index))
@@ -396,7 +416,9 @@ Source: Timothy Masters."
   nil)
 
 (defmacro vec-SORTED-centile-m (tmp-box input-vec cent &key (first-index 0) (last-index -1))
-  "Return the centile CENT (0...100) of a >>sorted<< double-float vector INPUT-VEC, from FIRST-INDEX (default: 0) to LAST-INDEX included (default: -1, which means the end of the vector). Use temporary TMP-BOX."
+  "Return the centile CENT (0...100) of a >>sorted<< double-float vector INPUT-VEC, from FIRST-INDEX
+(default: 0) to LAST-INDEX included (default: -1, which means the end of the vector). Use temporary
+TMP-BOX."
   `(progn
      (%vec-SORTED-centile-into ,tmp-box ,input-vec ,cent :first-index ,first-index :last-index ,last-index)
      (value-of ,tmp-box)))

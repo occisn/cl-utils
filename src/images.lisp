@@ -1,3 +1,11 @@
+;;;; Utilities for images.
+;;;;
+;;;; Internal-only helpers for PNG generation (uses [zpng library](https://github.com/xach/zpng)).
+;;;; Not exported; copy-paste from source if needed.
+;;;;
+;;;; Reference notes: illustrations and considerations rather than
+;;;; exported functions.
+
 (in-package :cl-utils)
 
 (defun draw-pic-from-rgb-arrays (height width r-array g-array b-array export-file)
@@ -29,7 +37,8 @@ Requires zpng"
 
 (defun draw-heatmap-from-values (height width value-array export-file)
   "Create png file with heatmap from value-array.
-Algorithm to convert value to HSL then RGB is inspired by: https://stackoverflow.com/questions/17525215/calculate-color-values-from-green-to-red/30612603#30612603
+Algorithm to convert value to HSL then RGB is inspired by:
+https://stackoverflow.com/questions/17525215/calculate-color-values-from-green-to-red/30612603#30612603
 
 Requires draw-pic-from-rgb-arrays
 Requires zpng"

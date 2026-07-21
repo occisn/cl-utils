@@ -1,3 +1,5 @@
+;;;; Utilities for console charts.
+
 (in-package :cl-utils)
 
 ;;; =====================

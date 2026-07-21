@@ -1,3 +1,5 @@
+;;;; Utilities for search.
+
 (in-package :cl-utils)
 
 ;;; ==============
@@ -6,7 +8,8 @@
 
 (declaim (inline binary-search--with-initial-bounds))
 (defun binary-search--with-initial-bounds (value array low high)
-  "Return the index of VALUE in ARRAY through binary search, or NIL if VALUE is not in ARRAY. ARRAY should be a sorted (simple-array fixnum).
+  "Return the index of VALUE in ARRAY through binary search, or NIL if VALUE is not in ARRAY. ARRAY
+should be a sorted (simple-array fixnum).
 LOW and HIGH are initial index bounds.
 
 Source: Rosetta code"
@@ -22,7 +25,8 @@ Source: Rosetta code"
             (t (return middle))))))
 
 (defun binary-search (value array)
-  "Return the index of VALUE in ARRAY through binary search, or NIL if VALUE is not in ARRAY. ARRAY should be a sorted (simple-array fixnum).
+  "Return the index of VALUE in ARRAY through binary search, or NIL if VALUE is not in ARRAY. ARRAY
+should be a sorted (simple-array fixnum).
 
 Source: Rosetta code"
   (declare (type fixnum value)

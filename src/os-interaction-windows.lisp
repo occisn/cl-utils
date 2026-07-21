@@ -1,3 +1,5 @@
+;;;; Utilities for os interaction windows.
+
 (in-package :cl-utils)
 
 ;;; ==========================================

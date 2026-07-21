@@ -1,3 +1,5 @@
+;;;; Utilities for combinations.
+
 (in-package :cl-utils)
 
 ;;; ====================
@@ -5,7 +7,9 @@
 ;;; ====================
 
 (defmacro with-combinations-of-index ((comb-vec-symbol _of n1 k1) &body body)
-  "Execute BODY for all combinations of K within |[ 0...(N-1) ]|. In BODY, these combinations are presented as an array COMB-VEC-SYMBOL of fixnum. Combinations are generated in ascending lexicographic order.
+  "Execute BODY for all combinations of K within |[ 0...(N-1) ]|. In BODY, these combinations are
+presented as an array COMB-VEC-SYMBOL of fixnum. Combinations are generated in ascending
+lexicographic order.
 
 Example:
 (with-combinations-of-index (comb :of 5 3)
@@ -33,11 +37,10 @@ Source: Rosetta code + adaptations"
                             (incf ,m)
                             (setf (aref ,comb-vec-symbol (the fixnum (- ,kk ,j))) ,m))
                           (return-from ,outer t)))))))
-         (if (and (>= ,k 0) (>= ,n ,k))
-             (progn
-               (loop for ,i2 of-type fixnum below ,k do (setf (aref ,comb-vec-symbol ,i2) ,i2))
-               (loop do (progn ,@body)
-                     while (next-combination))))))))
+         (when (and (>= ,k 0) (>= ,n ,k))
+           (loop for ,i2 of-type fixnum below ,k do (setf (aref ,comb-vec-symbol ,i2) ,i2))
+           (loop do (progn ,@body)
+                 while (next-combination)))))))
 
 
 ;;; ===

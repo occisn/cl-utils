@@ -1,3 +1,5 @@
+;;;; Tests for the high order functions utilities.
+
 (in-package :cl-utils-tests)
 
 ;;; === first-which

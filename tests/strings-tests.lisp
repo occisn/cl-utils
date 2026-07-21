@@ -1,3 +1,5 @@
+;;;; Tests for the strings utilities.
+
 (in-package :cl-utils-tests)
 
 ;;; === string-split

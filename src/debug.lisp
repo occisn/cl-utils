@@ -1,3 +1,5 @@
+;;;; Utilities for debug.
+
 (in-package :cl-utils)
 
 ;; SLDB:

@@ -1,3 +1,10 @@
+;;;; Utilities for hash tables.
+;;;;
+;;;; Useful standard functions for hash tables.
+;;;;
+;;;; Reference notes: illustrations and considerations rather than
+;;;; exported functions.
+
 (in-package :cl-utils)
 
 (defun SHOW-hash-tables-general ()

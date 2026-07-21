@@ -1,3 +1,5 @@
+;;;; Tests for the symbols utilities.
+
 (in-package :cl-utils-tests)
 
 ;;; === function-to-string

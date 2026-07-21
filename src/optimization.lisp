@@ -1,3 +1,7 @@
+;;;; Utilities for optimization.
+;;;;
+;;;; How to comply with `(speed 3)` compilation notes. General considerations and methods, plus:
+
 (in-package :cl-utils)
 
 (defun SHOW-all-optimization (m n)

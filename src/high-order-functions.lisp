@@ -1,3 +1,5 @@
+;;;; Utilities for high order functions.
+
 (in-package :cl-utils)
 
 
@@ -9,7 +11,9 @@
 
 (defun reduce-recursive-sequence (&key (from 0) (rec-fn #'1+) (while0 (lambda (x) (declare (ignore x)) t)) (fn #'identity) aggregate-fn)
   (declare (type function aggregate-fn rec-fn while0 fn))
-  "Reduce function AGGREGATE-FN on each term of the recursive sequence starting at START (default: 1) and built with REC (default: #'1+), processed by FN (default: #'identity), while WHILE0 condition is met.
+  "Reduce function AGGREGATE-FN on each term of the recursive sequence starting at START (default:
+1) and built with REC (default: #'1+), processed by FN (default: #'identity), while WHILE0 condition
+is met.
 
 Example: see below."
   (loop for current-value = (funcall fn from)
@@ -42,7 +46,9 @@ Example: see below."
                     (arg-step-fn #'1+)
 		    (while-arg-fn (lambda (_x) (declare (ignorable _x)) t))
 		    (while-res-fn (lambda (_x) (declare (ignorable _x)) t)))
-  "'arg' starts at FROM (default: 1) and is incremented through ARG-STEP-FN. The loop stops when (WHILE-ARG-FN ARG) or (WHILE-RES-FN (FN arg)) is false. The function returns the list of (arg (FN arg)) for which (TARGET-REACHED-FN (FN arg)) is true.
+  "'arg' starts at FROM (default: 1) and is incremented through ARG-STEP-FN. The loop stops when
+(WHILE-ARG-FN ARG) or (WHILE-RES-FN (FN arg)) is false. The function returns the list of (arg (FN
+arg)) for which (TARGET-REACHED-FN (FN arg)) is true.
 
 Example: see below."
   (declare (type function fn target-reached-fn arg-step-fn while-arg-fn while-res-fn))
@@ -72,7 +78,8 @@ Example: see below."
 ;;; ===
 
 (defmacro first-which (&key generator fn (target-reached-fn '(lambda (_x) (declare (ignorable _x)) _x)))
-  "Execute the GENERATOR, which contains a 'submit', for instance: (loop for i from 1 do (submit i)).
+  "Execute the GENERATOR, which contains a 'submit', for instance: (loop for i from 1 do (submit
+i)).
 For each submitted value i, apply FN.
 Return the first (i FN i)) for which (TARGET-REACHED-FN (FN i)) is true.
 
@@ -111,7 +118,8 @@ Example: see below."
 
 (defmacro %maximizing-minimizing-base (predicate type sub-name &body body)
   "Generalist sub-macro used by the following specialized ones.
-Execute BODY which contains a (maximize y x) or (minimize y x) sexp (SUB-NAME = maximize or minimize).
+Execute BODY which contains a (maximize y x) or (minimize y x) sexp (SUB-NAME = maximize or
+minimize).
 Return the maximum/minimum value of y and the list of corresponding x.
 For maximum, PREDICATE shall be >. For minimum: <.
 TYPE is the type of y."
@@ -160,10 +168,12 @@ TYPE is the type of y."
                nil))))))
 
 (defmacro maximizing--fixnum (&body body)
-  "Execute BODY which contains a (maximize y x) sexp. Return the maximum value of fixnum y and the list of corresponding x."
+  "Execute BODY which contains a (maximize y x) sexp. Return the maximum value of fixnum y and the
+list of corresponding x."
   `(%maximizing-minimizing-base > fixnum maximize ,@body))
 
 (defun SHOW-maximizing--fixnum ()
+  "Demonstrate MAXIMIZING--FIXNUM."
   (maximizing--fixnum :verbose t
                       (loop for n from -3 to 3
                             for y = (- 5 (* n n))
@@ -171,10 +181,12 @@ TYPE is the type of y."
 ;;; --> (5 (0))
 
 (defmacro minimizing--fixnum (&body body)
-  "Execute BODY which contains a (minimize y x) sexp. Return the minimum value of fixnum y and the list of corresponding x."
+  "Execute BODY which contains a (minimize y x) sexp. Return the minimum value of fixnum y and the
+list of corresponding x."
     `(%maximizing-minimizing-base < fixnum minimize ,@body))
 
 (defun SHOW-minimizing--fixnum ()
+  "Demonstrate MINIMIZING--FIXNUM."
   (minimizing--fixnum :verbose t
                       (loop for n from -3 to 3
                             for y = (+ 5 (* n n))
@@ -182,27 +194,33 @@ TYPE is the type of y."
 ;;; --> (5 (0))
 
 (defmacro maximizing--bigint (&body body)
-  "Execute BODY which contains a (maximize y x) sexp. Return the maximum value of integer y and the list of corresponding x."
+  "Execute BODY which contains a (maximize y x) sexp. Return the maximum value of integer y and the
+list of corresponding x."
   `(%maximizing-minimizing-base > integer maximize ,@body))
 
 (defmacro minimizing--bigint (&body body)
-  "Execute BODY which contains a (minimize y x) sexp. Return the minimum value of integer y and the list of corresponding x."
+  "Execute BODY which contains a (minimize y x) sexp. Return the minimum value of integer y and the
+list of corresponding x."
   `(%maximizing-minimizing-base < integer minimize ,@body))
 
 (defmacro maximizing--rational (&body body)
-  "Execute BODY which contains a (maximize y x) sexp. Return the maximum value of rational y and the list of corresponding x."
+  "Execute BODY which contains a (maximize y x) sexp. Return the maximum value of rational y and the
+list of corresponding x."
   `(%maximizing-minimizing-base > rational maximize ,@body))
 
 (defmacro minimizing--rational (&body body)
-  "Execute BODY which contains a (minimize y x) sexp. Return the minimum value of rational y and the list of corresponding x."
+  "Execute BODY which contains a (minimize y x) sexp. Return the minimum value of rational y and the
+list of corresponding x."
   `(%maximizing-minimizing-base < rational minimize ,@body))
 
 (defmacro maximizing--df (&body body)
-  "Execute BODY which contains a (maximize y x) sexp. Return the maximum value of double-float y and the list of corresponding x."
+  "Execute BODY which contains a (maximize y x) sexp. Return the maximum value of double-float y and
+the list of corresponding x."
   `(%maximizing-minimizing-base > double-float maximize ,@body))
 
 (defmacro minimizing--df (&body body)
-  "Execute BODY which contains a (minimize y x) sexp. Return the minimum value of double-float y and the list of corresponding x."
+  "Execute BODY which contains a (minimize y x) sexp. Return the minimum value of double-float y and
+the list of corresponding x."
   `(%maximizing-minimizing-base < double-float minimize ,@body))
 
 
@@ -213,7 +231,8 @@ TYPE is the type of y."
 ;;; ===
 
 (defun max1D (fn nmin nmax &key (predicate #'<) (key #'identity) (filter-on-n (lambda (x) (declare (ignore x)) t)) (filter-on-value (lambda (x) (declare (ignore x)) t)))
-  "Return the maximum value, with the meaning of PREDICATE, of FN on [[NMIN, NMAX]] processed by KEY, restricted to FILTER-ON-N and FILTER-ON-VALUE."
+  "Return the maximum value, with the meaning of PREDICATE, of FN on [[NMIN, NMAX]] processed by
+KEY, restricted to FILTER-ON-N and FILTER-ON-VALUE."
   (declare (type function fn predicate key filter-on-n filter-on-value)
 	   (type fixnum nmin nmax))
   (let ((max-value nil)
@@ -245,7 +264,8 @@ TYPE is the type of y."
 ;; --> (25 0)
 
 (defun min1D (fn nmin nmax &key (predicate #'<) (key #'identity) (filter-on-n (lambda (x) (declare (ignore x)) t)) (filter-on-value (lambda (x) (declare (ignore x)) t)))
-  "Return the minimum value, with the meaning of PREDICATE, of FN on [[NMIN, NMAX]] processed by KEY, restricted to FILTER-ON-N and FILTER-ON-VALUE."
+  "Return the minimum value, with the meaning of PREDICATE, of FN on [[NMIN, NMAX]] processed by
+KEY, restricted to FILTER-ON-N and FILTER-ON-VALUE."
   (declare (type function fn predicate key filter-on-n filter-on-value)
 	   (type fixnum nmin nmax))
   (let ((min-value nil)
@@ -276,7 +296,8 @@ TYPE is the type of y."
          -5 5))
 
 (defun max2D (fn xmin xmax ymin ymax &key (predicate #'<) (key #'identity) (filter-on-xy (lambda (x y) (declare (ignore x y)) t)) (filter-on-value (lambda (x) (declare (ignore x)) t)) (no-ymin nil))
-  "Returns the maximum value, with the meaning of PREDICATE, of FN on [[XMIN, XMAX]] x [[YMIN, YMAX]], processed by KEY, restricted to FILTER-ON-XY and FILTER-ON-VALUE.
+  "Returns the maximum value, with the meaning of PREDICATE, of FN on [[XMIN, XMAX]] x [[YMIN,
+YMAX]], processed by KEY, restricted to FILTER-ON-XY and FILTER-ON-VALUE.
   If NO-YMIN is t, YMIN = x+1."
   (declare (type function fn predicate key filter-on-xy filter-on-value)
 	   (type fixnum xmin xmax ymax)
@@ -312,7 +333,8 @@ TYPE is the type of y."
          -5 5 -5 5))
 
 (defun min2D (fn xmin xmax ymin ymax &key (predicate #'<) (key #'identity) (filter-on-xy (lambda (x y) (declare (ignore x y)) t)) (filter-on-value (lambda (x) (declare (ignore x)) t)) (no-ymin nil))
-    "Returns the minimum value, with the meaning of PREDICATE, of FN on [[XMIN, XMAX]] x [[YMIN, YMAX]], processed by KEY, restricted to FILTER-ON-XY and FILTER-ON-VALUE.
+    "Returns the minimum value, with the meaning of PREDICATE, of FN on [[XMIN, XMAX]] x [[YMIN,
+YMAX]], processed by KEY, restricted to FILTER-ON-XY and FILTER-ON-VALUE.
   If NO-YMIN is t, YMIN = x+1."
   (declare (type function fn predicate key filter-on-xy filter-on-value)
 	   (type fixnum xmin xmax ymin ymax))

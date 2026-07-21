@@ -1,3 +1,5 @@
+;;;; Utilities for trampoline.
+
 (in-package :cl-utils)
 
 (defun trampoline (thunk)
@@ -16,6 +18,7 @@ The argument THUNK is the initial (fn ...)"
 
 
 (defun compute-pi-leibniz-A-recursive-with-TC-non-optimized-2 ()
+  "Approximate pi with the Leibniz series, tail-recursively, without tail call optimization."
   (declare (optimize (debug 3) 
                      (safety 3)
                      (speed 0)))
@@ -46,6 +49,7 @@ The argument THUNK is the initial (fn ...)"
 ;; with TRAMPOLINE :
 
 (defun compute-pi-leibniz-B-recursive-with-trampoline ()
+  "Approximate pi with the Leibniz series, recursively, through a trampoline."
   (declare (optimize (debug 3) 
                      (safety 3)
                      (speed 0)))

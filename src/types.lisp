@@ -1,3 +1,10 @@
+;;;; Utilities for types.
+;;;;
+;;;; General considerations on types.
+;;;;
+;;;; Reference notes: illustrations and considerations rather than
+;;;; exported functions.
+
 (in-package :cl-utils)
 
 (defun SHOW-types-general ()

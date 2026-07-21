@@ -1,3 +1,10 @@
+;;;; Utilities for association lists.
+;;;;
+;;;; Useful standard functions for association lists.
+;;;;
+;;;; Reference notes: illustrations and considerations rather than
+;;;; exported functions.
+
 (in-package :cl-utils)
 
 (defun SHOW-association-lists-general ()

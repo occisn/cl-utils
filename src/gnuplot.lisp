@@ -1,3 +1,5 @@
+;;;; Utilities for gnuplot.
+
 (in-package :cl-utils)
 
 ;;; ==============

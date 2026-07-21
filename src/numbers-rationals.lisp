@@ -1,3 +1,5 @@
+;;;; Utilities for numbers rationals.
+
 (in-package :cl-utils)
 
 (defmacro convert-to-proper-fraction-m (a b)
@@ -24,6 +26,7 @@ Requires SBCL.
 
 
 (defun SHOW-convert-to-proper-fraction-m (&optional (a 50) (b 15))
+  "Demonstrate CONVERT-TO-PROPER-FRACTION-M."
   (declare (type fixnum a b))
   (format t "~s / ~s" a b)
   (convert-to-proper-fraction-m a b)

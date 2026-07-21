@@ -1,3 +1,5 @@
+;;;; Utilities for continued fractions.
+
 (in-package :cl-utils)
 
 ;;; ===========================
@@ -25,7 +27,8 @@ For instance:
     (list (car tmp) (cdr tmp))))
 
 (defun integer-sqrt-to-continued-fraction (n)
-  "Return continued fraction corresponding to sqrt(N) where N is supposed _not_ to be a perfect square.
+  "Return continued fraction corresponding to sqrt(N) where N is supposed _not_ to be a perfect
+square.
 
 For instance:
 23 --> (4 (1 3 1 8)) ; = sqrt(23)
@@ -62,7 +65,8 @@ Refer to Project Euler 64."
                    until (and (> i 1) (= a a-initial) (= num2 num2-initial) (= denom denom-initial))))))))
 
 (defun length-continued-fraction-isqrt (n)
-  "Return length of continued fraction corresponding to sqrt(N) where N is supposed _not_ to be a perfect square.
+  "Return length of continued fraction corresponding to sqrt(N) where N is supposed _not_ to be a
+perfect square.
 
 For instance:
 23 --> 4 ; (4 (1 3 1 8))
@@ -75,7 +79,8 @@ Refer to Project Euler 64."
 
 (defmacro with-successive-convergents ((i-symbol num-symbol denom-symbol _of sequ) &body body)
   "Execute BODY for successive convergents of continued fraction SEQU.
-Within BODY, convergent is accessible as NUM-SYMBOL/DENOM-SYMBOL (not necessarily fixnum, could have greater values) and its rank I-SYMBOL.
+Within BODY, convergent is accessible as NUM-SYMBOL/DENOM-SYMBOL (not necessarily fixnum, could have
+greater values) and its rank I-SYMBOL.
 
 Example:
 (block outer

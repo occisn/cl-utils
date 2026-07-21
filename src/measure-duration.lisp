@@ -1,3 +1,5 @@
+;;;; Utilities for measure duration.
+
 (in-package :cl-utils)
 
 (defun SHOW-measure-duration  (&optional (n 100000000))
@@ -56,7 +58,8 @@
 (defun SHOW-benchmark-5-times-B (&optional (n 100000000))
   "Execute function 5 times, print each duration, and report the quickest.
 In this version, the function shall return the execution duration to be benchmarked.
-This variant enables to do other things in the version, outside of the measured time, for instance printing result."
+This variant enables to do other things in the version, outside of the measured time, for instance
+printing result."
 
   (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
   
@@ -98,6 +101,8 @@ This variant enables to do other things in the version, outside of the measured 
       nil))))
 
 (defmacro with-timing ((var) &body body)
+  "Evaluate BODY, and set VAR to the duration in seconds.
+The value of the last form of BODY is returned."
   `(let ((start (get-internal-real-time)))
      (prog1
          (progn ,@body)

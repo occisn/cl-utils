@@ -1,3 +1,5 @@
+;;;; Utilities for strings.
+
 (in-package :cl-utils)
 
 (defun SHOW-strings-useful-functions ()
@@ -69,7 +71,8 @@ For instance: 3 'abc' --> 'abcabcabc'
   (format nil "~v@{~A~:*~}" n str))
 
 (defun string-add-space-at-left (str &key total-length)
-  "Add spaces at the left of the string STR so that the length becomes TOTAL-LENGTH. Return the completed string.
+  "Add spaces at the left of the string STR so that the length becomes TOTAL-LENGTH. Return the
+completed string.
 For instance: 'abc' :total-length 6 --> '   abc'
 (v1, available in occisn/cl-utils GitHub repository)"
   (declare (type fixnum total-length)

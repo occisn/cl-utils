@@ -1,3 +1,5 @@
+;;;; Tests for the permutations utilities.
+
 (in-package :cl-utils-tests)
 
 (parachute:define-test next-distinct-lexicographic-permutation--string-test

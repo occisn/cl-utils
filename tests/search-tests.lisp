@@ -1,3 +1,5 @@
+;;;; Tests for the search utilities.
+
 (in-package :cl-utils-tests)
 
 ;;; === binary-search

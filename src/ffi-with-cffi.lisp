@@ -1,3 +1,11 @@
+;;;; Utilities for ffi with cffi.
+;;;;
+;;;; Demonstration of a foreign-function interface via CFFI,
+;;;; https://cffi.common-lisp.dev/ -- see SHOW-ffi-with-cffi.
+;;;;
+;;;; Reference notes: illustrations and considerations rather than
+;;;; exported functions.
+
 (in-package :cl-utils)
 
 ;; Define shared library (path computed relative to this source file)
@@ -50,6 +58,7 @@
 
 ;; Example of usage
 (defun SHOW-ffi-with-cffi ()
+  "Demonstrate FFI-WITH-CFFI."
 
   (format t "~%~%======~%=== FFI WITH CFFI~%======~%")
   (format t "~%")

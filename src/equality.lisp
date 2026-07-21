@@ -1,3 +1,10 @@
+;;;; Utilities for equality.
+;;;;
+;;;; Considerations on equality predicates (`eq`, `eql`, `equal`, `equalp`, `=`).
+;;;;
+;;;; Reference notes: illustrations and considerations rather than
+;;;; exported functions.
+
 (in-package :cl-utils)
 
 (defun SHOW-equality-predicates ()

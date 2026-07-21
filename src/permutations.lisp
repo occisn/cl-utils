@@ -1,3 +1,5 @@
+;;;; Utilities for permutations.
+
 (in-package :cl-utils)
 
 ;;; ====================
@@ -23,7 +25,8 @@
 
 (declaim (inline permute-randomly-doublefloat-array-in-place))
 (defun permute-randomly-doublefloat-array-in-place (v length &optional (first-index 0))
-  "Randomly permute double-float vector V of length LENGTH in-place, starting at optional FIRST-INDEX (default: 0)."
+  "Randomly permute double-float vector V of length LENGTH in-place, starting at optional
+FIRST-INDEX (default: 0)."
   (let* ((i (the fixnum (- length first-index)))
          (j 0))
     (declare (type fixnum i length first-index)
@@ -35,7 +38,8 @@
             (rotatef (aref v (the fixnum (+ i first-index))) (aref v (the fixnum (+ j first-index)))))))
 
 (defmacro with-random-fixnum-permutations ((permutated-array-symbol _from initial-array _times nb-permutations0) &body body)
-  "Execute BODY NB-PERMUTATIONS times on a random permutation of fixnum INITIAL-ARRAY. Within BODY, this random permutation is accessible through PERMUTATED-ARRAY-SYMBOL."
+  "Execute BODY NB-PERMUTATIONS times on a random permutation of fixnum INITIAL-ARRAY. Within BODY,
+this random permutation is accessible through PERMUTATED-ARRAY-SYMBOL."
   (declare (ignorable _from _times))
   (with-gensyms (i length nb-permutations)
     `(let* ((,nb-permutations ,nb-permutations0)
@@ -51,7 +55,8 @@
                   ,@body)))))
 
 (defmacro with-random-doublefloat-permutations ((permutated-array-symbol _from initial-array _times nb-permutations0) &body body)
-  "Execute BODY NB-PERMUTATIONS times on a random permutation of double-float INITIAL-ARRAY. Within BODY, this random permutation is accessible through PERMUTATED-ARRAY-SYMBOL."
+  "Execute BODY NB-PERMUTATIONS times on a random permutation of double-float INITIAL-ARRAY. Within
+BODY, this random permutation is accessible through PERMUTATED-ARRAY-SYMBOL."
   (declare (ignorable _from _times))
   (with-gensyms (i length nb-permutations)
     `(let* ((,nb-permutations ,nb-permutations0)
@@ -89,7 +94,8 @@
 ;;; ===
 
 (defun next-distinct-lexicographic-permutation--string (vec cmp)
-  "Return the next distinct permutation of string VEC in lexicographic order, using CMP predicate for comparison. VEC is modified.
+  "Return the next distinct permutation of string VEC in lexicographic order, using CMP predicate
+for comparison. VEC is modified.
 
 Source: https://www.nayuki.io/page/next-lexicographical-permutation-algorithm"
   (declare (type (simple-array character (*)) vec)
@@ -108,7 +114,8 @@ Source: https://www.nayuki.io/page/next-lexicographical-permutation-algorithm"
                        (return-from next-distinct-lexicographic-permutation--string vec)))))
 
 (defun next-distinct-lexicographic-permutation--fixnum-vector (vec cmp)
-  "Return the next distinct permutation of fixnum VEC in lexicographic order, using CMP predicate for comparison. VEC is modified."
+  "Return the next distinct permutation of fixnum VEC in lexicographic order, using CMP predicate
+for comparison. VEC is modified."
   (declare (type (simple-array fixnum (*)) vec)
            (type (function (fixnum fixnum) boolean) cmp))
   (macrolet ((el (i) `(aref vec ,i))
@@ -159,7 +166,8 @@ Method: Heap's algorithm."
 ;;; ===
 
 (defmacro with-distinct-rotated-numbers ((m-symbol _from n0) &body body)
-  "Execute BODY for all distinct rotated numbers of N, including N. Within BODY, the said numbers are accessible by M-SYMBOL.
+  "Execute BODY for all distinct rotated numbers of N, including N. Within BODY, the said numbers
+are accessible by M-SYMBOL.
 
 Example: (with-distinct-rotated-numbers (m :from 123) (print m))
 ;; --> 123 312 231"
@@ -191,7 +199,8 @@ For instance: 12345 --> (12345 51234 45123 34512 23451)."
 ;;; ===
 
 (defmacro with-permutations-of-digits ((m-symbol _of n0) &body body)
-  "Execute BODY for all numbers obtained by permutations of digits of N, including N. Within BODY, those numbers are accessible by M-SYMBOL."
+  "Execute BODY for all numbers obtained by permutations of digits of N, including N. Within BODY,
+those numbers are accessible by M-SYMBOL."
   (declare (ignorable _of))
   (with-gensyms (v0 v w n)
     `(let* ((,n ,n0)
@@ -204,7 +213,8 @@ For instance: 12345 --> (12345 51234 45123 34512 23451)."
              do (let ((,m-symbol (vector-of-digits->number ,w))) ,@body)))))
 
 (defmacro with-permutations-of-digits-no-leading-zero ((m-symbol _of n0) &body body)
-  "Execute BODY for all numbers obtained by permutations of digits of N, including N. Within BODY, those numbers are accessible by M-SYMBOL.
+  "Execute BODY for all numbers obtained by permutations of digits of N, including N. Within BODY,
+those numbers are accessible by M-SYMBOL.
 All permutations beginning by 0 are skipped (all permutations have the same number of digits)."
   (declare (ignorable _of))
   (with-gensyms (v0 v w n)

@@ -1,3 +1,5 @@
+;;;; Tests for the farey sequences utilities.
+
 (in-package :cl-utils-tests)
 
 ;;; === farey-immediately-on-left-of

@@ -1,3 +1,5 @@
+;;;; Utilities for lazy.
+
 (in-package :cl-utils)
 
 ;;; ============
@@ -106,6 +108,7 @@ Is 15 triangular? T
 ;;; *** SHOW-all ***
 
 (defun SHOW-all-lazy ()
+  "Demonstrate the lazy utilities."
   (format t "~%=== LAZY ===~%~%")
   (SHOW-make-ascending-sequence-with-explicit-formula)
   (SHOW-make-ascending-sequence-with-explicit-formula-no-memo))

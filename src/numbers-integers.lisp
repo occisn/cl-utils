@@ -1,3 +1,5 @@
+;;;; Utilities for numbers integers.
+
 (in-package :cl-utils)
 
 ;;; ===
@@ -161,7 +163,8 @@ For instance: 1 3 --> '(1 2 3)."
     res))
 
 (defun new-random-fixnum-vector (length &key (mini 0) (maxi 100))
-  "Return a vector of length LENGTH containing fixnum random numbers between MINI included (default: 0) and MAXI excluded (default: 100)."
+  "Return a vector of length LENGTH containing fixnum random numbers between MINI included (default:
+0) and MAXI excluded (default: 100)."
   (declare (type fixnum length mini maxi))
   (unless (<= mini maxi) (error "Should not happen ; mini = ~s ; maxi = ~s" mini maxi))
   (let ((res (make-array length :element-type 'fixnum)))
@@ -581,7 +584,8 @@ Optional NB-DIGITS avoids recalculating the number of digits."
 
 (defun replace-digits (n mask d &optional (nb-digits (nb-digits n)))
   "Replace digits at positions specified in MASK with digit D.
-N is the number, MASK is a fixnum vector of digit positions (1-indexed), D is the replacement digit."
+N is the number, MASK is a fixnum vector of digit positions (1-indexed), D is the replacement
+digit."
   (declare (type fixnum n nb-digits)
            (type (simple-array fixnum) mask))
   (if (= n 0)
@@ -698,7 +702,8 @@ Requires SBCL."
 
 Method: Euclid's algorithm.
 
-Note: The numbers 1 and -1 are the only integers coprime with every integer, and they are the only integers that are coprime with 0. (Wikipedia)"
+Note: The numbers 1 and -1 are the only integers coprime with every integer, and they are the only
+integers that are coprime with 0. (Wikipedia)"
   (declare (type fixnum a b))
   (= 1 (gcd--2fixnum a b)))
 

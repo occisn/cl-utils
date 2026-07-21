@@ -1,3 +1,5 @@
+;;;; Utilities for farey sequences.
+
 (in-package :cl-utils)
 
 ;;; ========================

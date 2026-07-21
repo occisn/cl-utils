@@ -1,3 +1,5 @@
+;;;; Utilities for macros.
+
 (in-package :cl-utils)
 
 (defmacro with-gensyms (syms &body body)
@@ -31,6 +33,7 @@
      (progn ,@body)))
 
 (defun SHOW-while ()
+  "Demonstrate WHILE."
   (let ((a 0))
     (while (< a 5)
            (format t "~a " a)
@@ -39,7 +42,8 @@
 ;; prints 0 1 2 3 4 and returns 5
 
 (defmacro while1--OLD-VERSION (test &body body)
-  "Typical 'while' macro. Same as 'while', but named as 'while1' to be used within 'loop' block, where 'while' is overshadowed.
+  "Typical 'while' macro. Same as 'while', but named as 'while1' to be used within 'loop' block,
+where 'while' is overshadowed.
 (v1 available in occisn/cl-utils GitHub repository)"
   (let ((beg-tag (gensym "BEG-TAG"))
         (end-tag (gensym "END-TAG")))
@@ -51,7 +55,8 @@
 	,end-tag)))
 
 (defmacro while1 (condition &body body)
-  "Typical 'while' macro. Same as 'while', but named as 'while1' to be used within 'loop' block, where 'while' is overshadowed.
+  "Typical 'while' macro. Same as 'while', but named as 'while1' to be used within 'loop' block,
+where 'while' is overshadowed.
 (v2 available in occisn/cl-utils GitHub repository)"
   (let ((start (gensym "START")))
     `(tagbody
@@ -61,6 +66,7 @@
           (go ,start)))))
 
 (defun SHOW-while1 ()
+  "Demonstrate WHILE1."
   (let ((a 0))
     (while1 (< a 5)
             (format t "~a " a)
@@ -85,6 +91,7 @@
 	(unless ,until-test (go ,beg-tag))) ))
 
 (defun SHOW-repeat-until ()
+  "Demonstrate REPEAT-UNTIL."
   (locally
       (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
     (let ((a 0))
@@ -126,6 +133,7 @@
 	(when ,while-test (go ,beg-tag)))))
 
 (defun SHOW-do-while ()
+  "Demonstrate DO-WHILE."
   (locally
       (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
     (let ((a 0))
@@ -170,6 +178,7 @@
 ;; See "On Lisp" book
 
 (defun SHOW-aprogn ()
+  "Demonstrate APROGN."
   (aprogn 5
           (+ 1 it)
           (* 3 it)))
@@ -195,6 +204,7 @@ Source : On Lisp"
 ;; See "On Lisp" book
 
 (defun SHOW-ablock ()
+  "Demonstrate ABLOCK."
   (ablock it
           (dotimes (i 10)
             (when (= i 5)
@@ -256,6 +266,7 @@ Order is reversed (quicker).
        ,lst)))
 
 (defun SHOW-with-collector--reversed-order ()
+  "Demonstrate WITH-COLLECTOR--REVERSED-ORDER."
   (with-collector--reversed-order (collect)
    (loop for i of-type fixnum from -5 to 5
          when (> (* i i) 10)
@@ -273,6 +284,7 @@ In the right order (using REVERSE, so slower than the previous macro).
        (reverse ,lst))))
 
 (defun SHOW-with-collector ()
+  "Demonstrate WITH-COLLECTOR."
   (with-collector (collect)
     (loop for i of-type fixnum from -5 to 5
           when (> (* i i) 10)
@@ -281,7 +293,9 @@ In the right order (using REVERSE, so slower than the previous macro).
 
 (defmacro let+ (bindings &body body)
   "Unified binding form that recognizes both variables and functions.
-Like LET, but automatically recognizes lambda expressions and function definitions, treating them as local functions (using LABELS) while treating other values as regular variable bindings (using LET)."
+Like LET, but automatically recognizes lambda expressions and function definitions, treating them as
+local functions (using LABELS) while treating other values as regular variable bindings (using
+LET)."
   (if (null bindings)
       `(progn ,@body)
       (let* ((binding (car bindings))

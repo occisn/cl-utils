@@ -1,3 +1,5 @@
+;;;; Utilities for mail via gmail.
+
 (in-package :cl-utils)
 
 (defun send-mail-via-gmail (&key (from nil) (to nil) (subject "") (body "") (password nil) (cc nil) (bcc nil))

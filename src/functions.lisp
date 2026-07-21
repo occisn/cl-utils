@@ -1,3 +1,10 @@
+;;;; Utilities for functions.
+;;;;
+;;;; Generalities on functions; pass-by-reference vs pass-by-value notes.
+;;;;
+;;;; Reference notes: illustrations and considerations rather than
+;;;; exported functions.
+
 (in-package :cl-utils)
 
 (defun SHOW-functions-general ()

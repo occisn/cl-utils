@@ -1,3 +1,5 @@
+;;;; Utilities for numbers integers french.
+
 (in-package :cl-utils)
 
 ;; References:
@@ -8,7 +10,8 @@
 ;; tests below are all verified with https://leconjugueur.lefigaro.fr/frnombre.php
 
 (defun en-toutes-lettres (n)
-  "This function converts a number N into its written equivalent in words in French, according to the rules prior to 1990 reform.
+  "This function converts a number N into its written equivalent in words in French, according to
+the rules prior to 1990 reform.
 For instance : 101 --> 'cent un'.
 N shall be an integer >= 0 and <= 999 999 999 999
 (v1 as of 2017-02-16, available in occisn/cl-utils GitHub repository)"

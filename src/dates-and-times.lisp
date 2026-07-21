@@ -1,3 +1,5 @@
+;;;; Utilities for dates and times.
+
 (in-package :cl-utils)
 
 ;;; Universal time = number of seconds since January 1, 1900
@@ -137,7 +139,12 @@ For instance: Sunday 03/04/2022 15:59:26 (GMT+1, DST)
   (multiple-value-bind
 	(second minute hour date month year day-of-week dst-p tz)
       (decode-universal-time universal-time)
-    (declare (type fixnum tz))
+    ;; TZ is a RATIONAL, not necessarily an integer: DECODE-UNIVERSAL-TIME
+    ;; returns a multiple of 1/3600, and does so for any date preceding the
+    ;; adoption of standard time in the local zone.  Europe/Paris decodes
+    ;; universal time 0 with its local mean time offset of 187/1200 hours,
+    ;; which violated the previous FIXNUM declaration.
+    (declare (type rational tz))
     (format nil "~a ~2,'0d/~2,'0d/~d ~2,'0d:~2,'0d:~2,'0d (GMT~@d, ~a)"
 	    (nth day-of-week '("Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" "Sunday"))
             date month year
@@ -145,6 +152,7 @@ For instance: Sunday 03/04/2022 15:59:26 (GMT+1, DST)
 	    (- tz) (if dst-p "DST" "no DST"))))
 
 (defun SHOW-pretty-print-universal-time-as-full-date-time ()
+  "Demonstrate PRETTY-PRINT-UNIVERSAL-TIME-AS-FULL-DATE-TIME."
   (pretty-print-universal-time-as-full-date-time (get-universal-time)))
 
 (defun pretty-print-universal-time-as-long-date (universal-time)
@@ -165,6 +173,7 @@ For instance: --> 'January 1st, 2022'
             year)))
 
 (defun SHOW-pretty-print-universal-time-as-long-date ()
+  "Demonstrate PRETTY-PRINT-UNIVERSAL-TIME-AS-LONG-DATE."
   (pretty-print-universal-time-as-long-date (get-universal-time)))
 
 (defun pretty-print-universal-time-as-short-date (universal-time)
@@ -184,10 +193,12 @@ For instance: --> 'Jan. 1st, 2022'
             year)))
 
 (defun SHOW-pretty-print-universal-time-as-short-date ()
+  "Demonstrate PRETTY-PRINT-UNIVERSAL-TIME-AS-SHORT-DATE."
   (pretty-print-universal-time-as-short-date (get-universal-time)))
 
 (defun pretty-print-time-difference (universal-time-1 universal-time-2)
-  "Return a pretty string corresponding to the time difference between the two universal times UNIVERSAL-TIME-1 and UNIVERSAL-TIME-2.
+  "Return a pretty string corresponding to the time difference between the two universal times
+UNIVERSAL-TIME-1 and UNIVERSAL-TIME-2.
 For instance: --> '3 days', '3.5 months', '1.3 years'
 (v1 available in occisn/cl-utils GitHub repository)"
   (declare (type fixnum universal-time-1 universal-time-2))

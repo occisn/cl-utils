@@ -1,3 +1,5 @@
+;;;; Utilities for booleans.
+
 (in-package :cl-utils)
 
 (defmacro boolean-value (x)

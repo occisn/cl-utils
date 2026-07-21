@@ -1,3 +1,10 @@
+;;;; Utilities for tco.
+;;;;
+;;;; Illustration that `(speed 3)` encourages tail-call optimization.
+;;;;
+;;;; Reference notes: illustrations and considerations rather than
+;;;; exported functions.
+
 (in-package :cl-utils)
 
 ;; TLDR: ;; 'speed 3' encourages TCO
@@ -9,6 +16,7 @@
 ;;; === (A) reference implementation, by iteration
 
 (defun compute-pi-leibniz-A-reference ()
+  "Approximate pi with the Leibniz series, iteratively. Reference implementation."
   (let ((sum 0.0d0))
     (declare (type double-float sum))
     (dotimes (i +nb-iterations+)
@@ -27,6 +35,7 @@
 ;;; === (B) recursion without tail-call 
 
 (defun compute-pi-leibniz-B-recursive-without-TC ()
+  "Approximate pi with the Leibniz series, recursively, without tail call."
   (labels ((sub (i)
              (declare (type fixnum i))
              (if (= 0 i)
@@ -52,6 +61,7 @@
 ;;; === (C) recursion with tail-call, non-optimized (speed 0)
 
 (defun compute-pi-leibniz-C-recursive-with-TC-non-optimized ()
+  "Approximate pi with the Leibniz series, tail-recursively, without tail call optimization."
   (declare (optimize (debug 3) 
                      (safety 3)
                      (speed 0)))
@@ -83,6 +93,7 @@
 ;;; === (D) recursion with tail-call, optimized (speed 3)
 
 (defun compute-pi-leibniz-D-recursive-with-TC-optimized ()
+  "Approximate pi with the Leibniz series, tail-recursively, with tail call optimization."
   (declare (optimize (debug 0) 
                      (safety 0)
                      (speed 3)))

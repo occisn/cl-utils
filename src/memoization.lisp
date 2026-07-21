@@ -1,3 +1,5 @@
+;;;; Utilities for memoization.
+
 (in-package :cl-utils)
 
 (defmacro labels-memo-ht (memo-test-fn fn-definition &body body)

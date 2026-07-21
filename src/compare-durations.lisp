@@ -1,3 +1,8 @@
+;;;; Utilities for compare durations.
+;;;;
+;;;; (Demonstrations `SHOW-1-compare-durations` through `SHOW-5-compare-durations` illustrate five
+;;;; usage patterns.)
+
 (in-package :cl-utils)
 
 (defun %long-function-A (&optional (nb-times 800))
@@ -13,6 +18,7 @@ Its execution last around 0.1s for NB-TIMES = 15 (default)."
                always (not (= 0 (mod n m)))))))
 
 (defun %for-bench-fact-1 (n)
+  "Compute the factorial of N. Variant 1, used to compare durations."
   ;; Recursive
   ;; (check-type n (integer 0 *))
   (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
@@ -21,6 +27,7 @@ Its execution last around 0.1s for NB-TIMES = 15 (default)."
     (t (* n (%for-bench-fact-1 (- n 1))))))
 
 (defun %for-bench-fact-2 (n)
+  "Compute the factorial of N. Variant 2, used to compare durations."
   ;; Recursive with tail recursion
   ;; (check-type n (integer 0 *))
   (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
@@ -32,6 +39,7 @@ Its execution last around 0.1s for NB-TIMES = 15 (default)."
     (%for-bench-fact-2-help n 1)))
 
 (defun %for-bench-fact-2b (n &optional (acc 1))
+  "Compute the factorial of N with an accumulator. Variant 2b, used to compare durations."
   ;; Recursive with tail recursion, and optional argument
   ;; (check-type n (integer 0 *))
   (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
@@ -40,6 +48,7 @@ Its execution last around 0.1s for NB-TIMES = 15 (default)."
     (t (%for-bench-fact-2b (- n 1) (* acc n)))))
 
 (defun %for-bench-fact-3 (n)
+  "Compute the factorial of N. Variant 3, used to compare durations."
   ;; Iterative: dotimes and assignment
   ;; (check-type n (integer 0 *))
   (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
@@ -48,6 +57,7 @@ Its execution last around 0.1s for NB-TIMES = 15 (default)."
       (setf prod (* prod (+ i 1))))))
 
 (defun %for-bench-fact-4 (n)
+  "Compute the factorial of N. Variant 4, used to compare durations."
   ;; Iterative: do and implicit assignment
   ;; (check-type n (integer 0 *))
   (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
@@ -56,6 +66,7 @@ Its execution last around 0.1s for NB-TIMES = 15 (default)."
       ((zerop i) result))) ; pas de body dans le do
 
 (defun %for-bench-fact-5 (n)
+  "Compute the factorial of N. Variant 5, used to compare durations."
   ;; Iterative: do* and implicit assignment
   ;; (check-type n (integer 0 *))
   (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
@@ -68,6 +79,7 @@ Its execution last around 0.1s for NB-TIMES = 15 (default)."
 ;;; ===
 
 (defun start-up-1 ()
+  "Run a plain arithmetic loop, to warm the CPU up before a benchmark."
   (declare (sb-ext:muffle-conditions sb-ext:compiler-note))
   (let ((res 0))
     (loop for i from 1 to 10000000 do (incf res (* i (+ i 1))))
@@ -105,7 +117,8 @@ Example: (my-time-real (+ 2 2))
 ;;; ===
 
 (defmacro %my-time (exp)
-  "Return the duration in real time and run time spent for the execution of the expression EXP (v2, 19.3.2017).
+  "Return the duration in real time and run time spent for the execution of the expression EXP (v2,
+19.3.2017).
 
 Example: (my-time (+ 2 2))
          (my-time (%long-function-A))"
@@ -120,7 +133,8 @@ Example: (my-time (+ 2 2))
         (/ (- (get-internal-run-time) ,run-base) internal-time-units-per-second 1.0)))))
 
 (defmacro compare-durations (list-of-functions &key (args '()) (repeat 1) (start-up '(lambda () (values))) context (show-doc nil))
-  "Compare the duration of the execution of several functions, with the same arguments (v3, 19.2.2017).
+  "Compare the duration of the execution of several functions, with the same arguments (v3,
+19.2.2017).
 Require 'my-time' macro
 LIST-OF-FUNCTIONS: list of functions
 ARGS: list of arguments (by default: '())
@@ -166,7 +180,8 @@ For instance: 'abc::def' #\: --> 'def'
                          (subseq str (+ idx 1) )))))
 
                 (function-to-string-no-package (fn)
-                  "Return a string corresponding to function FN without the possible initial part corresponding to the package. This initial part is identified through ':'.
+                  "Return a string corresponding to function FN without the possible initial part
+corresponding to the package. This initial part is identified through ':'.
 (v1 available in occisn/cl-utils GitHub repository)"
                   (declare (type function fn))
 

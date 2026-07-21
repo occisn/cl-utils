@@ -1,3 +1,5 @@
+;;;; Utilities for parallelism.
+
 (in-package :cl-utils)
 
 ;;; ===
@@ -17,7 +19,8 @@
 
 (defmacro with-parallelism (&body body)
   "Create lparallel kernel, execute BODY and end kernel.
-The number of cores (nb-cores) that is to say the number of cores of the machine on which code is executed (vs compiled)."
+The number of cores (nb-cores) that is to say the number of cores of the machine on which code is
+executed (vs compiled)."
   (with-gensyms (nb-cores res)
     `(progn
        (if lparallel:*kernel*
@@ -231,7 +234,8 @@ Example: see below."
 (defun pfor-by-blocks-with-pmap (&key from below nb-parts thread-fn aggregate-fn)
   "Split |[FROM, BELOW|[ in NB-PARTS parts (typically: 16, 32).
 With lparallel:pmap, a thread is launched to process each part.
-Thread is based on a function THREAD-FN, which accepts two arguments, which are the 'from' and 'below' of the part; the function/thread yields a return value.
+Thread is based on a function THREAD-FN, which accepts two arguments, which are the 'from' and
+'below' of the part; the function/thread yields a return value.
 AGGREGATE-FN manages the vector of results.
 
 Example: see below."
@@ -274,7 +278,9 @@ Example: see below."
 
 (defmacro p-first-which (&key from fn target-reached-fn block-size (nb-threads '(nb-cores)) (verbose nil))
   "Index idx is incremented from FROM to infinity.
-A pool of NB-THREADS (default: nb of cores) reusable threads processes the values of idx by blocks of size BLOCK-SIZE (typically: 30). These threads are based on an augmented version of FN, which accepts one argument (idx).
+A pool of NB-THREADS (default: nb of cores) reusable threads processes the values of idx by blocks
+of size BLOCK-SIZE (typically: 30). These threads are based on an augmented version of FN, which
+accepts one argument (idx).
 The function returns the first value of idx for which TARGET-REACHED-FN is true.
 VERBOSE prints information.
 
@@ -345,7 +351,8 @@ Example: see below."
      res))
 
 (defmacro p-maximizing--based-on-pmap (&key generator thread-fn)
-  "Execute the GENERATOR, which contains a 'submit', for instance: (loop for i from 1 do (submit i)).
+  "Execute the GENERATOR, which contains a 'submit', for instance: (loop for i from 1 do (submit
+i)).
 'Submitted' values are gathered in a list, on which lparallel:pmap is called.
 Threads are based on THREAD-FN, which typically contains itself maximizing... maximize.
 The macro returns (y xs) where y is the _fixnum_ maximum and xs is the list of values maximizing y.
@@ -354,7 +361,8 @@ Example: see below."
   `(%p-maximizing-minimizing--based-on-pmap > :generator ,generator :thread-fn ,thread-fn))
 
 (defmacro p-minimizing--based-on-pmap (&key generator thread-fn)
-  "Execute the GENERATOR, which contains a 'submit', for instance: (loop for i from 1 do (submit i)).
+  "Execute the GENERATOR, which contains a 'submit', for instance: (loop for i from 1 do (submit
+i)).
 'Submitted' values are gathered in a list, on which lparallel:pmap is called.
 Threads are based on THREAD-FN, which typically contains itself minimizing... minimize.
 The macro returns (y xs) where y is the _fixnum_ minimum and xs is the list of values minimizing y.
@@ -393,7 +401,8 @@ Example: see below."
      res))
 
 (defmacro p-maximizing--throwable-threads (&key generator thread-fn (nb-threads nil) (verbose nil))
-  "Execute the GENERATOR, which contains a 'submit', for instance: (loop for i from 1 do (submit i)).
+  "Execute the GENERATOR, which contains a 'submit', for instance: (loop for i from 1 do (submit
+i)).
 'Submitted' values are processed by throwable threads.
 Threads are based on THREAD-FN, which typically contains itself maximizing... maximize.
 The macro returns (y xs) where y is the _fixnum_ maximum and xs is the list of values maximizing y.
@@ -403,7 +412,8 @@ Example: see below."
   `(%p-maximizing-minimizing--throwable-threads > :generator ,generator :thread-fn ,thread-fn :nb-threads ,nb-threads :verbose ,verbose))
 
 (defmacro p-minimizing--throwable-threads (&key generator thread-fn (nb-threads nil) (verbose nil))
-  "Execute the GENERATOR, which contains a 'submit', for instance: (loop for i from 1 do (submit i)).
+  "Execute the GENERATOR, which contains a 'submit', for instance: (loop for i from 1 do (submit
+i)).
 'Submitted' values are processed by throwable threads.
 Threads are based on THREAD-FN, which typically contains itself minimizing... minimize.
 The macro returns (y xs) where y is the _fixnum_ minimum and xs is the list of values minimizing y.

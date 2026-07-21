@@ -1,12 +1,11 @@
 (asdf:defsystem "cl-utils"
-  :name "cl-utils"
-  ;; :version "1"
+  :version "1.0.0"
   :author "Nicolas Occis"
-  :licence "MIT"
+  :maintainer "Nicolas Occis"
+  :license "MIT"
+  :homepage "https://github.com/occisn/cl-utils"
   :description "Personal utilities for Common Lisp"
-  ;; :long-description "A long description"
-  :depends-on (;; :parachute ; for tests
-               #:bordeaux-threads
+  :depends-on (#:bordeaux-threads
                #:cffi
                #:cl-smtp
                #:dexador
@@ -18,15 +17,22 @@
                #:zpng
                )
   :serial t ; load files in order
+  ;; Compilation policy for every file of the system, set in one place.
+  ;;
+  ;; Beware: PROCLAIM is global and permanent.  It is not undone when this
+  ;; system has finished compiling, so the setting below stays in force for
+  ;; the rest of the session and applies to every other system compiled
+  ;; afterwards in the same image.
   :around-compile (lambda (next)
                     (proclaim '(optimize (debug 0) 
                                 (safety 0)
                                 (speed 3)))
                     (funcall next))
-  :components ((:file "package")
-               (:module "src"
+  :components ((:module "src"
+                :serial t
                 :components
-                ((:file "arrays-and-vectors")
+                ((:file "package")
+                 (:file "arrays-and-vectors")
                  (:file "association-lists")
                  (:file "bit-vectors")
                  (:file "booleans")
@@ -78,7 +84,7 @@
                  (:file "web")
                  (:file "_show-all"))))
   :perform (load-op :after (op c)
-                    (format t "~%Welcome in cl-utils! (~a exported symbols)~%~%Execute all functions with (cl--utils::SHOW-all).~%A complete test suite is also available.~%~%"
+                    (format t "~%Welcome in cl-utils! (~a exported symbols)~%~%Execute all demonstrations with (cl-utils::SHOW-all-cl-utils).~%A complete test suite is also available.~%~%"
                             (let ((package-name :cl-utils)
                                   (count 0))
                               (do-external-symbols (sym package-name count)

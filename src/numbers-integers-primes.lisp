@@ -1,3 +1,5 @@
+;;;; Utilities for numbers integers primes.
+
 (in-package :cl-utils)
 
 (defun largest-prime-factor (n)
@@ -33,8 +35,8 @@ For instance: 13195 = 5 x 7 x 13 x 29 --> 29.
            (incf i 6)))))
 
     ;; If n is still > 1, it is prime
-    (if (> n 1)
-        (setf largest n))
+    (when (> n 1)
+      (setf largest n))
 
     largest))
 

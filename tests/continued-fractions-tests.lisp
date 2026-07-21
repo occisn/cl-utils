@@ -1,3 +1,5 @@
+;;;; Tests for the continued fractions utilities.
+
 (in-package :cl-utils-tests)
 
 ;;; === integer-sqrt-to-continued-fraction

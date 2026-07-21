@@ -1,3 +1,10 @@
+;;;; Utilities for format.
+;;;;
+;;;; Illustrations of various `format` directives.
+;;;;
+;;;; Reference notes: illustrations and considerations rather than
+;;;; exported functions.
+
 (in-package :cl-utils)
 
 (defun SHOW-all-format ()
